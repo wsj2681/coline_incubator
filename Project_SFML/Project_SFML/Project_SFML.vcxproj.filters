@@ -4,10 +4,41 @@
     <Filter Include="Source Code">
       <UniqueIdentifier>{08be7532-42b9-4d14-b3aa-6a15f21f73f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Code\00. Engine">
+      <UniqueIdentifier>{5ede51e5-dc0e-446b-8a7f-4639b68148ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\01. Object">
+      <UniqueIdentifier>{be6de2dd-df49-4f2d-8b54-d7b26ef1d560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\01. Object\00. Object">
+      <UniqueIdentifier>{683c18d3-856f-42cd-b4c6-98ca645f84f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\01. Object\01. AnimationObject">
+      <UniqueIdentifier>{40089e95-eb8e-4501-a531-b3415ecd7e7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Code</Filter>
     </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Code\00. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Code\01. Object\00. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Source Code</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Source Code\00. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Source Code\01. Object\00. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationObject.h" />
   </ItemGroup>
 </Project>

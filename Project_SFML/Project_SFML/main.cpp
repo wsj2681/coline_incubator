@@ -1,8 +1,12 @@
-#include <SFML/Graphics.hpp>
-
-using namespace sf;
+#include "framework.h"
+#include "Engine.h"
 
 int main()
 {
-	RenderWindow window(VideoMode(500, 500), "aa");
+	Engine engine;
+
+	engine.Render();
+
+	engine.Destroy();
+
 }
