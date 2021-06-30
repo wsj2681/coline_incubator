@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "Engine.h"
-#include "AnimationObject.h"
+#include "Charactor.h"
+#include "ExplosionEffect.h"
+#include "BlueEffect.h"
 
 Engine::Engine()
 {
@@ -21,12 +23,9 @@ void Engine::Init()
 	icon.loadFromFile("Texture/icon.png");
 	window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-	AnimationObject* obj1 = new AnimationObject;
-	obj.push_back(new AnimationObject);
-	obj1->setPosition(100.f, 0.f);
-	obj.push_back(obj1);
-
-
+	obj.push_back(new BlueEffect);
+	obj.push_back(new Charactor);
+	obj.push_back(new ExplosionEffect);
 }
 
 void Engine::Destroy()

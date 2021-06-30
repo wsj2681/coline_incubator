@@ -4,41 +4,76 @@
     <Filter Include="Source Code">
       <UniqueIdentifier>{08be7532-42b9-4d14-b3aa-6a15f21f73f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\00. Engine">
+    <Filter Include="Source Code\01. Engine">
       <UniqueIdentifier>{5ede51e5-dc0e-446b-8a7f-4639b68148ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\01. Object">
+    <Filter Include="Source Code\02. Object">
       <UniqueIdentifier>{be6de2dd-df49-4f2d-8b54-d7b26ef1d560}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\01. Object\00. Object">
+    <Filter Include="Source Code\02. Object\00. Object">
       <UniqueIdentifier>{683c18d3-856f-42cd-b4c6-98ca645f84f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\01. Object\01. AnimationObject">
+    <Filter Include="Source Code\02. Object\01. AnimationObject">
       <UniqueIdentifier>{40089e95-eb8e-4501-a531-b3415ecd7e7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Object\01. AnimationObject\00. AnimationObject">
+      <UniqueIdentifier>{c6fbf479-481a-4c6c-804f-89e544de5a71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\00. Main">
+      <UniqueIdentifier>{33833446-c3b3-409a-9efe-5d7d29f6b498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\99. Common">
+      <UniqueIdentifier>{38e35ad5-14f9-45d6-aaf2-f196c6df7a96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Object\01. AnimationObject\01. Charactor">
+      <UniqueIdentifier>{1116cda4-fa17-46b1-8362-471e0a92f6fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Object\01. AnimationObject\02. Effect">
+      <UniqueIdentifier>{3f7104c7-a77b-4443-a043-b299835d367b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Code</Filter>
-    </ClCompile>
     <ClCompile Include="Engine.cpp">
-      <Filter>Source Code\00. Engine</Filter>
+      <Filter>Source Code\01. Engine</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Source Code\01. Object\00. Object</Filter>
+      <Filter>Source Code\02. Object\00. Object</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationObject.cpp" />
+    <ClCompile Include="AnimationObject.cpp">
+      <Filter>Source Code\02. Object\01. AnimationObject\00. AnimationObject</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Code\00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Source Code\02. Object\01. AnimationObject\02. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Charactor.cpp">
+      <Filter>Source Code\02. Object\01. AnimationObject\01. Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosionEffect.cpp" />
+    <ClCompile Include="BlueEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Source Code</Filter>
-    </ClInclude>
     <ClInclude Include="Engine.h">
-      <Filter>Source Code\00. Engine</Filter>
+      <Filter>Source Code\01. Engine</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Source Code\01. Object\00. Object</Filter>
+      <Filter>Source Code\02. Object\00. Object</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationObject.h" />
+    <ClInclude Include="AnimationObject.h">
+      <Filter>Source Code\02. Object\01. AnimationObject\00. AnimationObject</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Source Code\99. Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Source Code\02. Object\01. AnimationObject\02. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Charactor.h">
+      <Filter>Source Code\02. Object\01. AnimationObject\01. Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionEffect.h" />
+    <ClInclude Include="BlueEffect.h" />
   </ItemGroup>
 </Project>
