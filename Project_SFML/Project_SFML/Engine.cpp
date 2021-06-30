@@ -3,6 +3,7 @@
 #include "Charactor.h"
 #include "ExplosionEffect.h"
 #include "BlueEffect.h"
+#include "BlasterEffect.h"
 
 Engine::Engine()
 {
@@ -26,6 +27,7 @@ void Engine::Init()
 	obj.push_back(new BlueEffect);
 	obj.push_back(new Charactor);
 	obj.push_back(new ExplosionEffect);
+	obj.push_back(new BlasterEffect);
 }
 
 void Engine::Destroy()
