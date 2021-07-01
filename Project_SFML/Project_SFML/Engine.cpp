@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "Engine.h"
-#include "Scene.h"
+#include "EffectScene.h"
+#include "CharactorScene.h"
 
 
 Engine::Engine()
@@ -22,7 +23,8 @@ void Engine::Init()
 	icon.loadFromFile("Texture/icon.png");
 	window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-	this->scene = new Scene;
+	// 아무것도 없는 장면
+	this->scenes.push(new Scene);
 
 }
 
@@ -53,7 +55,19 @@ void Engine::Input()
 			{
 			case Keyboard::A:
 			{
-				cout << "Pressed A key !!\n";
+				this->scenes.push(new CharactorScene);
+				cout << "Now Scene : CharactorScene\n";
+				break;
+			}
+			case Keyboard::S:
+			{
+				this->scenes.push(new EffectScene);
+				cout << "Now Scene : EffectScene\n";
+				break;
+			}
+			case Keyboard::Q:
+			{
+				scenes.top()->EndScene();
 				break;
 			}
 			default:
@@ -91,7 +105,22 @@ void Engine::Update()
 	deltaTime = timer.getElapsedTime().asSeconds();
 	timer.restart();
 	Input();
-	this->scene->Update(deltaTime);
+	if (!scenes.empty())
+	{
+		scenes.top()->Update(deltaTime);
+
+		if (this->scenes.top()->GetQuit())
+		{
+			// 현재 실행중인 scene를 종료한다
+			delete this->scenes.top();
+			this->scenes.pop();
+			cout << "Pop Scene\n";
+		}
+	}
+	else
+	{
+		window->close();
+	}
 }
 
 void Engine::Render()
@@ -100,7 +129,12 @@ void Engine::Render()
 	{
 		window->clear();
 		Update();
-		scene->Render(window);
+		
+		if (!scenes.empty())
+		{
+			scenes.top()->Render(window);
+		}
+		
 		window->display();
 	}
 }

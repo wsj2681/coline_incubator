@@ -18,7 +18,7 @@ private:/* 맴버 변수 */
 	Clock timer;
 	float deltaTime = 0.f;
 
-	Scene* scene = nullptr;
+	stack<Scene*> scenes;
 
 private:/* 메소드 */
 
