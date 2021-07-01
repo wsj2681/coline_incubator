@@ -1,9 +1,7 @@
 #include "framework.h"
 #include "Engine.h"
-#include "Charactor.h"
-#include "ExplosionEffect.h"
-#include "BlueEffect.h"
-#include "BlasterEffect.h"
+#include "Scene.h"
+
 
 Engine::Engine()
 {
@@ -24,10 +22,8 @@ void Engine::Init()
 	icon.loadFromFile("Texture/icon.png");
 	window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-	obj.push_back(new BlueEffect);
-	obj.push_back(new Charactor);
-	obj.push_back(new ExplosionEffect);
-	obj.push_back(new BlasterEffect);
+	this->scene = new Scene;
+
 }
 
 void Engine::Destroy()
@@ -37,6 +33,7 @@ void Engine::Destroy()
 	{
 		delete window;
 	}
+
 }
 
 void Engine::Input()
@@ -92,14 +89,9 @@ void Engine::Input()
 void Engine::Update()
 {
 	deltaTime = timer.getElapsedTime().asSeconds();
-	
-	for (auto& o : obj)
-	{
-		o->Update(deltaTime);
-	}
-
 	timer.restart();
 	Input();
+	this->scene->Update(deltaTime);
 }
 
 void Engine::Render()
@@ -108,10 +100,7 @@ void Engine::Render()
 	{
 		window->clear();
 		Update();
-		for (auto& o : obj)
-		{
-			window->draw(*o);
-		}
+		scene->Render(window);
 		window->display();
 	}
 }

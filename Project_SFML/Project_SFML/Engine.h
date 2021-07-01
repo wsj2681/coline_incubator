@@ -1,7 +1,6 @@
 #pragma once
 
-// 전방선언
-class AnimationObject;
+class Scene;
 
 // 게임 전체를 이르는 클래스
 class Engine final // final : 더이상 이 클래스에게 상속받지 않는다.
@@ -19,7 +18,7 @@ private:/* 맴버 변수 */
 	Clock timer;
 	float deltaTime = 0.f;
 
-	vector<AnimationObject*> obj;
+	Scene* scene = nullptr;
 
 private:/* 메소드 */
 
