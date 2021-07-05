@@ -9,8 +9,6 @@ public:
 private:
 
 	
-
-
 private:
 
 	virtual void Init();

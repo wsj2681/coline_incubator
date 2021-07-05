@@ -5,7 +5,7 @@ class GameScene : public Scene
 public:
 	GameScene();
 	GameScene(stack<Scene*>* scenes);
-	~GameScene();
+	virtual ~GameScene();
 
 private:
 

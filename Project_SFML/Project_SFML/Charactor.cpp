@@ -32,7 +32,29 @@ void Charactor::Destroy()
 	AnimationObject::Destroy();
 }
 
+void Charactor::MoveUpdate()
+{
+	if (position.y < 200.f)
+	{
+		velocity.y += gravity;
+	}
+	else if (position.y > 200.f)
+	{
+		position.y = 200.f;
+	}
+
+	velocity += acceleration;
+
+	position += velocity;
+}
+
 void Charactor::Update(const float& deltaTime)
 {
+	if (Keyboard::isKeyPressed(Keyboard::Space))
+	{
+		velocity.y = -10;
+	}
+	MoveUpdate();
+	setPosition(position);
 	AnimationObject::Update(deltaTime);
 }
