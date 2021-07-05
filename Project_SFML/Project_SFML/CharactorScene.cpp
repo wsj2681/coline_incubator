@@ -22,6 +22,10 @@ void CharactorScene::Init()
 	vObjects.push_back(new Charactor);
 }
 
+void CharactorScene::Input(Event* e)
+{
+}
+
 void CharactorScene::Update(const float& deltaTime)
 {
 	Scene::Update(deltaTime);

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "TitleScene.h"
 #include "BackGroundObject.h"
+#include "LobbyScene.h"
 
 TitleScene::TitleScene()
 {
@@ -33,6 +34,23 @@ void TitleScene::Destroy()
 {
 }
 
+void TitleScene::Input(Event* e)
+{
+	switch (e->key.code)
+	{
+	case Keyboard::Escape:
+	{
+		scenes->top()->EndScene();
+		break;
+	}
+	default:
+	{
+		scenes->push(new LobbyScene(scenes));
+		break;
+	}
+	}
+}
+
 void TitleScene::Update(const float& deltaTime)
 {
 	static float elapsedTime = 0.f;
@@ -43,7 +61,7 @@ void TitleScene::Update(const float& deltaTime)
 
 	static int div = 1;
 
-	if ((elapsedTime += deltaTime) >= 0.02)
+	if ((elapsedTime += deltaTime) >= 0.02f)
 	{
 
 		if ((++frame % 30) == 0)

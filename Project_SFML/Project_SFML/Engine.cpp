@@ -1,9 +1,6 @@
 #include "framework.h"
 #include "Engine.h"
-#include "EffectScene.h"
-#include "CharactorScene.h"
 #include "TitleScene.h"
-#include "GameScene.h"
 
 Engine::Engine()
 {
@@ -52,53 +49,15 @@ void Engine::Input()
 		}
 		case Event::KeyPressed:
 		{
-			switch (evt.key.code)
+			if (!scenes.empty())
 			{
-			case Keyboard::A:
-			{
-				this->scenes.push(new CharactorScene);
-				cout << "Now Scene : CharactorScene\n";
-				break;
-			}
-			case Keyboard::S:
-			{
-				this->scenes.push(new GameScene);
-				cout << "Now Scene : GameScene\n";
-				break;
-			}
-			case Keyboard::Q:
-			{
-				scenes.top()->EndScene();
-				break;
-			}
-			default:
-				break;
+				scenes.top()->Input(&evt);
 			}
 		}
 		default:
 			break;
 		}
 	}
-
-	// KeyBoardInput
-	if (Keyboard::isKeyPressed(Keyboard::Escape))
-	{
-		window->close();
-	}
-
-	// Mouse Input
-	//if (Mouse::isButtonPressed(Mouse::Left))
-	//{
-	//	window->setTitle("Left Click");
-	//}
-	//else if (Mouse::isButtonPressed(Mouse::Right))
-	//{
-	//	window->setTitle("Right Click");
-	//}
-	//else
-	//{
-	//	window->setTitle("Window");
-	//}
 }
 
 void Engine::Update()

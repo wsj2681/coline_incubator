@@ -26,6 +26,10 @@ void EffectScene::Init()
 	vObjects.push_back(new ExplosionEffect);
 }
 
+void EffectScene::Input(Event* e)
+{
+}
+
 void EffectScene::Update(const float& deltaTime)
 {
 	Scene::Update(deltaTime);

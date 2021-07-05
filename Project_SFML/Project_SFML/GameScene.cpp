@@ -3,6 +3,7 @@
 #include "JellyObject.h"
 #include "BackGroundObject.h"
 #include "Charactor.h"
+#include "ResultScene.h"
 
 GameScene::GameScene()
 {
@@ -62,6 +63,18 @@ void GameScene::Init()
 
 void GameScene::Destroy()
 {
+}
+
+void GameScene::Input(Event* e)
+{
+	switch (e->key.code)
+	{
+	case Keyboard::Q:
+	{
+		scenes->push(new ResultScene(scenes));
+		break;
+	}
+	}
 }
 
 void GameScene::Update(const float& deltaTime)

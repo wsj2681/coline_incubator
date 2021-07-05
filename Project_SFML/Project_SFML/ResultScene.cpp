@@ -24,6 +24,10 @@ void ResultScene::Destroy()
 {
 }
 
+void ResultScene::Input(Event* e)
+{
+}
+
 void ResultScene::Update(const float& deltaTime)
 {
 	Scene::Update(deltaTime);
