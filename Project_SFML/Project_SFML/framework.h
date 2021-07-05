@@ -16,4 +16,5 @@ using namespace sf;
 #include <vector>
 #include <stack>
 #include <typeinfo>
+#include <random>
 using namespace std;

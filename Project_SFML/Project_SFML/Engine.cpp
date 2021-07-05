@@ -2,7 +2,8 @@
 #include "Engine.h"
 #include "EffectScene.h"
 #include "CharactorScene.h"
-
+#include "TitleScene.h"
+#include "GameScene.h"
 
 Engine::Engine()
 {
@@ -17,14 +18,14 @@ void Engine::Init()
 {
 	// 현재 window 변수는 포인터로 존재한다.
 	
-	this->window = new RenderWindow(VideoMode(500, 500), "Window");
+	this->window = new RenderWindow(VideoMode(1136, 640), "Oven Break");
 	window->setMouseCursorVisible(true);
 	Image icon;
 	icon.loadFromFile("Texture/icon.png");
 	window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
 	// 아무것도 없는 장면
-	this->scenes.push(new Scene);
+	this->scenes.push(new TitleScene(&scenes));
 
 }
 
@@ -61,8 +62,8 @@ void Engine::Input()
 			}
 			case Keyboard::S:
 			{
-				this->scenes.push(new EffectScene);
-				cout << "Now Scene : EffectScene\n";
+				this->scenes.push(new GameScene);
+				cout << "Now Scene : GameScene\n";
 				break;
 			}
 			case Keyboard::Q:
@@ -86,18 +87,18 @@ void Engine::Input()
 	}
 
 	// Mouse Input
-	if (Mouse::isButtonPressed(Mouse::Left))
-	{
-		window->setTitle("Left Click");
-	}
-	else if (Mouse::isButtonPressed(Mouse::Right))
-	{
-		window->setTitle("Right Click");
-	}
-	else
-	{
-		window->setTitle("Window");
-	}
+	//if (Mouse::isButtonPressed(Mouse::Left))
+	//{
+	//	window->setTitle("Left Click");
+	//}
+	//else if (Mouse::isButtonPressed(Mouse::Right))
+	//{
+	//	window->setTitle("Right Click");
+	//}
+	//else
+	//{
+	//	window->setTitle("Window");
+	//}
 }
 
 void Engine::Update()

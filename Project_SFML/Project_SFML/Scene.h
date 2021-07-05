@@ -1,5 +1,7 @@
 #pragma once
 
+#include "BackGroundObject.h"
+
 class Object;
 
 class Scene
@@ -12,6 +14,9 @@ public:
 protected:
 
 	vector<Object*> vObjects;
+
+	map<string, Text*> mTexts;
+
 	stack<Scene*>* scenes;
 	bool quit = false;
 

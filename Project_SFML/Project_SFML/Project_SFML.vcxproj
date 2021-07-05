@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationObject.cpp" />
+    <ClCompile Include="BackGroundObject.cpp" />
     <ClCompile Include="BlasterEffect.cpp" />
     <ClCompile Include="BlueEffect.cpp" />
     <ClCompile Include="Charactor.cpp" />
@@ -28,12 +29,19 @@
     <ClCompile Include="EffectScene.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="JellyObject.cpp" />
+    <ClCompile Include="LobbyScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObstacleObject.cpp" />
+    <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationObject.h" />
+    <ClInclude Include="BackGroundObject.h" />
     <ClInclude Include="BlasterEffect.h" />
     <ClInclude Include="BlueEffect.h" />
     <ClInclude Include="Charactor.h" />
@@ -43,8 +51,14 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="ExplosionEffect.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="JellyObject.h" />
+    <ClInclude Include="LobbyScene.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObstacleObject.h" />
+    <ClInclude Include="ResultScene.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

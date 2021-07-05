@@ -49,6 +49,36 @@
     <Filter Include="Source Code\02. Scene\00. Scene">
       <UniqueIdentifier>{5937c282-ee35-4674-9554-2f2418c2de5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Code\02. Scene\01. CharactorScene">
+      <UniqueIdentifier>{5283aa81-2b3c-4184-ba1a-41747b8a2b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Scene\02. EffectScene">
+      <UniqueIdentifier>{17a2aaf6-8114-4ac2-99d2-80422966f043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Scene\03. TitleScene">
+      <UniqueIdentifier>{2fafd7c3-e760-496e-87f1-46b1ccb963b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Scene\04. LobbyScene">
+      <UniqueIdentifier>{b14cfcb7-6ff6-4ff5-a97c-c437a15d4822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Scene\05. GameScene">
+      <UniqueIdentifier>{ea711dc0-7268-4b85-b9e7-b195fe39c0a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\02. Scene\06. ResultScene">
+      <UniqueIdentifier>{8dbbe009-9c18-4d23-9b0c-ef6027b21579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\03. Object\02. ObstacleObject">
+      <UniqueIdentifier>{ffebdbb7-a118-4fa8-b18d-0e07e0bf28c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\03. Object\03. BackGroundObject">
+      <UniqueIdentifier>{4cda6e68-9173-4acb-9a46-fe1f4fc37be9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\03. Object\03. BackGroundObject\00. BackGroundObject">
+      <UniqueIdentifier>{c0a47235-cca2-4868-9d10-ad26e4578e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\03. Object\04. JellyObject">
+      <UniqueIdentifier>{bd3e7d45-79b1-48a5-8130-363c53c553d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -81,8 +111,33 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Source Code\02. Scene\00. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="EffectScene.cpp" />
-    <ClCompile Include="CharactorScene.cpp" />
+    <ClCompile Include="CharactorScene.cpp">
+      <Filter>Source Code\02. Scene\01. CharactorScene</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectScene.cpp">
+      <Filter>Source Code\02. Scene\02. EffectScene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Source Code\02. Scene\03. TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Code\02. Scene\05. GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyScene.cpp">
+      <Filter>Source Code\02. Scene\04. LobbyScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>Source Code\02. Scene\06. ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstacleObject.cpp">
+      <Filter>Source Code\03. Object\02. ObstacleObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGroundObject.cpp">
+      <Filter>Source Code\03. Object\03. BackGroundObject\00. BackGroundObject</Filter>
+    </ClCompile>
+    <ClCompile Include="JellyObject.cpp">
+      <Filter>Source Code\03. Object\04. JellyObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -115,7 +170,32 @@
     <ClInclude Include="Scene.h">
       <Filter>Source Code\02. Scene\00. Scene</Filter>
     </ClInclude>
-    <ClInclude Include="EffectScene.h" />
-    <ClInclude Include="CharactorScene.h" />
+    <ClInclude Include="CharactorScene.h">
+      <Filter>Source Code\02. Scene\01. CharactorScene</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectScene.h">
+      <Filter>Source Code\02. Scene\02. EffectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Source Code\02. Scene\03. TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Source Code\02. Scene\05. GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyScene.h">
+      <Filter>Source Code\02. Scene\04. LobbyScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>Source Code\02. Scene\06. ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObstacleObject.h">
+      <Filter>Source Code\03. Object\02. ObstacleObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGroundObject.h">
+      <Filter>Source Code\03. Object\03. BackGroundObject\00. BackGroundObject</Filter>
+    </ClInclude>
+    <ClInclude Include="JellyObject.h">
+      <Filter>Source Code\03. Object\04. JellyObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

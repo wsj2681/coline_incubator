@@ -38,6 +38,7 @@ void Scene::Update(const float& deltaTime)
 	{
 		obj->Update(deltaTime);
 	}
+
 }
 
 void Scene::Render(RenderWindow* window)
@@ -45,5 +46,10 @@ void Scene::Render(RenderWindow* window)
 	for (auto& obj : vObjects)
 	{
 		window->draw(*obj);
+	}
+
+	for (auto& txt : mTexts)
+	{
+		window->draw(*txt.second);
 	}
 }
