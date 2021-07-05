@@ -50,6 +50,14 @@ void GameScene::Init()
 	{
 		j->setPosition(urd(dre), urd(dre));
 	}
+
+	Font* font = new Font;
+	font->loadFromFile("Font/CookieRunFont_TTF/CookieRun_Bold.ttf");
+	Text* text = new Text("Score : ", *font);
+	text->setFillColor(Color::White);
+	text->setOrigin(text->getLocalBounds().width / 2.f, text->getLocalBounds().height / 2.f);
+	text->setPosition(Vector2f(1000.f, 100.f));
+	mTexts["Score"] = text;
 }
 
 void GameScene::Destroy()
@@ -58,6 +66,7 @@ void GameScene::Destroy()
 
 void GameScene::Update(const float& deltaTime)
 {
+	mTexts["Score"]->setString(to_string(++score).c_str());
 	Scene::Update(deltaTime);
 }
 

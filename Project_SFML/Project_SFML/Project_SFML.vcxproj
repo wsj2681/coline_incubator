@@ -23,6 +23,7 @@
     <ClCompile Include="BackGroundObject.cpp" />
     <ClCompile Include="BlasterEffect.cpp" />
     <ClCompile Include="BlueEffect.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Charactor.cpp" />
     <ClCompile Include="CharactorScene.cpp" />
     <ClCompile Include="Effect.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="BackGroundObject.h" />
     <ClInclude Include="BlasterEffect.h" />
     <ClInclude Include="BlueEffect.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Charactor.h" />
     <ClInclude Include="CharactorScene.h" />
     <ClInclude Include="Effect.h" />

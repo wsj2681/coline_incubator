@@ -79,6 +79,9 @@
     <Filter Include="Source Code\03. Object\04. JellyObject">
       <UniqueIdentifier>{bd3e7d45-79b1-48a5-8130-363c53c553d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Code\03. Object\05. Button">
+      <UniqueIdentifier>{d515ad80-97c4-42c1-9e40-dfe2b4bf413a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -138,6 +141,7 @@
     <ClCompile Include="JellyObject.cpp">
       <Filter>Source Code\03. Object\04. JellyObject</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -197,5 +201,6 @@
     <ClInclude Include="JellyObject.h">
       <Filter>Source Code\03. Object\04. JellyObject</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h" />
   </ItemGroup>
 </Project>

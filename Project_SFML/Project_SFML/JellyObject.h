@@ -14,7 +14,7 @@ public:
 
 	JellyObject();
 	JellyObject(int type = 0);
-	~JellyObject();
+	virtual ~JellyObject();
 
 private:
 

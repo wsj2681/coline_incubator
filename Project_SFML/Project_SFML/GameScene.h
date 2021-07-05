@@ -13,6 +13,8 @@ private:
 
 	vector<Vector2f> jellyPositions;
 
+	size_t score = 0;
+
 private:
 
 	virtual void Init();
