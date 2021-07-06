@@ -9,8 +9,8 @@ EffectScene::EffectScene()
 	Init();
 }
 
-EffectScene::EffectScene(stack<Scene*>* scenes)
-	:Scene(scenes)
+EffectScene::EffectScene(stack<Scene*>* scenes, RenderWindow* window)
+	:Scene(scenes, window)
 {
 	Init();
 }
@@ -21,9 +21,9 @@ EffectScene::~EffectScene()
 
 void EffectScene::Init()
 {
-	vObjects.push_back(new BlasterEffect);
-	vObjects.push_back(new BlueEffect);
-	vObjects.push_back(new ExplosionEffect);
+	animationObjects.push_back(new BlasterEffect);
+	animationObjects.push_back(new BlueEffect);
+	animationObjects.push_back(new ExplosionEffect);
 }
 
 void EffectScene::Input(Event* e)

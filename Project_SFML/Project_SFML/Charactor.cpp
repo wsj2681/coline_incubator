@@ -85,14 +85,13 @@ void Charactor::MoveUpdate()
 	setPosition(position);
 }
 
+void Charactor::Jump()
+{
+	velocity.y = -10.f;
+}
+
 void Charactor::Update(const float& deltaTime)
 {
-	if (Keyboard::isKeyPressed(Keyboard::Space))
-	{
-		// sfml ÁÂÇ¥°è ÁÂ»ó´ÜÀÌ 0, 0
-		velocity.y = -10.f;
-	}
-
 	MoveUpdate();
 
 	if (Keyboard::isKeyPressed(Keyboard::Right))

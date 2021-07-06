@@ -7,8 +7,8 @@ Scene::Scene()
 	Init();
 }
 
-Scene::Scene(stack<Scene*>* scenes)
-	:scenes(scenes)
+Scene::Scene(stack<Scene*>* scenes, RenderWindow* window)
+	:scenes(scenes), window(window)
 {
 	Init();
 }
@@ -38,18 +38,56 @@ void Scene::Input(Event* e)
 
 void Scene::Update(const float& deltaTime)
 {
-	for (auto& obj : vObjects)
+	mousePosition = window->mapPixelToCoords(Mouse::getPosition(*window));
+
+	for (auto& obj : animationObjects)
 	{
-		obj->Update(deltaTime);
+		if (obj->IsActive())
+		{
+			obj->Update(deltaTime);
+		}
 	}
 
+	for (auto& obj : staticObjects)
+	{
+		if (obj->IsActive())
+		{
+			obj->Update(deltaTime);
+		}
+	}
+
+	for (auto& btn : mButtons)
+	{
+		btn.second->Update(mousePosition);
+	}
 }
 
-void Scene::Render(RenderWindow* window)
+void Scene::Render()
 {
-	for (auto& obj : vObjects)
+	if (backGround)
 	{
-		window->draw(*obj);
+		window->draw(*backGround);
+	}
+
+	for (auto& obj : animationObjects)
+	{
+		if (obj->IsActive())
+		{
+			window->draw(*obj);
+		}
+	}
+
+	for (auto& obj : staticObjects)
+	{
+		if (obj->IsActive())
+		{
+			window->draw(*obj);
+		}
+	}
+
+	for (auto& btn : mButtons)
+	{
+		window->draw(*btn.second);
 	}
 
 	for (auto& txt : mTexts)

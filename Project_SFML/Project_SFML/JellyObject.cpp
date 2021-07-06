@@ -51,3 +51,14 @@ void JellyObject::Update(const float& deltaTime)
 {
 
 }
+
+void JellyObject::Update(const Vector2f& mousePosition)
+{
+	if (getGlobalBounds().contains(mousePosition))
+	{
+		if (Mouse::isButtonPressed(Mouse::Left))
+		{
+			this->SetActive(false);
+		}
+	}
+}

@@ -21,8 +21,8 @@ void Engine::Init()
 	icon.loadFromFile("Texture/icon.png");
 	window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-	// 아무것도 없는 장면
-	this->scenes.push(new TitleScene(&scenes));
+	// 시작화면
+	this->scenes.push(new TitleScene(&scenes, window));
 
 }
 
@@ -64,7 +64,9 @@ void Engine::Update()
 {
 	deltaTime = timer.getElapsedTime().asSeconds();
 	timer.restart();
+
 	Input();
+	
 	if (!scenes.empty())
 	{
 		scenes.top()->Update(deltaTime);
@@ -92,7 +94,7 @@ void Engine::Render()
 		
 		if (!scenes.empty())
 		{
-			scenes.top()->Render(window);
+			scenes.top()->Render();
 		}
 		
 		window->display();

@@ -7,8 +7,8 @@ CharactorScene::CharactorScene()
 	Init();
 }
 
-CharactorScene::CharactorScene(stack<Scene*>* scenes)
-	:Scene(scenes)
+CharactorScene::CharactorScene(stack<Scene*>* scenes, RenderWindow* window)
+	:Scene(scenes, window)
 {
 	Init();
 }
@@ -19,7 +19,7 @@ CharactorScene::~CharactorScene()
 
 void CharactorScene::Init()
 {
-	vObjects.push_back(new Charactor);
+	animationObjects.push_back(new Charactor);
 }
 
 void CharactorScene::Input(Event* e)

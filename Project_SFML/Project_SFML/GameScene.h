@@ -4,7 +4,7 @@ class GameScene : public Scene
 {
 public:
 	GameScene();
-	GameScene(stack<Scene*>* scenes);
+	GameScene(stack<Scene*>* scenes, RenderWindow* window);
 	virtual ~GameScene();
 
 private:
@@ -27,6 +27,6 @@ public:
 
 	virtual void Update(const float& deltaTime);
 
-	virtual void Render(RenderWindow* window);
+	virtual void Render();
 };
 

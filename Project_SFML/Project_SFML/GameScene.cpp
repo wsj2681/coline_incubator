@@ -10,8 +10,8 @@ GameScene::GameScene()
 	Init();
 }
 
-GameScene::GameScene(stack<Scene*>* scenes)
-	:Scene(scenes)
+GameScene::GameScene(stack<Scene*>* scenes, RenderWindow* window)
+	:Scene(scenes, window)
 {
 	Init();
 }
@@ -22,11 +22,10 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
-	Object* backGround = new BackGroundObject("Texture/BackGround/game.png");
+	backGround = new BackGroundObject("Texture/BackGround/game.png");
 	backGround->setScale(2.5f, 2.f);
-	vObjects.push_back(backGround);
 
-	vObjects.push_back(new Charactor);
+	animationObjects.push_back(new Charactor);
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -51,14 +50,10 @@ void GameScene::Init()
 	{
 		j->setPosition(urd(dre), urd(dre));
 	}
+	mTexts["Score"] = new TextObject("Score : ", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", Vector2f(1000.f, 100.f));
 
-	Font* font = new Font;
-	font->loadFromFile("Font/CookieRunFont_TTF/CookieRun_Bold.ttf");
-	Text* text = new Text("Score : ", *font);
-	text->setFillColor(Color::White);
-	text->setOrigin(text->getLocalBounds().width / 2.f, text->getLocalBounds().height / 2.f);
-	text->setPosition(Vector2f(1000.f, 100.f));
-	mTexts["Score"] = text;
+	mButtons["JUMP"] = new Button("Texture/Buttons/btn_pair1168169_L.png", "Texture/Buttons/btn_pair1168169_L_dim.png", Vector2f(100.f, 600.f));
+
 }
 
 void GameScene::Destroy()
@@ -71,24 +66,41 @@ void GameScene::Input(Event* e)
 	{
 	case Keyboard::Q:
 	{
-		scenes->push(new ResultScene(scenes));
+		scenes->push(new ResultScene(scenes, window));
 		break;
 	}
 	}
+
+
 }
 
 void GameScene::Update(const float& deltaTime)
 {
 	mTexts["Score"]->setString(to_string(++score).c_str());
+
+	for (auto& jelly : jellys)
+	{
+		jelly->Update(mousePosition);
+	}
+
+
+	if (mButtons["JUMP"]->IsPressed())
+	{
+		dynamic_cast<Charactor*>(animationObjects.data()[0])->Jump();
+	}
+
 	Scene::Update(deltaTime);
 }
 
-void GameScene::Render(RenderWindow* window)
+void GameScene::Render()
 {
-	Scene::Render(window);
+	Scene::Render();
 
 	for (auto& j : jellys)
 	{
-		window->draw(*j);
+		if (j->IsActive())
+		{
+			window->draw(*j);
+		}
 	}
 }

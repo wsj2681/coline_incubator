@@ -8,8 +8,8 @@ TitleScene::TitleScene()
 	Init();
 }
 
-TitleScene::TitleScene(stack<Scene*>* scenes)
-	:Scene(scenes)
+TitleScene::TitleScene(stack<Scene*>* scenes, RenderWindow* window)
+	:Scene(scenes, window)
 {
 	Init();
 }
@@ -20,14 +20,9 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
-	vObjects.push_back(new BackGroundObject("Texture/BackGround/title.png"));
-	Font* font = new Font;
-	font->loadFromFile("Font/CookieRunFont_TTF/CookieRun_Bold.ttf");
-	Text* text = new Text("Press Any Keys", *font);
-	text->setFillColor(Color::White);
-	text->setOrigin(text->getLocalBounds().width / 2.f, text->getLocalBounds().height / 2.f);
-	text->setPosition(Vector2f(1136 / 2.f, 580.f));
-	mTexts["TITLE"] = text;
+	backGround = new BackGroundObject("Texture/BackGround/title.png");
+
+	mTexts["TITLE"] = new TextObject("Press Any Keys", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", Vector2f(1136 / 2.f, 580.f));
 }
 
 void TitleScene::Destroy()
@@ -45,7 +40,7 @@ void TitleScene::Input(Event* e)
 	}
 	default:
 	{
-		scenes->push(new LobbyScene(scenes));
+		scenes->push(new LobbyScene(scenes, window));
 		break;
 	}
 	}
@@ -77,7 +72,7 @@ void TitleScene::Update(const float& deltaTime)
 	Scene::Update(deltaTime);
 }
 
-void TitleScene::Render(RenderWindow* window)
+void TitleScene::Render()
 {
-	Scene::Render(window);
+	Scene::Render();
 }

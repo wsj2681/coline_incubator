@@ -25,9 +25,7 @@
     <ClCompile Include="BlueEffect.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Charactor.cpp" />
-    <ClCompile Include="CharactorScene.cpp" />
     <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="EffectScene.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -38,6 +36,7 @@
     <ClCompile Include="ObstacleObject.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -47,9 +46,7 @@
     <ClInclude Include="BlueEffect.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Charactor.h" />
-    <ClInclude Include="CharactorScene.h" />
     <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectScene.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="ExplosionEffect.h" />
     <ClInclude Include="framework.h" />
@@ -60,6 +57,7 @@
     <ClInclude Include="ObstacleObject.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="TextObject.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

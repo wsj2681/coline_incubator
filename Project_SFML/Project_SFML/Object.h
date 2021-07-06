@@ -5,6 +5,9 @@ public:
 	Object() = default;
 	virtual ~Object() = default;
 
+private:
+
+	bool isActive = true;
 
 private:
 
@@ -12,8 +15,11 @@ private:
 
 public:
 
+	bool IsActive();
+	void SetActive(bool isActive);
+
 	virtual void Destroy() = 0;
 	virtual void Update(const float& deltaTime) = 0;
-
+	virtual void Update(const Vector2f& mousePosition);
 };
 

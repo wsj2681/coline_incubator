@@ -40,7 +40,7 @@ private:
 public:
 
 	virtual void Destroy();
-
+	void Jump();
 	void MoveUpdate();
 	virtual void Update(const float& deltaTime);
 };

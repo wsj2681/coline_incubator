@@ -5,7 +5,7 @@ class TitleScene : public Scene
 {
 public:
 	TitleScene();
-	TitleScene(stack<Scene*>* scenes);
+	TitleScene(stack<Scene*>* scenes, RenderWindow* window);
 	~TitleScene();
 
 private:
@@ -20,6 +20,6 @@ public:
 
 	virtual void Update(const float& deltaTime);
 
-	virtual void Render(RenderWindow* window);
+	virtual void Render();
 };
 

@@ -1,13 +1,15 @@
 #include "framework.h"
 #include "ResultScene.h"
+#include "LobbyScene.h"
+
 
 ResultScene::ResultScene()
 {
 	Init();
 }
 
-ResultScene::ResultScene(stack<Scene*>* scenes)
-	:Scene(scenes)
+ResultScene::ResultScene(stack<Scene*>* scenes, RenderWindow* window)
+	:Scene(scenes, window)
 {
 	Init();
 }
@@ -33,7 +35,7 @@ void ResultScene::Update(const float& deltaTime)
 	Scene::Update(deltaTime);
 }
 
-void ResultScene::Render(RenderWindow* window)
+void ResultScene::Render()
 {
-	Scene::Render(window);
+	Scene::Render();
 }

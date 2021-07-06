@@ -4,7 +4,7 @@ class EffectScene : public Scene
 {
 public:
 	EffectScene();
-	EffectScene(stack<Scene*>* scenes);
+	EffectScene(stack<Scene*>* scenes, RenderWindow* window);
 	virtual ~EffectScene();
 
 private:

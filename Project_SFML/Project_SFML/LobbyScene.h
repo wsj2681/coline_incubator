@@ -4,7 +4,7 @@ class LobbyScene : public Scene
 {
 public:
 	LobbyScene();
-	LobbyScene(stack<Scene*>* scenes);
+	LobbyScene(stack<Scene*>* scenes, RenderWindow* window);
 	~LobbyScene();
 
 private:
@@ -19,6 +19,6 @@ public:
 
 	virtual void Update(const float& deltaTime);
 
-	virtual void Render(RenderWindow* window);
+	virtual void Render();
 };
 

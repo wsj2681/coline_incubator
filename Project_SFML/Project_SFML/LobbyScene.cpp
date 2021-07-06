@@ -8,8 +8,8 @@ LobbyScene::LobbyScene()
 	Init();
 }
 
-LobbyScene::LobbyScene(stack<Scene*>* scenes)
-	:Scene(scenes)
+LobbyScene::LobbyScene(stack<Scene*>* scenes, RenderWindow* window)
+	:Scene(scenes, window)
 {
 	Init();
 }
@@ -20,14 +20,7 @@ LobbyScene::~LobbyScene()
 
 void LobbyScene::Init()
 {
-	//vObjects.push_back(new BackGroundObject(""));
-	Font* font = new Font;
-	font->loadFromFile("Font/CookieRunFont_TTF/CookieRun_Bold.ttf");
-	Text* text = new Text("Press Space Key", *font);
-	text->setFillColor(Color::White);
-	text->setOrigin(text->getGlobalBounds().width / 2.f, text->getGlobalBounds().height / 2.f);
-	text->setPosition(Vector2f(1136 / 2.f, 580.f));
-	mTexts["TEST"] = text;
+	mTexts["TEST"] = new TextObject("Press Space Key", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", Vector2f(1136 / 2.f, 580.f));
 }
 
 void LobbyScene::Destroy()
@@ -40,7 +33,7 @@ void LobbyScene::Input(Event* e)
 	{
 	case Keyboard::Space:
 	{
-		scenes->push(new GameScene(scenes));
+		scenes->push(new GameScene(scenes, window));
 		break;
 	}
 	}
@@ -72,7 +65,7 @@ void LobbyScene::Update(const float& deltaTime)
 	Scene::Update(deltaTime);
 }
 
-void LobbyScene::Render(RenderWindow* window)
+void LobbyScene::Render()
 {
-	Scene::Render(window);
+	Scene::Render();
 }
