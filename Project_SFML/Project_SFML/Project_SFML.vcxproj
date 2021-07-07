@@ -29,6 +29,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="ItemObject.cpp" />
     <ClCompile Include="JellyObject.cpp" />
     <ClCompile Include="LobbyScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="ExplosionEffect.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="ItemObject.h" />
     <ClInclude Include="JellyObject.h" />
     <ClInclude Include="LobbyScene.h" />
     <ClInclude Include="Object.h" />

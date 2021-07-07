@@ -16,6 +16,7 @@ void Engine::Init()
 	// 현재 window 변수는 포인터로 존재한다.
 	// window Size 1384 x 720
 	this->window = new RenderWindow(VideoMode(1384, 720), "Oven Break");
+	window->setFramerateLimit(60);
 	window->setMouseCursorVisible(true);
 	Image icon;
 	icon.loadFromFile("Texture/icon.png");
@@ -47,6 +48,7 @@ void Engine::Input()
 			window->close();
 			break;
 		}
+		case Event::MouseButtonPressed:
 		case Event::KeyPressed:
 		{
 			if (!scenes.empty())
@@ -65,8 +67,7 @@ void Engine::Update()
 	deltaTime = timer.getElapsedTime().asSeconds();
 	timer.restart();
 
-	Input();
-	
+
 	if (!scenes.empty())
 	{
 		scenes.top()->Update(deltaTime);
@@ -84,6 +85,7 @@ void Engine::Update()
 	{
 		window->close();
 	}
+	Input();
 }
 
 void Engine::Render()

@@ -15,7 +15,7 @@ protected:
 	size_t keyFrame = 0;
 
 	float elapsedTime = 0.f;
-
+	float frameTime = 0.05f;
 private:
 
 	virtual void Init();

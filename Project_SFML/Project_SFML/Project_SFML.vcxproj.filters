@@ -79,6 +79,12 @@
     <Filter Include="Source Code\03. Object\05. ButtonObject">
       <UniqueIdentifier>{d515ad80-97c4-42c1-9e40-dfe2b4bf413a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Code\03. Object\01. AnimationObject\03. ItemObejct">
+      <UniqueIdentifier>{f9f2297d-b6c8-49e3-bc6b-9f358bde0717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\03. Object\07. StuffObject">
+      <UniqueIdentifier>{dcbc6d06-8fa7-4d27-905d-5426f854efa8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -138,7 +144,12 @@
     <ClCompile Include="TextObject.cpp">
       <Filter>Source Code\03. Object\06. TextObject</Filter>
     </ClCompile>
-    <ClCompile Include="StuffObject.cpp" />
+    <ClCompile Include="StuffObject.cpp">
+      <Filter>Source Code\03. Object\07. StuffObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemObject.cpp">
+      <Filter>Source Code\03. Object\01. AnimationObject\03. ItemObejct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -198,6 +209,11 @@
     <ClInclude Include="TextObject.h">
       <Filter>Source Code\03. Object\06. TextObject</Filter>
     </ClInclude>
-    <ClInclude Include="StuffObject.h" />
+    <ClInclude Include="StuffObject.h">
+      <Filter>Source Code\03. Object\07. StuffObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemObject.h">
+      <Filter>Source Code\03. Object\01. AnimationObject\03. ItemObejct</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

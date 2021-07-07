@@ -35,11 +35,11 @@ void GameScene::Init()
 	
 	//data()[1] HP ¹è°æ µÞ²¿¸®
 	staticObjects.push_back(new StuffObject("Texture/gaugebg_heart_tail.png", 
-		Vector2f(staticObjects.data()[0]->getGlobalBounds().left + staticObjects.data()[0]->getGlobalBounds().width, staticObjects.data()[0]->getPosition().y)));
+		{ staticObjects.data()[0]->getGlobalBounds().left + staticObjects.data()[0]->getGlobalBounds().width, staticObjects.data()[0]->getPosition().y }));
 	
 	//data()[2] ³²Àº HP
 	staticObjects.push_back(new StuffObject("Texture/gauge_heart_orange.png", 
-		Vector2f(staticObjects.data()[0]->getPosition().x, staticObjects.data()[0]->getPosition().y)));
+		{ staticObjects.data()[0]->getPosition().x, staticObjects.data()[0]->getPosition().y }));
 	
 	//data()[3] HP¹°¾à
 	staticObjects.push_back(new StuffObject("Texture/icon_heartLife.png", 
@@ -48,7 +48,9 @@ void GameScene::Init()
 	//data()[4] ³²Àº HP ²¿¸®
 	staticObjects.push_back(new StuffObject("Texture/effect_gaugeHeart_Shine01.png", 
 		{ staticObjects.data()[2]->getGlobalBounds().width, staticObjects.data()[2]->getPosition().y }));
-	staticObjects.data()[4]->setPosition(staticObjects.data()[2]->getGlobalBounds().left + staticObjects.data()[2]->getGlobalBounds().width, staticObjects.data()[2]->getPosition().y);
+	staticObjects.data()[4]->setPosition(
+		staticObjects.data()[2]->getGlobalBounds().left + staticObjects.data()[2]->getGlobalBounds().width,
+		staticObjects.data()[2]->getPosition().y);
 
 	for (int i = 0; i < 20; ++i)
 	{
@@ -104,9 +106,6 @@ Vector2f GameScene::JellyPattern(int pattern)
 		break;
 	}
 	
-
-	cout << position.y << endl;
-
 	if (position.y > 475.f)
 	{
 		position.y = 475.f;
@@ -124,14 +123,12 @@ void GameScene::Destroy()
 
 void GameScene::Input(Event* e)
 {
-	switch (e->key.code)
+	if (mButtons["JUMP"]->IsPressed())
 	{
-	case Keyboard::Q:
-	{
-		scenes->push(new ResultScene(scenes, window));
-		break;
+		dynamic_cast<Charactor*>(animationObjects.data()[0])->Jump();
 	}
-	}
+
+
 }
 
 void GameScene::Update(const float& deltaTime)
@@ -140,12 +137,17 @@ void GameScene::Update(const float& deltaTime)
 
 	if ((elapsedTime += deltaTime) >= 1.f)
 	{
-		staticObjects.data()[2]->setTextureRect(IntRect(0, 0, staticObjects.data()[2]->getTextureRect().width - 10.f, staticObjects.data()[2]->getTextureRect().height));
+		staticObjects.data()[2]->setTextureRect(IntRect(0, 0, staticObjects.data()[2]->getTextureRect().width - 10, staticObjects.data()[2]->getTextureRect().height));
 		staticObjects.data()[4]->setPosition(staticObjects.data()[2]->getGlobalBounds().left + staticObjects.data()[2]->getGlobalBounds().width, staticObjects.data()[2]->getPosition().y);
 		elapsedTime = 0.f;
 	}
 
 	mTexts["Score"]->setString({ "Score : " + to_string(++score) });
+
+	if (mButtons["SLIDE"]->IsPressed())
+	{
+		dynamic_cast<Charactor*>(animationObjects.data()[0])->SetState(SLIDE);
+	}
 
 	for (auto& jelly : jellys)
 	{
@@ -161,20 +163,16 @@ void GameScene::Update(const float& deltaTime)
 	}
 
 
-	if (mButtons["JUMP"]->IsPressed())
-	{
-		dynamic_cast<Charactor*>(animationObjects.data()[0])->Jump();
-	}
-	else if (mButtons["SLIDE"]->IsPressed())
-	{
-		dynamic_cast<Charactor*>(animationObjects.data()[0])->SetState(SLIDE);
-	}
+
 	Scene::Update(deltaTime);
 }
 
 void GameScene::Render()
 {
-	Scene::Render();
+	if (backGround)
+	{
+		window->draw(*backGround);
+	}
 
 	for (auto& j : jellys)
 	{
@@ -183,4 +181,32 @@ void GameScene::Render()
 			window->draw(*j);
 		}
 	}
+
+	for (auto& obj : animationObjects)
+	{
+		if (obj->IsActive())
+		{
+			window->draw(*obj);
+		}
+	}
+
+	for (auto& obj : staticObjects)
+	{
+		if (obj->IsActive())
+		{
+			window->draw(*obj);
+		}
+	}
+
+	for (auto& btn : mButtons)
+	{
+		window->draw(*btn.second);
+	}
+
+	for (auto& txt : mTexts)
+	{
+		window->draw(*txt.second);
+	}
+
+
 }

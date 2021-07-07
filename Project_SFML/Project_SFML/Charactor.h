@@ -7,6 +7,7 @@ enum CHARATOR_STATE
 	RUN,
 	DASH,
 	JUMP,
+	DOUBLEJUMP,
 	SLIDE,
 	SKILL,
 };
@@ -25,9 +26,12 @@ private:
 	float speed = 50.f;
 	float gravity = 2.f;
 
+	int jumpCount = 2;
+
 	vector<Texture*> runAnimation;
 	vector<Texture*> dashAnimation;
 	vector<Texture*> jumpAnimation;
+	vector<Texture*> doubleJumpAnimation;
 	vector<Texture*> slideAnimation;
 	vector<Texture*> skillAnimation;
 	int state = RUN;
@@ -46,6 +50,7 @@ public:
 	void Jump();
 	void MoveUpdate(const float& deltaTime);
 	void SetState(const int& state);
+	int GetState();
 	virtual void Update(const float& deltaTime);
 };
 

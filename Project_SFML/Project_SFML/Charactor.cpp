@@ -16,6 +16,14 @@ void Charactor::Init()
 	Texture* tx = nullptr;
 
 	char filePath[50];
+	for (int i = 1; i < 8; ++i)
+	{
+		sprintf(filePath, "Texture/cookie0020x2/cookie0020x2_000%d.png", i);
+
+		tx = new Texture;
+		tx->loadFromFile(filePath);
+		this->doubleJumpAnimation.push_back(tx);
+	}
 
 	for (int i = 8; i < 10; ++i)
 	{
@@ -67,6 +75,8 @@ void Charactor::Init()
 	stateAnimation[SLIDE] = slideAnimation;
 	stateAnimation[SKILL] = skillAnimation;
 	stateAnimation[JUMP] = jumpAnimation;
+	stateAnimation[DOUBLEJUMP] = doubleJumpAnimation;
+
 	setPosition(Vector2f(100.f, 100.f));
 	setTexture(*runAnimation.data()[0]);
 	setOrigin(Vector2f(getGlobalBounds().width / 2.f, getGlobalBounds().height));
@@ -98,43 +108,55 @@ void Charactor::MoveUpdate(const float& deltaTime)
 	setPosition(position);
 }
 
+void Charactor::Jump()
+{
+	if (--jumpCount > 0)
+	{
+		velocity.y = -20.f;
+	}
+}
+
 void Charactor::SetState(const int& state)
 {
 	this->state = state;
 }
 
-void Charactor::Jump()
+int Charactor::GetState()
 {
-	velocity.y = -5.f;
+	return this->state;
 }
 
 void Charactor::Update(const float& deltaTime)
 {
 	MoveUpdate(deltaTime);
-
+	static int count = 0;
 	if (position.y < FLOOR_Y - 30.f)
 	{
 		state = JUMP;
 	}
+	else
+	{
+		jumpCount = 2;
+	}
+	cout << "JumpCount = " << jumpCount << endl;
 
-	//if (Keyboard::isKeyPressed(Keyboard::Right))
-	//{
-	//	state = DASH;
-	//}
-	//else if (Keyboard::isKeyPressed(Keyboard::Down))
-	//{
-	//	state = SLIDE;
-	//}
-	//else if (Keyboard::isKeyPressed(Keyboard::Up))
-	//{
-	//	keyFrame = 0;
-	//	state = SKILL;
-	//}
-
+	if (state == JUMP && jumpCount != 2)
+	{
+		state = DOUBLEJUMP;
+	}
 
 	elapsedTime += deltaTime;
 
-	if (elapsedTime > 0.05f)
+	if (state != DOUBLEJUMP)
+	{
+		frameTime = 0.05f;
+	}
+	else
+	{
+		frameTime = 0.02f;
+	}
+
+	if (elapsedTime > frameTime)
 	{
 		for (auto& animation : stateAnimation)
 		{
@@ -142,7 +164,7 @@ void Charactor::Update(const float& deltaTime)
 			{
 				setTexture(*animation.second.data()[keyFrame % animation.second.size()]);
 
-				if (!animation.first == RUN)
+				if ((animation.first != RUN) || (animation.first != DOUBLEJUMP))
 				{
 					if (keyFrame % animation.second.size() >= animation.second.size() - 1)
 					{
