@@ -49,7 +49,7 @@ void JellyObject::Destroy()
 
 void JellyObject::Update(const float& deltaTime)
 {
-
+	setPosition(getPosition().x - 1.f * speed * deltaTime, getPosition().y);
 }
 
 void JellyObject::Update(const Vector2f& mousePosition)

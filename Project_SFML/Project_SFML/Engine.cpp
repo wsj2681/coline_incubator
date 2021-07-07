@@ -14,8 +14,8 @@ Engine::~Engine()
 void Engine::Init()
 {
 	// 현재 window 변수는 포인터로 존재한다.
-	
-	this->window = new RenderWindow(VideoMode(1136, 640), "Oven Break");
+	// window Size 1384 x 720
+	this->window = new RenderWindow(VideoMode(1384, 720), "Oven Break");
 	window->setMouseCursorVisible(true);
 	Image icon;
 	icon.loadFromFile("Texture/icon.png");
@@ -74,6 +74,7 @@ void Engine::Update()
 		if (this->scenes.top()->GetQuit())
 		{
 			// 현재 실행중인 scene를 종료한다
+
 			delete this->scenes.top();
 			this->scenes.pop();
 			cout << "Pop Scene\n";

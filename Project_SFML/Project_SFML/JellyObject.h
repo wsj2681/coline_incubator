@@ -19,7 +19,7 @@ public:
 private:
 
 	Texture* texture = nullptr;
-	
+	float speed = 1000.f;
 	int type = -1;
 
 private:

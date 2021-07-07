@@ -22,7 +22,7 @@ void TitleScene::Init()
 {
 	backGround = new BackGroundObject("Texture/BackGround/title.png");
 
-	mTexts["TITLE"] = new TextObject("Press Any Keys", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", Vector2f(1136 / 2.f, 580.f));
+	mTexts["TITLE"] = new TextObject("Press Any Keys", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", Vector2f(1384 / 2.f, 650.f));
 }
 
 void TitleScene::Destroy()
@@ -38,25 +38,30 @@ void TitleScene::Input(Event* e)
 		scenes->top()->EndScene();
 		break;
 	}
+
 	default:
 	{
 		scenes->push(new LobbyScene(scenes, window));
 		break;
 	}
 	}
+	
 }
 
 void TitleScene::Update(const float& deltaTime)
 {
+
+	if (Mouse::isButtonPressed(Mouse::Right))
+	{
+		cout << mousePosition.x << " " << mousePosition.y << endl;
+	}
+
 	static float elapsedTime = 0.f;
-	
-	static float txtScale = 1.f;
-	
+	static float txtScale = 1.3f;
 	static int frame = 0;
-
 	static int div = 1;
-
-	if ((elapsedTime += deltaTime) >= 0.02f)
+	
+	if ((elapsedTime += deltaTime) >= 0.01f)
 	{
 
 		if ((++frame % 30) == 0)

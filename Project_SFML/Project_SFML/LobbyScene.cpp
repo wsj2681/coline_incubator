@@ -20,7 +20,28 @@ LobbyScene::~LobbyScene()
 
 void LobbyScene::Init()
 {
-	mTexts["TEST"] = new TextObject("Press Space Key", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", Vector2f(1136 / 2.f, 580.f));
+	static uniform_int_distribution<> uid(0, 3);
+	static default_random_engine dre;
+	switch (uid(dre))
+	{
+	case 0:
+	{
+		backGround = new BackGroundObject("Texture/background/lobby1.png");
+		break;
+	}
+	case 1:
+	{
+		backGround = new BackGroundObject("Texture/background/lobby2.png");
+		break;
+	}
+	case 2:
+	{
+		backGround = new BackGroundObject("Texture/background/lobby3.png");
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 void LobbyScene::Destroy()
@@ -41,27 +62,6 @@ void LobbyScene::Input(Event* e)
 
 void LobbyScene::Update(const float& deltaTime)
 {
-	static float elapsedTime = 0.f;
-	
-	static float txtScale = 1.f;
-
-	static int frame = 0;
-
-	static int div = 1;
-
-	if ((elapsedTime += deltaTime) >= 0.01f)
-	{
-
-		if ((++frame % 30) == 0)
-		{
-			div *= -1;
-		}
-
-		txtScale += (0.01f * div);
-		mTexts["TEST"]->setScale(Vector2f(txtScale, txtScale));
-		elapsedTime = 0.f;
-	}
-
 	Scene::Update(deltaTime);
 }
 

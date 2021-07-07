@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "Charactor.h"
+#define FLOOR_Y 500.f
 
 Charactor::Charactor()
 {
@@ -15,6 +16,16 @@ void Charactor::Init()
 	Texture* tx = nullptr;
 
 	char filePath[50];
+
+	for (int i = 8; i < 10; ++i)
+	{
+		sprintf(filePath, "Texture/cookie0020x2/cookie0020x2_000%d.png", i);
+
+		tx = new Texture;
+		tx->loadFromFile(filePath);
+		this->jumpAnimation.push_back(tx);
+	}
+
 	for (int i = 10; i < 14; ++i)
 	{
 		sprintf(filePath, "Texture/cookie0020x2/cookie0020x2_00%d.png", i);
@@ -55,8 +66,10 @@ void Charactor::Init()
 	stateAnimation[DASH] = dashAnimation;
 	stateAnimation[SLIDE] = slideAnimation;
 	stateAnimation[SKILL] = skillAnimation;
-
+	stateAnimation[JUMP] = jumpAnimation;
 	setPosition(Vector2f(100.f, 100.f));
+	setTexture(*runAnimation.data()[0]);
+	setOrigin(Vector2f(getGlobalBounds().width / 2.f, getGlobalBounds().height));
 }
 
 void Charactor::Destroy()
@@ -64,21 +77,21 @@ void Charactor::Destroy()
 	AnimationObject::Destroy();
 }
 
-void Charactor::MoveUpdate()
+void Charactor::MoveUpdate(const float& deltaTime)
 {
-	if (position.y < 200.f)
+	if (position.y < FLOOR_Y)
 	{
 		// -10 -> -8 -> -6 ...
 		// 위로 점프하기 위한 행동
-		velocity.y += gravity;
+		velocity.y += gravity * speed * deltaTime;
 	}
-	else if (position.y > 200.f)
+	else if (position.y > FLOOR_Y)
 	{
 		// 바닥으로 꺼지는 것을 막기위한 행동
-		position.y = 200.f;
+		position.y = FLOOR_Y;
 	}
 
-	velocity += acceleration;
+	velocity += acceleration * speed * deltaTime;
 
 	position += velocity;
 
@@ -87,12 +100,17 @@ void Charactor::MoveUpdate()
 
 void Charactor::Jump()
 {
-	velocity.y = -10.f;
+	velocity.y = -5.f;
 }
 
 void Charactor::Update(const float& deltaTime)
 {
-	MoveUpdate();
+	MoveUpdate(deltaTime);
+
+	if (position.y < FLOOR_Y - 30.f)
+	{
+		state = JUMP;
+	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Right))
 	{
@@ -119,7 +137,7 @@ void Charactor::Update(const float& deltaTime)
 			{
 				setTexture(*animation.second.data()[keyFrame % animation.second.size()]);
 
-				if (animation.first == SKILL)
+				if (!animation.first == RUN)
 				{
 					if (keyFrame % animation.second.size() >= animation.second.size() - 1)
 					{

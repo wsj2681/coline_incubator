@@ -6,8 +6,9 @@ enum CHARATOR_STATE
 	// IDLE
 	RUN,
 	DASH,
+	JUMP,
 	SLIDE,
-	SKILL
+	SKILL,
 };
 
 class Charactor : public AnimationObject
@@ -18,20 +19,22 @@ public:
 
 private:
 
-	Vector2f position{ 0.f, 0.f };
+	Vector2f position{ 200.f, 0.f };
 	Vector2f velocity{ 0.f, 0.f };
 	Vector2f acceleration{ 0.f, 0.f };
-
+	float speed = 50.f;
 	float gravity = 2.f;
 
 	vector<Texture*> runAnimation;
 	vector<Texture*> dashAnimation;
+	vector<Texture*> jumpAnimation;
 	vector<Texture*> slideAnimation;
 	vector<Texture*> skillAnimation;
-
 	int state = RUN;
 
 	map<int, vector<Texture*>> stateAnimation;
+
+
 
 private:
 
@@ -41,7 +44,7 @@ public:
 
 	virtual void Destroy();
 	void Jump();
-	void MoveUpdate();
+	void MoveUpdate(const float& deltaTime);
 	virtual void Update(const float& deltaTime);
 };
 
