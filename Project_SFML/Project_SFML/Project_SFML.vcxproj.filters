@@ -138,6 +138,7 @@
     <ClCompile Include="TextObject.cpp">
       <Filter>Source Code\03. Object\06. TextObject</Filter>
     </ClCompile>
+    <ClCompile Include="StuffObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -197,5 +198,6 @@
     <ClInclude Include="TextObject.h">
       <Filter>Source Code\03. Object\06. TextObject</Filter>
     </ClInclude>
+    <ClInclude Include="StuffObject.h" />
   </ItemGroup>
 </Project>

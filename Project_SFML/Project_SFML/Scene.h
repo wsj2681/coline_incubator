@@ -3,6 +3,7 @@
 #include "BackGroundObject.h"
 #include "Button.h"
 #include "TextObject.h"
+#include "StuffObject.h"
 
 class Object;
 

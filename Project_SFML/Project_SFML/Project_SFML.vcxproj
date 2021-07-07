@@ -36,6 +36,7 @@
     <ClCompile Include="ObstacleObject.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="StuffObject.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
@@ -57,6 +58,7 @@
     <ClInclude Include="ObstacleObject.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="StuffObject.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
