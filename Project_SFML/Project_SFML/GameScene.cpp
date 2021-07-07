@@ -26,7 +26,7 @@ GameScene::~GameScene()
 void GameScene::Init()
 {
 	backGround = new BackGroundObject("Texture/BackGround/game.png");
-	backGround->setScale(2.5f, 2.f);
+	backGround->setScale(3.f, 3.f);
 
 	animationObjects.push_back(new Charactor);
 
@@ -43,30 +43,25 @@ void GameScene::Init()
 		jellys.push_back(new JellyObject(Green));
 	}
 
-	uniform_real_distribution<float> urd(0.f, 1300.f);
-	default_random_engine dre;
-
-	FILE* fp = fopen("positions.txt", "r");
-	
-	while (!feof(fp))
+	int i = 0;
+	for (auto& j : jellys)
 	{
-		Vector2f position;
-		fscanf(fp, "%f %f\n", &position.x, &position.y);
-		position.x = 1400.f;
-
-		jellyPositions.push(position);
+		j->setPosition(Vector2f(i * 100.f, 475.f));
+		i++;
 	}
+
+
+	default_random_engine dre;
 
 	shuffle(jellys.begin(), jellys.end(), dre);
 
-	for (auto& j : jellys)
-	{
-		j->setPosition(urd(dre), urd(dre));
-	}
+
 	mTexts["Score"] = new TextObject("Score : ", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", Vector2f(1000.f, 100.f));
 
 	mButtons["JUMP"] = new Button("Texture/Buttons/btn_pair1168169_L.png", "Texture/Buttons/btn_pair1168169_L_dim.png", Vector2f(150.f, 600.f));
 	mButtons["JUMP"]->setScale(0.8f, 0.8f);
+	mButtons["SLIDE"] = new Button("Texture/Buttons/btn_pair1168169_R.png", "Texture/Buttons/btn_pair1168169_R_dim.png", Vector2f(1234.f, 600.f));
+	mButtons["SLIDE"]->setScale(0.8f, 0.8f);
 }
 
 void GameScene::Destroy()
@@ -91,17 +86,22 @@ void GameScene::Update(const float& deltaTime)
 	elapsedTime += deltaTime;
 	mTexts["Score"]->setString(to_string(++score).c_str());
 
+	static int degree = 0;
+
+
 	for (auto& jelly : jellys)
 	{
-		//jelly->Update(mousePosition);
 		jelly->Update(deltaTime);
 		if (jelly->getPosition().x <= 0.f)
 		{
-			if (!jellyPositions.empty())
+			Vector2f position;
+			position.x = 100.f * 60;
+			position.y = abs(sin(PI * (++degree) / 180));
+			if (position.y > 475.f)
 			{
-				jelly->setPosition(jellyPositions.top());
-				jellyPositions.pop();
+				position.y = 475.f;
 			}
+			jelly->setPosition(position);
 		}
 	}
 
@@ -110,7 +110,10 @@ void GameScene::Update(const float& deltaTime)
 	{
 		dynamic_cast<Charactor*>(animationObjects.data()[0])->Jump();
 	}
-
+	else if (mButtons["SLIDE"]->IsPressed())
+	{
+		dynamic_cast<Charactor*>(animationObjects.data()[0])->SetState(SLIDE);
+	}
 	Scene::Update(deltaTime);
 }
 

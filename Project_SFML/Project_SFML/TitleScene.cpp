@@ -50,12 +50,6 @@ void TitleScene::Input(Event* e)
 
 void TitleScene::Update(const float& deltaTime)
 {
-
-	if (Mouse::isButtonPressed(Mouse::Right))
-	{
-		cout << mousePosition.x << " " << mousePosition.y << endl;
-	}
-
 	static float elapsedTime = 0.f;
 	static float txtScale = 1.3f;
 	static int frame = 0;

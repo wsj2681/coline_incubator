@@ -39,7 +39,10 @@ void Scene::Input(Event* e)
 void Scene::Update(const float& deltaTime)
 {
 	mousePosition = window->mapPixelToCoords(Mouse::getPosition(*window));
-
+	if (Mouse::isButtonPressed(Mouse::Right))
+	{
+		cout << mousePosition.x << " " << mousePosition.y << endl;
+	}
 	for (auto& obj : animationObjects)
 	{
 		if (obj->IsActive())

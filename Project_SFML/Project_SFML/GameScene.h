@@ -11,7 +11,7 @@ private:
 
 	vector<Object*> jellys;
 
-	stack<Vector2f> jellyPositions;
+	queue<Vector2f> jellyPositions;
 
 	size_t score = 0;
 

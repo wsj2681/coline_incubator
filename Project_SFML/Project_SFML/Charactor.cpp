@@ -98,6 +98,11 @@ void Charactor::MoveUpdate(const float& deltaTime)
 	setPosition(position);
 }
 
+void Charactor::SetState(const int& state)
+{
+	this->state = state;
+}
+
 void Charactor::Jump()
 {
 	velocity.y = -5.f;
@@ -112,19 +117,19 @@ void Charactor::Update(const float& deltaTime)
 		state = JUMP;
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Right))
-	{
-		state = DASH;
-	}
-	else if (Keyboard::isKeyPressed(Keyboard::Down))
-	{
-		state = SLIDE;
-	}
-	else if (Keyboard::isKeyPressed(Keyboard::Up))
-	{
-		keyFrame = 0;
-		state = SKILL;
-	}
+	//if (Keyboard::isKeyPressed(Keyboard::Right))
+	//{
+	//	state = DASH;
+	//}
+	//else if (Keyboard::isKeyPressed(Keyboard::Down))
+	//{
+	//	state = SLIDE;
+	//}
+	//else if (Keyboard::isKeyPressed(Keyboard::Up))
+	//{
+	//	keyFrame = 0;
+	//	state = SKILL;
+	//}
 
 
 	elapsedTime += deltaTime;

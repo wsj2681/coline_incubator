@@ -15,6 +15,7 @@ using namespace sf;
 #include <map>
 #include <vector>
 #include <stack>
+#include <queue>
 #include <typeinfo>
 #include <random>
 using namespace std;

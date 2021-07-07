@@ -45,6 +45,7 @@ public:
 	virtual void Destroy();
 	void Jump();
 	void MoveUpdate(const float& deltaTime);
+	void SetState(const int& state);
 	virtual void Update(const float& deltaTime);
 };
 
