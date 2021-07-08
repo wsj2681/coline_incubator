@@ -55,6 +55,10 @@ void Scene::Update(const float& deltaTime)
 		if (obj->IsActive())
 		{
 			obj->Update(deltaTime);
+			if (obj->GetHitBoxActive())
+			{
+				obj->UpdateHitBox();
+			}
 		}
 	}
 
@@ -63,10 +67,12 @@ void Scene::Update(const float& deltaTime)
 		if (obj->IsActive())
 		{
 			obj->Update(deltaTime);
+			if (obj->GetHitBoxActive())
+			{
+				obj->UpdateHitBox();
+			}
 		}
 	}
-
-
 }
 
 void Scene::Render()
@@ -81,6 +87,10 @@ void Scene::Render()
 		if (obj->IsActive())
 		{
 			window->draw(*obj);
+			if (obj->GetHitBoxActive())
+			{
+				window->draw(obj->GetHitBox(), 5, LinesStrip);
+			}
 		}
 	}
 
@@ -89,6 +99,10 @@ void Scene::Render()
 		if (obj->IsActive())
 		{
 			window->draw(*obj);
+			if (obj->GetHitBoxActive())
+			{
+				window->draw(obj->GetHitBox(), 5, LinesStrip);
+			}
 		}
 	}
 

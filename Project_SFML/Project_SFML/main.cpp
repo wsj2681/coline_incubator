@@ -8,5 +8,4 @@ int main()
 	engine.Render();
 
 	engine.Destroy();
-
 }

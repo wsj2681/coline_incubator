@@ -70,7 +70,7 @@ void Charactor::Init()
 		this->skillAnimation.push_back(tx);
 	}
 
-	stateAnimation.insert({ RUN, runAnimation });
+	stateAnimation[RUN] = runAnimation;
 	stateAnimation[DASH] = dashAnimation;
 	stateAnimation[SLIDE] = slideAnimation;
 	stateAnimation[SKILL] = skillAnimation;
@@ -164,7 +164,7 @@ void Charactor::Update(const float& deltaTime)
 			{
 				setTexture(*animation.second.data()[keyFrame % animation.second.size()]);
 
-				if ((animation.first != RUN) || (animation.first != DOUBLEJUMP))
+				if (animation.first != RUN)
 				{
 					if (keyFrame % animation.second.size() >= animation.second.size() - 1)
 					{

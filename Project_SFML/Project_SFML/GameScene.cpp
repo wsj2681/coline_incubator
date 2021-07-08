@@ -127,8 +127,6 @@ void GameScene::Input(Event* e)
 	{
 		dynamic_cast<Charactor*>(animationObjects.data()[0])->Jump();
 	}
-
-
 }
 
 void GameScene::Update(const float& deltaTime)
@@ -162,8 +160,6 @@ void GameScene::Update(const float& deltaTime)
 		}
 	}
 
-
-
 	Scene::Update(deltaTime);
 }
 
@@ -179,6 +175,10 @@ void GameScene::Render()
 		if (j->IsActive())
 		{
 			window->draw(*j);
+			if (j->GetHitBoxActive())
+			{
+				window->draw(j->GetHitBox(), 5, LinesStrip);
+			}
 		}
 	}
 
@@ -187,6 +187,10 @@ void GameScene::Render()
 		if (obj->IsActive())
 		{
 			window->draw(*obj);
+			if (obj->GetHitBoxActive())
+			{
+				window->draw(obj->GetHitBox(), 5, LinesStrip);
+			}
 		}
 	}
 
@@ -195,6 +199,10 @@ void GameScene::Render()
 		if (obj->IsActive())
 		{
 			window->draw(*obj);
+			if (obj->GetHitBoxActive())
+			{
+				window->draw(obj->GetHitBox(), 5, LinesStrip);
+			}
 		}
 	}
 
