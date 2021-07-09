@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\00. Main">
+      <UniqueIdentifier>{5c8aa704-5b97-426c-aa72-663aa8ab2c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Object">
+      <UniqueIdentifier>{bf114506-37e3-4362-bdf1-f8d816631748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01. Engine">
+      <UniqueIdentifier>{8256ca7b-136e-4831-a75a-36ae71dde9af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene">
+      <UniqueIdentifier>{92855d2c-8002-4677-9698-11cec49def66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99. Common">
+      <UniqueIdentifier>{aae7c6fa-86b0-4753-97a5-d31c5dc1e42d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Object\00. Object">
+      <UniqueIdentifier>{0b268502-b694-43f8-bc5f-9351e22f5827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene\00. Scene">
+      <UniqueIdentifier>{357d31fe-0725-4ca0-97aa-42446155b978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98. DataBase">
+      <UniqueIdentifier>{14fdec46-72c3-4fe4-8ba3-92fa8078f9c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene\01. TitleScene">
+      <UniqueIdentifier>{37f75622-57d0-4173-afea-b46756069b99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene\02. LobbyScene">
+      <UniqueIdentifier>{bbc24f01-2cba-4b5e-9b00-981902c26f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene\03. GameScene">
+      <UniqueIdentifier>{c84385e5-df3d-47e5-929c-82e4b899d942}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene\04. PauseScene">
+      <UniqueIdentifier>{5ca6d996-d55a-45f5-bdf9-bcf42ea20c94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene\05. ResultScene">
+      <UniqueIdentifier>{fcf5951e-7876-43ab-924d-485e8ba4251f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Object\01. AnimationObject">
+      <UniqueIdentifier>{2af13ddd-917e-46f1-b74e-4319229ca3c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Object\02. ButtonObject">
+      <UniqueIdentifier>{6578447e-4457-4517-98d3-732102b5d792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Object\03. TextObject">
+      <UniqueIdentifier>{15c12425-8e07-44cf-8c8f-bed3146be0a6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일\00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>소스 파일\01. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase.cpp">
+      <Filter>소스 파일\98. DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일\03. Object\00. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\02. Scene\00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonObject.cpp">
+      <Filter>소스 파일\03. Object\02. ButtonObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>소스 파일\03. Object\03. TextObject</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>소스 파일\01. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>소스 파일\99. Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBase.h">
+      <Filter>소스 파일\98. DataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>소스 파일\03. Object\00. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\02. Scene\00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonObject.h">
+      <Filter>소스 파일\03. Object\02. ButtonObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>소스 파일\03. Object\03. TextObject</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
