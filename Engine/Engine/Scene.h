@@ -14,7 +14,7 @@ public:
 	Scene& operator=(const Scene&) = delete;
 	virtual ~Scene() = default;
 
-private:
+protected:
 
 	stack<Scene*>* scenes = nullptr;
 	RenderWindow* window = nullptr;

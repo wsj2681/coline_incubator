@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "Engine.h"
-#include "Scene.h"
+#include "TitleScene.h"
 
 Engine::Engine()
 {
@@ -19,7 +19,7 @@ void Engine::Init()
 	this->event = new Event;
 	this->clock = new Clock;
 
-	scenes.push(new Scene(&scenes, window));
+	scenes.push(new TitleScene(&scenes, window));
 }
 
 void Engine::Destroy()
@@ -32,6 +32,7 @@ void Engine::Destroy()
 	{
 		scenes.top()->Destroy();
 		scenes.top() = nullptr;
+		delete scenes.top();
 		scenes.pop();
 	}
 }

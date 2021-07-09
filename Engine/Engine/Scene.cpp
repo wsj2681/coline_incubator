@@ -14,7 +14,10 @@ void Scene::Init()
 
 void Scene::Destroy()
 {
-	backGround->Destroy();
+	if (backGround)
+	{
+		backGround->Destroy();
+	}
 
 	for (auto& obj : objects)
 	{
@@ -70,7 +73,10 @@ void Scene::Update(const float& deltaTime)
 
 void Scene::Render()
 {
-	backGround->Render(window);
+	if (backGround)
+	{
+		backGround->Render(window);
+	}
 
 	for (auto& obj : objects)
 	{

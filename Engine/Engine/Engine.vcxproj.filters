@@ -80,6 +80,21 @@
     <ClCompile Include="TextObject.cpp">
       <Filter>소스 파일\03. Object\03. TextObject</Filter>
     </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>소스 파일\02. Scene\01. TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyScene.cpp">
+      <Filter>소스 파일\02. Scene\02. LobbyScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>소스 파일\02. Scene\03. GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseScene.cpp">
+      <Filter>소스 파일\02. Scene\04. PauseScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>소스 파일\02. Scene\05. ResultScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -102,6 +117,21 @@
     </ClInclude>
     <ClInclude Include="TextObject.h">
       <Filter>소스 파일\03. Object\03. TextObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>소스 파일\02. Scene\01. TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyScene.h">
+      <Filter>소스 파일\02. Scene\02. LobbyScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>소스 파일\02. Scene\03. GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScene.h">
+      <Filter>소스 파일\02. Scene\04. PauseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>소스 파일\02. Scene\05. ResultScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

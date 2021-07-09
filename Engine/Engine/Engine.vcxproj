@@ -145,19 +145,29 @@
     <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="DataBase.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="LobbyScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PauseScene.cpp" />
+    <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TextObject.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="DataBase.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="LobbyScene.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="PauseScene.h" />
+    <ClInclude Include="ResultScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="TextObject.h" />
+    <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
