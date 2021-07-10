@@ -14,7 +14,7 @@ Engine::~Engine()
 
 void Engine::Init()
 {
-	this->window = new RenderWindow(VideoMode(500, 500), "Window");
+	this->window = new RenderWindow(VideoMode(32 * 56, 32 * 23), "Window");
 	this->window->setFramerateLimit(60);
 	this->event = new Event;
 	this->clock = new Clock;
