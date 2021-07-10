@@ -57,6 +57,12 @@
     <Filter Include="소스 파일\03. Object\03. TextObject">
       <UniqueIdentifier>{15c12425-8e07-44cf-8c8f-bed3146be0a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04. Map">
+      <UniqueIdentifier>{2b211f51-233e-41d5-a118-6503650441f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02. Scene\06. MapToolScene">
+      <UniqueIdentifier>{295fc3e5-9504-45a8-a2df-72a1112edf64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -94,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="ResultScene.cpp">
       <Filter>소스 파일\02. Scene\05. ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>소스 파일\04. Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolScene.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,5 +145,9 @@
     <ClInclude Include="ResultScene.h">
       <Filter>소스 파일\02. Scene\05. ResultScene</Filter>
     </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>소스 파일\04. Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolScene.h" />
   </ItemGroup>
 </Project>
