@@ -42,6 +42,7 @@ void MapToolScene::Input(Event* event)
 		{
 		case Keyboard::Escape:
 		{
+			window->setView(window->getDefaultView());
 			EndScene();
 			break;
 		}

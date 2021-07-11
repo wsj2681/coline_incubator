@@ -93,7 +93,7 @@ void Engine::Update()
 	{
 		window->close();
 	}
-}
+};;
 
 bool Engine::Render()
 {
