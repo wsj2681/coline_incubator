@@ -11,10 +11,6 @@ public:
 
 private:
 
-	TileMap* map = nullptr;
-
-private:
-
 	virtual void Init();
 
 public:

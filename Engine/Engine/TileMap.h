@@ -1,4 +1,7 @@
 #pragma once
+
+class Object;
+
 class TileMap final : public Drawable, public Transformable
 {
 public:
@@ -17,8 +20,16 @@ private:
 	Vector2u tileSize{ 0, 0 };
 	vector<int> tiles;
 
+	// MouseCursor image
+	IntRect imageRect;
+
+private:
+
+	void SetVertices();
+
 public:
 
+	const IntRect& GetTile(int tileType);
 	void SaveMap(const string& mapName);
 	void LoadMap(const string& mapName);
 	void Update(const Vector2f& mousePosition, int tileNumber);

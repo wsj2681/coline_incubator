@@ -9,20 +9,23 @@ Object::Object()
 Object::Object(const string& textureFilePath)
 {
 	this->texture = new Texture;
-	this->texture->loadFromFile(textureFilePath);
-	setTexture(*this->texture);
 	
-	// GlobalBoundBox
-	auto gbb = this->getGlobalBounds();
-	
-	setOrigin(gbb.width / 2.f, gbb.height / 2.f);
+	if (this->texture->loadFromFile(textureFilePath))
+	{
+		setTexture(*this->texture);
 
-	vertices = new Vertex[5];
-	vertices[0] = (Vertex(Vector2f(gbb.left, gbb.top), boxColor));
-	vertices[1] = (Vertex(Vector2f(gbb.left + gbb.width, gbb.top), boxColor));
-	vertices[2] = (Vertex(Vector2f(gbb.left + gbb.width, gbb.top + gbb.height), boxColor));
-	vertices[3] = (Vertex(Vector2f(gbb.left, gbb.top + gbb.height), boxColor));
-	vertices[4] = (Vertex(Vector2f(gbb.left, gbb.top), boxColor));
+		// GlobalBoundBox
+		auto gbb = this->getGlobalBounds();
+
+		setOrigin(gbb.width / 2.f, gbb.height / 2.f);
+
+		vertices = new Vertex[5];
+		vertices[0] = (Vertex(Vector2f(gbb.left, gbb.top), boxColor));
+		vertices[1] = (Vertex(Vector2f(gbb.left + gbb.width, gbb.top), boxColor));
+		vertices[2] = (Vertex(Vector2f(gbb.left + gbb.width, gbb.top + gbb.height), boxColor));
+		vertices[3] = (Vertex(Vector2f(gbb.left, gbb.top + gbb.height), boxColor));
+		vertices[4] = (Vertex(Vector2f(gbb.left, gbb.top), boxColor));
+	}
 }
 
 
@@ -36,6 +39,11 @@ void Object::Destroy()
 {
 	DELETE(texture);
 	DELETE(vertices);
+}
+
+void Object::SetDebugBoxActive(bool isActive)
+{
+	this->debugBox = isActive;
 }
 
 void Object::SetBoxColor(const Color& color)

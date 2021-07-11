@@ -105,7 +105,7 @@
       <Filter>소스 파일\04. Map</Filter>
     </ClCompile>
     <ClCompile Include="MapToolScene.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\02. Scene\06. MapToolScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +148,8 @@
     <ClInclude Include="TileMap.h">
       <Filter>소스 파일\04. Map</Filter>
     </ClInclude>
-    <ClInclude Include="MapToolScene.h" />
+    <ClInclude Include="MapToolScene.h">
+      <Filter>소스 파일\02. Scene\06. MapToolScene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -22,6 +22,7 @@ public:
 
 	virtual void Destroy();
 
+	void SetDebugBoxActive(bool isActive);
 	void SetBoxColor(const Color& color);
 	void SetBoxColor(const Uint8& r, const Uint8& g, const Uint8& b, const Uint8& a);
 

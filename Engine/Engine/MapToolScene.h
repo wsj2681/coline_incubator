@@ -25,7 +25,7 @@ private:
 	TileMap* map = nullptr;
 
 	View* view = nullptr;
-	FloatRect viewRect{0, 0, 500, 500};
+	FloatRect viewRect{0, 0,  32 * 56, 32 * 23 };
 
 private:
 

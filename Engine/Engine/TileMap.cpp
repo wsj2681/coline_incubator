@@ -1,17 +1,21 @@
 #include "framework.h"
 #include "TileMap.h"
-
-#include <fstream>
+#include "Object.h"
 
 TileMap::TileMap(const string& tileMapFilePath, const Vector2u& tileSize, const vector<int>& tiles, const Vector2u& mapSize)
     :mapSize(mapSize), tileSize(tileSize), tiles(tiles)
 {
-	this->texture = new Texture;
-	texture->loadFromFile(tileMapFilePath);
+    this->texture = new Texture;
+    texture->loadFromFile(tileMapFilePath);
 
 	vertices.setPrimitiveType(Quads);
 	vertices.resize(mapSize.x * mapSize.y * 4);
 
+    SetVertices();
+}
+
+void TileMap::SetVertices()
+{
     for (unsigned int i = 0; i < mapSize.x; ++i)
     {
         for (unsigned int j = 0; j < mapSize.y; ++j)
@@ -26,17 +30,37 @@ TileMap::TileMap(const string& tileMapFilePath, const Vector2u& tileSize, const 
             // get a pointer to the current tile's quad
             Vertex* quad = &vertices[(i + j * mapSize.x) * 4];
 
+            float tileX = (float)tileSize.x;
+            float tileY = (float)tileSize.y;
             // define its 4 corners
-            quad[0].position = Vector2f(i * tileSize.x, j * tileSize.y);
-            quad[1].position = Vector2f((i + 1) * tileSize.x, j * tileSize.y);
-            quad[2].position = Vector2f((i + 1) * tileSize.x, (j + 1) * tileSize.y);
-            quad[3].position = Vector2f(i * tileSize.x, (j + 1) * tileSize.y);
+            quad[0].position = Vector2f(i * tileX, j * tileY);
+            quad[1].position = Vector2f((i + 1) * tileX, j * tileY);
+            quad[2].position = Vector2f((i + 1) * tileX, (j + 1) * tileY);
+            quad[3].position = Vector2f(i * tileX, (j + 1) * tileY);
 
             // define its 4 texture coordinates
-            quad[0].texCoords = Vector2f(tu * tileSize.x, tv * tileSize.y);
-            quad[1].texCoords = Vector2f((tu + 1) * tileSize.x, tv * tileSize.y);
-            quad[2].texCoords = Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
-            quad[3].texCoords = Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
+            quad[0].texCoords = Vector2f(tu * tileX, tv * tileY);
+            quad[1].texCoords = Vector2f((tu + 1) * tileX, tv * tileY);
+            quad[2].texCoords = Vector2f((tu + 1) * tileX, (tv + 1) * tileY);
+            quad[3].texCoords = Vector2f(tu * tileX, (tv + 1) * tileY);
+        }
+    }
+}
+
+const IntRect& TileMap::GetTile(int tileType)
+{
+    int Count = 0;
+
+    for (int y = 0; y < texture->getSize().y; y += tileSize.y)
+    {
+        for (int x = 0; x < texture->getSize().x; x += tileSize.x)
+        {
+            if (Count == tileType)
+            {
+                imageRect = IntRect(x, y, 32, 32);
+                return imageRect;
+            }
+            Count++;
         }
     }
 }
@@ -44,10 +68,10 @@ TileMap::TileMap(const string& tileMapFilePath, const Vector2u& tileSize, const 
 void TileMap::SaveMap(const string& mapName)
 {
     ofstream out(mapName, ios::binary);
-    size_t size = tiles.size();
-    out.write((const char*)&size, sizeof(size_t));
+    int size = tiles.size();
+    out.write((const char*)&size, sizeof(int));
 
-    out.write((const char*)&tiles.data()[0], sizeof(int) * size);
+    out.write((const char*)&tiles.data()[0], sizeof(int) * static_cast<__int64>(size));
 
     out.close();
 }
@@ -57,42 +81,16 @@ void TileMap::LoadMap(const string& mapName)
     ifstream in(mapName, ios::binary);
 
     tiles.clear();
-    size_t size;
-    in.read((char*)&size, sizeof(size_t));
+    int size;
+    in.read((char*)&size, sizeof(int));
 
     tiles.resize(size);
 
-    in.read((char*)&tiles.data()[0], sizeof(int) * size);
+    in.read((char*)&tiles.data()[0], sizeof(int) * static_cast<__int64>(size));
 
     in.close();
 
-    for (unsigned int i = 0; i < mapSize.x; ++i)
-    {
-        for (unsigned int j = 0; j < mapSize.y; ++j)
-        {
-            // get the current tile number
-            int tileNumber = tiles.data()[i + j * mapSize.x];
-
-            // find its position in the tileset texture
-            int tu = tileNumber % (texture->getSize().x / tileSize.x);
-            int tv = tileNumber / (texture->getSize().x / tileSize.x);
-
-            // get a pointer to the current tile's quad
-            Vertex* quad = &vertices[(i + j * mapSize.x) * 4];
-
-            // define its 4 corners
-            quad[0].position = Vector2f(i * tileSize.x, j * tileSize.y);
-            quad[1].position = Vector2f((i + 1) * tileSize.x, j * tileSize.y);
-            quad[2].position = Vector2f((i + 1) * tileSize.x, (j + 1) * tileSize.y);
-            quad[3].position = Vector2f(i * tileSize.x, (j + 1) * tileSize.y);
-
-            // define its 4 texture coordinates
-            quad[0].texCoords = Vector2f(tu * tileSize.x, tv * tileSize.y);
-            quad[1].texCoords = Vector2f((tu + 1) * tileSize.x, tv * tileSize.y);
-            quad[2].texCoords = Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
-            quad[3].texCoords = Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
-        }
-    }
+    SetVertices();
 }
 
 void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
@@ -112,12 +110,13 @@ void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
                 int tu = tileNumber % (texture->getSize().x / tileSize.x);
                 int tv = tileNumber / (texture->getSize().x / tileSize.x);
 
-                cout << "Click :" << tileNumber << "'s tile\n";
+                float tileX = (float)tileSize.x;
+                float tileY = (float)tileSize.y;
 
-                quad[0].texCoords = Vector2f(tu * tileSize.x, tv * tileSize.y);
-                quad[1].texCoords = Vector2f((tu + 1) * tileSize.x, tv * tileSize.y);
-                quad[2].texCoords = Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
-                quad[3].texCoords = Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
+                quad[0].texCoords = Vector2f(tu * tileX, tv * tileY);
+                quad[1].texCoords = Vector2f((tu + 1) * tileX, tv * tileY);
+                quad[2].texCoords = Vector2f((tu + 1) * tileX, (tv + 1) * tileY);
+                quad[3].texCoords = Vector2f(tu * tileX, (tv + 1) * tileY);
 
             }
         }

@@ -9,7 +9,7 @@ using namespace sf;
 #include <map>
 #include <vector>
 #include <stack>
-
+#include <fstream>
 using namespace std;
 
 #define DELETE(x) if(x) delete (x); (x) = nullptr
