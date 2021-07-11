@@ -24,11 +24,16 @@ protected:
 	map<string, ButtonObject*> buttons;
 	map<string, TextObject*> texts;
 
+	bool Quit = false;
+
 private:
 
 	virtual void Init();
 
 public:
+
+	void EndScene();
+	bool GetQuit();
 
 	virtual void Destroy();
 

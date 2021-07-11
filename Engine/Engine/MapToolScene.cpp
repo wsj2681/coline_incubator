@@ -16,7 +16,10 @@ void MapToolScene::Init()
 		i = 113;
 	}
 	map = new TileMap("Textures/Map/tileSet.png", { 32, 32 }, levels, { 200, 200 });
-	view = new View(viewRect);
+
+	gameView = new View(viewRect);
+	gameView->setCenter(map->getPosition());
+
 	mouseCursor = new Object("Textures/Map/tileSet.png");
 	mouseCursor->setOrigin(0, 0);
 	mouseCursor->setTextureRect(map->GetTile(tileType));
@@ -47,6 +50,16 @@ void MapToolScene::Input(Event* event)
 			map->LoadMap("TileMap.bin");
 			break;
 		}
+		case Keyboard::LBracket:
+		{
+			gameView->zoom(1.1f);
+			break;
+		}
+		case Keyboard::RBracket:
+		{
+			gameView->zoom(0.9f);
+			break;
+		}
 		default:
 			break;
 		}
@@ -58,7 +71,7 @@ void MapToolScene::Input(Event* event)
 	{
 		if (Mouse::isButtonPressed(Mouse::Right))
 		{
-			view->setCenter(mousePosition);
+			gameView->setCenter(mousePosition);
 		}
 
 		break;
@@ -95,7 +108,7 @@ void MapToolScene::Update(const Vector2f& mousePosition)
 void MapToolScene::Update(const float& deltaTime)
 {
 	Scene::Update(deltaTime);
-	window->setView(*view);
+	window->setView(*gameView);
 	if (Mouse::isButtonPressed(Mouse::Left))
 	{
 		map->Update(mousePosition, tileType);

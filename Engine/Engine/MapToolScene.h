@@ -24,8 +24,9 @@ private:
 
 	TileMap* map = nullptr;
 
-	View* view = nullptr;
-	FloatRect viewRect{0, 0,  32 * 56, 32 * 23 };
+	View* gameView = nullptr;
+	FloatRect viewRect{0, 0,  1080, 720 };
+	float viewZoomFactor = 1.f;
 
 private:
 

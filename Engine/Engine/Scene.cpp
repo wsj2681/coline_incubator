@@ -12,6 +12,16 @@ void Scene::Init()
 
 }
 
+void Scene::EndScene()
+{
+	this->Quit = true;
+}
+
+bool Scene::GetQuit()
+{
+	return Quit;
+}
+
 void Scene::Destroy()
 {
 	if (backGround)

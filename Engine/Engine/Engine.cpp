@@ -15,13 +15,13 @@ Engine::~Engine()
 
 void Engine::Init()
 {
-	this->window = new RenderWindow(VideoMode(32 * 56, 32 * 23), "Window");
+	this->window = new RenderWindow(VideoMode(1080, 720), "Window");
 	this->window->setFramerateLimit(60);
 	this->event = new Event;
 	this->clock = new Clock;
 
-	//scenes.push(new TitleScene(&scenes, window));
-	scenes.push(new MapToolScene(&scenes, window));
+	scenes.push(new TitleScene(&scenes, window));
+	//scenes.push(new MapToolScene(&scenes, window));
 }
 
 void Engine::Destroy()
@@ -76,8 +76,18 @@ void Engine::Update()
 
 	if (!scenes.empty())
 	{
-		scenes.top()->Update(deltaTime);
-		scenes.top()->Update(mousePosition);
+		if (scenes.top()->GetQuit())
+		{
+			scenes.top()->Destroy();
+			scenes.top() = nullptr;
+			delete scenes.top();
+			scenes.pop();
+		}
+		else
+		{
+			scenes.top()->Update(deltaTime);
+			scenes.top()->Update(mousePosition);
+		}
 	}
 	else
 	{

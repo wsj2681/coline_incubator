@@ -51,9 +51,9 @@ const IntRect& TileMap::GetTile(int tileType)
 {
     int Count = 0;
 
-    for (int y = 0; y < texture->getSize().y; y += tileSize.y)
+    for (unsigned int y = 0; y < texture->getSize().y; y += tileSize.y)
     {
-        for (int x = 0; x < texture->getSize().x; x += tileSize.x)
+        for (unsigned int x = 0; x < texture->getSize().x; x += tileSize.x)
         {
             if (Count == tileType)
             {
@@ -63,6 +63,8 @@ const IntRect& TileMap::GetTile(int tileType)
             Count++;
         }
     }
+    
+    return IntRect();
 }
 
 void TileMap::SaveMap(const string& mapName)
@@ -95,6 +97,7 @@ void TileMap::LoadMap(const string& mapName)
 
 void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
 {
+    int tileIndex = 0;
     for (unsigned int i = 0; i < mapSize.x; ++i)
     {
         for (unsigned int j = 0; j < mapSize.y; ++j)
@@ -113,12 +116,15 @@ void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
                 float tileX = (float)tileSize.x;
                 float tileY = (float)tileSize.y;
 
+                cout << "Click " << tileIndex << "'s Tile,  Changed " << tileNumber << endl;
+
                 quad[0].texCoords = Vector2f(tu * tileX, tv * tileY);
                 quad[1].texCoords = Vector2f((tu + 1) * tileX, tv * tileY);
                 quad[2].texCoords = Vector2f((tu + 1) * tileX, (tv + 1) * tileY);
                 quad[3].texCoords = Vector2f(tu * tileX, (tv + 1) * tileY);
 
             }
+            tileIndex++;
         }
     }
 }

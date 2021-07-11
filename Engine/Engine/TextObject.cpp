@@ -33,7 +33,7 @@ void TextObject::SetActive(bool active)
 
 void TextObject::Update()
 {
-
+	
 }
 
 void TextObject::Render(RenderTarget* target)

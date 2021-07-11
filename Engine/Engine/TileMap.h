@@ -30,9 +30,12 @@ private:
 public:
 
 	const IntRect& GetTile(int tileType);
+
 	void SaveMap(const string& mapName);
 	void LoadMap(const string& mapName);
+
 	void Update(const Vector2f& mousePosition, int tileNumber);
+
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 
 };
