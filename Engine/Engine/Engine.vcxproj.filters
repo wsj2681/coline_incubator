@@ -63,6 +63,12 @@
     <Filter Include="소스 파일\02. Scene\06. MapToolScene">
       <UniqueIdentifier>{295fc3e5-9504-45a8-a2df-72a1112edf64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Object\01. AnimationObject\00. AnimationObject">
+      <UniqueIdentifier>{5328537c-a78e-4a9b-b807-34e4272d311a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Object\01. AnimationObject\01. Character">
+      <UniqueIdentifier>{e656ab60-1bb5-48b2-af23-55d0f6339750}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -107,6 +113,12 @@
     <ClCompile Include="MapToolScene.cpp">
       <Filter>소스 파일\02. Scene\06. MapToolScene</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationObject.cpp">
+      <Filter>소스 파일\03. Object\01. AnimationObject\00. AnimationObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>소스 파일\03. Object\01. AnimationObject\01. Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -150,6 +162,12 @@
     </ClInclude>
     <ClInclude Include="MapToolScene.h">
       <Filter>소스 파일\02. Scene\06. MapToolScene</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationObject.h">
+      <Filter>소스 파일\03. Object\01. AnimationObject\00. AnimationObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>소스 파일\03. Object\01. AnimationObject\01. Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

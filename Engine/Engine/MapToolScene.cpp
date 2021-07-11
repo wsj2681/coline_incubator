@@ -40,6 +40,11 @@ void MapToolScene::Input(Event* event)
 	{
 		switch (event->key.code)
 		{
+		case Keyboard::Escape:
+		{
+			EndScene();
+			break;
+		}
 		case Keyboard::F1:
 		{
 			map->SaveMap("TileMap.bin");

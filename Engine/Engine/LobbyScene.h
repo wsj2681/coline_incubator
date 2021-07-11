@@ -13,7 +13,13 @@ private:
 
 public:
 
-	virtual void Input(Event * event);
+	virtual void Destroy();
 
+	virtual void Input(Event* event);
+
+	virtual void Update(const Vector2f& mousePosition);
+	virtual void Update(const float& deltaTime);
+
+	virtual void Render();
 };
 

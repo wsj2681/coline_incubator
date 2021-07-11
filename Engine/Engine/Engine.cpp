@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "TitleScene.h"
 #include "MapToolScene.h"
+#include "GameScene.h"
 
 Engine::Engine()
 {
@@ -21,7 +22,6 @@ void Engine::Init()
 	this->clock = new Clock;
 
 	scenes.push(new TitleScene(&scenes, window));
-	//scenes.push(new MapToolScene(&scenes, window));
 }
 
 void Engine::Destroy()
@@ -69,8 +69,8 @@ void Engine::Input()
 
 void Engine::Update()
 {
-	clock->restart();
 	this->deltaTime = clock->getElapsedTime().asSeconds();
+	clock->restart();
 	this->elapsedTime += deltaTime;
 	this->mousePosition = window->mapPixelToCoords(Mouse::getPosition(*window));
 
