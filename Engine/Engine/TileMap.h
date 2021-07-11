@@ -13,8 +13,15 @@ private:
 	Texture* texture = nullptr;
 	VertexArray vertices{};
 
+	Vector2u mapSize{ 0, 0 };
+	Vector2u tileSize{ 0, 0 };
+	vector<int> tiles;
+
 public:
 
+	void SaveMap(const string& mapName);
+	void LoadMap(const string& mapName);
+	void Update(const Vector2f& mousePosition, int tileNumber);
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 
 };

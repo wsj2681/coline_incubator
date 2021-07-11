@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "Engine.h"
 #include "TitleScene.h"
+#include "MapToolScene.h"
 
 Engine::Engine()
 {
@@ -19,7 +20,8 @@ void Engine::Init()
 	this->event = new Event;
 	this->clock = new Clock;
 
-	scenes.push(new TitleScene(&scenes, window));
+	//scenes.push(new TitleScene(&scenes, window));
+	scenes.push(new MapToolScene(&scenes, window));
 }
 
 void Engine::Destroy()
@@ -50,6 +52,7 @@ void Engine::Input()
 		}
 		case Event::KeyPressed:
 		case Event::MouseButtonPressed:
+		case Event::MouseWheelMoved:
 		{
 			// Scene InputUpdate();
 			if (!scenes.empty())

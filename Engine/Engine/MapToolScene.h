@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "TileMap.h"
+
 class MapToolScene : public Scene
 {
 public:
@@ -9,6 +11,21 @@ public:
 	MapToolScene(const MapToolScene&) = delete;
 	MapToolScene& operator=(const MapToolScene&) = delete;
 	virtual ~MapToolScene() = default;
+
+private:
+
+	vector<int> levels;
+
+	int tileType = 56;
+
+	Object* mouseCursor = nullptr;
+
+	Vector2f mousePosition{ 0.f, 0.f };
+
+	TileMap* map = nullptr;
+
+	View* view = nullptr;
+	FloatRect viewRect{0, 0, 500, 500};
 
 private:
 
