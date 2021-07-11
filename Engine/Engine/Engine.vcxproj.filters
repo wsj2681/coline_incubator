@@ -69,6 +69,9 @@
     <Filter Include="소스 파일\03. Object\01. AnimationObject\01. Character">
       <UniqueIdentifier>{e656ab60-1bb5-48b2-af23-55d0f6339750}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Object\04. Weapon">
+      <UniqueIdentifier>{d7899565-2ffa-4561-902f-8aa8b3d2302a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +122,9 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\03. Object\01. AnimationObject\01. Character</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>소스 파일\03. Object\04. Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -168,6 +174,9 @@
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>소스 파일\03. Object\01. AnimationObject\01. Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>소스 파일\03. Object\04. Weapon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

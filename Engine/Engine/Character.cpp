@@ -50,6 +50,8 @@ Character::Character(int characterClass)
 		this->leftAnimation.push_back(texture);
 	}
 
+	weapon = new Weapon(1);
+
 	Init();
 }
 
@@ -82,21 +84,25 @@ void Character::Update(const float& deltaTime)
 	{
 		characterState = MOVE_UP;
 		move({ 0.f, -1.f });
+		weapon->setPosition(getGlobalBounds().left + getGlobalBounds().width / 2.f, getGlobalBounds().top + 5.f);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Down))
 	{
 		characterState = MOVE_DOWN;
 		move({ 0.f, 1.f });
+		weapon->setPosition(getGlobalBounds().left + getGlobalBounds().width / 2.f, getGlobalBounds().top + getGlobalBounds().height - 5.f);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Right))
 	{
 		characterState = MOVE_RIGHT;
 		move({ 1.f, 0.f });
+		weapon->setPosition(getGlobalBounds().left + getGlobalBounds().width - 5.f, getGlobalBounds().top + getGlobalBounds().height / 2.f);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Left))
 	{
 		characterState = MOVE_LEFT;
 		move({ -1.f, 0.f });
+		weapon->setPosition(getGlobalBounds().left + 5.f, getGlobalBounds().top + getGlobalBounds().height / 2.f);
 	}
 	else
 	{
@@ -119,15 +125,27 @@ void Character::Update(const float& deltaTime)
 		++keyFrame;
 		elapsedTime = 0.f;
 	}
+
+
 }
 
 void Character::Update(const Vector2f& mousePosition)
 {
 	AnimationObject::Update(mousePosition);
+
+	if (weapon)
+	{
+		weapon->Update(mousePosition);
+	}
+}
+
+void Character::Attack()
+{
 }
 
 void Character::Render(RenderTarget* target)
 {
-	target->draw(*this);
 	AnimationObject::Render(target);
+	weapon->Render(target);
+	target->draw(*this);
 }

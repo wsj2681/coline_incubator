@@ -1,5 +1,6 @@
 #pragma once
 #include "AnimationObject.h"
+#include "Weapon.h"
 
 enum CHARACTER_STATE
 {
@@ -41,6 +42,8 @@ protected:
 	int characterState = IDLE;
 	int oldState = MOVE_DOWN;
 
+	Weapon* weapon = nullptr;
+
 private:
 
 	virtual void Init();
@@ -51,7 +54,7 @@ public:
 
 	virtual void Update(const float& deltaTime);
 	virtual void Update(const Vector2f& mousePosition);
-
+	virtual void Attack();
 	virtual void Render(RenderTarget* target);
 };
 
