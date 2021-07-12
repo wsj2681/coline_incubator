@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "Scene.h"
 
-Scene::Scene(stack<Scene*>* scenes, RenderWindow* window)
-	:scenes(scenes), window(window)
+Scene::Scene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
+	:scenes(scenes), window(window), soundSystem(soundSystem)
 {
 	Init();
 }

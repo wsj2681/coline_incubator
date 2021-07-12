@@ -140,7 +140,7 @@ void GameScene::Update(const float& deltaTime)
 		elapsedTime = 0.f;
 	}
 
-	mTexts["Score"]->setString({ "Score : " + to_string(++score) });
+	
 
 	if (mButtons["SLIDE"]->IsPressed())
 	{
@@ -149,16 +149,29 @@ void GameScene::Update(const float& deltaTime)
 
 	for (auto& jelly : jellys)
 	{
-		if (jelly == jellys.front())
+		if (jelly->IsActive())
 		{
-			//jellyPattern = rand() % 2;
-		}
-		jelly->Update(deltaTime);
-		if (jelly->getPosition().x <= 0.f)
-		{
-			jelly->setPosition(JellyPattern(jellyPattern));
+			jelly->Update(deltaTime);
+
+			if (jelly->getPosition().x <= 0.f)
+			{
+				jelly->setPosition(JellyPattern(jellyPattern));
+			}
+
+
+			if (animationObjects.data()[0]->getGlobalBounds().intersects(jelly->getGlobalBounds()))
+			{
+				jelly->SetActive(false);
+				player->hp -= 10;
+			}
 		}
 	}
+
+	if (player->hp <= 0)
+	{
+
+	}
+
 
 	Scene::Update(deltaTime);
 }

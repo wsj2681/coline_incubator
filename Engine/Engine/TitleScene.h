@@ -6,7 +6,7 @@ class TitleScene : public Scene
 {
 public:
 	TitleScene() = delete;
-	TitleScene(stack<Scene*>* scenes, RenderWindow* window);
+	TitleScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem);
 	virtual ~TitleScene() = default;
 
 private:

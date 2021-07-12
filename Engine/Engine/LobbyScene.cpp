@@ -3,8 +3,8 @@
 #include "GameScene.h"
 #include "MapToolScene.h"
 
-LobbyScene::LobbyScene(stack<Scene*>* scenes, RenderWindow* window)
-	:Scene(scenes, window)
+LobbyScene::LobbyScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
+	:Scene(scenes, window, soundSystem)
 {
 	Init();
 }
@@ -37,6 +37,7 @@ void LobbyScene::Input(Event* event)
 	case Event::MouseButtonPressed:
 	{
 		//scenes->push(new GameScene(scenes, window));
+		soundSystem->EffectPlay("Click");
 		break;
 	}
 	default:
@@ -50,12 +51,12 @@ void LobbyScene::Update(const Vector2f& mousePosition)
 
 	if (buttons["MapTool"]->IsPressed())
 	{
-		scenes->push(new MapToolScene(scenes, window));
+		scenes->push(new MapToolScene(scenes, window, soundSystem));
 	}
 
 	if (buttons["GameStart"]->IsPressed())
 	{
-		scenes->push(new GameScene(scenes, window));
+		scenes->push(new GameScene(scenes, window, soundSystem));
 	}
 }
 

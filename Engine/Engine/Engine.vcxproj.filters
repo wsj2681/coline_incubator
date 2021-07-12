@@ -72,6 +72,12 @@
     <Filter Include="소스 파일\03. Object\04. Weapon">
       <UniqueIdentifier>{d7899565-2ffa-4561-902f-8aa8b3d2302a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\97. System">
+      <UniqueIdentifier>{6b8f3803-e314-4556-b1ef-f0f09e328d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97. System\01. SoundSystem">
+      <UniqueIdentifier>{3c8431db-94bb-4b2c-a99c-4c7cb94d0871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -125,6 +131,9 @@
     <ClCompile Include="Weapon.cpp">
       <Filter>소스 파일\03. Object\04. Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>소스 파일\97. System\01. SoundSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -177,6 +186,9 @@
     </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>소스 파일\03. Object\04. Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>소스 파일\97. System\01. SoundSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

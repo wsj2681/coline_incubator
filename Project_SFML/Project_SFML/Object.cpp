@@ -30,10 +30,10 @@ void Object::UpdateHitBox()
 {
 	if (this->hitBoxActive)
 	{
-		hitBox[0] = Vertex(Vector2f(getGlobalBounds().left, getGlobalBounds().top), Color::Red);
-		hitBox[1] = Vertex(Vector2f(getGlobalBounds().left + getGlobalBounds().width, getGlobalBounds().top), Color::Red);
-		hitBox[2] = Vertex(Vector2f(getGlobalBounds().left + getGlobalBounds().width, getGlobalBounds().top + getGlobalBounds().height), Color::Red);
-		hitBox[3] = Vertex(Vector2f(getGlobalBounds().left, getGlobalBounds().top + getGlobalBounds().height), Color::Red);
+		hitBox[0] = Vertex(Vector2f(getGlobalBounds().left, getGlobalBounds().top), Color::Blue);
+		hitBox[1] = Vertex(Vector2f(getGlobalBounds().left + getGlobalBounds().width, getGlobalBounds().top), Color::Blue);
+		hitBox[2] = Vertex(Vector2f(getGlobalBounds().left + getGlobalBounds().width, getGlobalBounds().top + getGlobalBounds().height), Color::Blue);
+		hitBox[3] = Vertex(Vector2f(getGlobalBounds().left, getGlobalBounds().top + getGlobalBounds().height), Color::Blue);
 		hitBox[4] = hitBox[0];
 	}
 }

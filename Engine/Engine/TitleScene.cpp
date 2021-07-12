@@ -2,8 +2,8 @@
 #include "TitleScene.h"
 #include "LobbyScene.h"
 
-TitleScene::TitleScene(stack<Scene*>* scenes, RenderWindow* window)
-	:Scene(scenes, window)
+TitleScene::TitleScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
+	:Scene(scenes, window, soundSystem)
 {
 	Init();
 }
@@ -41,7 +41,7 @@ void TitleScene::Input(Event* event)
 	// 마우스 입력
 	case Event::MouseButtonPressed:
 	{
-		scenes->push(new LobbyScene(scenes, window));
+		scenes->push(new LobbyScene(scenes, window, soundSystem));
 		break;
 	}
 	default:
@@ -52,8 +52,6 @@ void TitleScene::Input(Event* event)
 void TitleScene::Update(const Vector2f& mousePosition)
 {
 	Scene::Update(mousePosition);
-
-
 }
 
 void TitleScene::Update(const float& deltaTime)

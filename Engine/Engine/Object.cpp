@@ -46,6 +46,11 @@ void Object::SetDebugBoxActive(bool isActive)
 	this->debugBox = isActive;
 }
 
+void Object::SetActive(bool isActive)
+{
+	this->isActive = isActive;
+}
+
 void Object::SetBoxColor(const Color& color)
 {
 	this->boxColor = color;

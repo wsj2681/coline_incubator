@@ -3,8 +3,8 @@
 #include "LobbyScene.h"
 #include "GameScene.h"
 
-PauseScene::PauseScene(stack<Scene*>* scenes, RenderWindow* window)
-	:Scene(scenes, window)
+PauseScene::PauseScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
+	:Scene(scenes, window, soundSystem)
 {
 	Init();
 }
@@ -21,14 +21,14 @@ void PauseScene::Input(Event* event)
 		// 키보드 입력
 	case Event::KeyPressed:
 	{
-		scenes->push(new GameScene(scenes, window));
+		scenes->push(new GameScene(scenes, window, soundSystem));
 		break;
 	}
 
 	// 마우스 입력
 	case Event::MouseButtonPressed:
 	{
-		scenes->push(new LobbyScene(scenes, window));
+		scenes->push(new LobbyScene(scenes, window, soundSystem));
 		break;
 	}
 	default:

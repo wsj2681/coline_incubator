@@ -98,9 +98,9 @@ void TileMap::LoadMap(const string& mapName)
 void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
 {
     int tileIndex = 0;
-    for (unsigned int i = 0; i < mapSize.x; ++i)
+    for (unsigned int j = 0; j < mapSize.y; ++j)
     {
-        for (unsigned int j = 0; j < mapSize.y; ++j)
+        for (unsigned int i = 0; i < mapSize.x; ++i)
         {
             sf::Vertex* quad = &vertices[(i + j * mapSize.x) * 4];
             if ((mousePosition.x > quad[0].position.x && mousePosition.y > quad[0].position.y) &&
@@ -116,7 +116,7 @@ void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
                 float tileX = (float)tileSize.x;
                 float tileY = (float)tileSize.y;
 
-                cout << "Click " << tileIndex << "'s Tile,  Changed " << tileNumber << endl;
+                //cout << "Click " << j << "," << i << "'s Tile,  Changed " << tileNumber << endl;
 
                 quad[0].texCoords = Vector2f(tu * tileX, tv * tileY);
                 quad[1].texCoords = Vector2f((tu + 1) * tileX, tv * tileY);

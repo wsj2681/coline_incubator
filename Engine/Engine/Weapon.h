@@ -3,11 +3,11 @@
 class Weapon : public Object
 {
 public:
-	Weapon();
+	Weapon() = default;
 	Weapon(int weaponLevel);
 	Weapon(const Weapon&) = delete;
 	Weapon& operator=(const Weapon&) = delete;
-
+	virtual ~Weapon() = default;
 private:
 
 	map<int, Texture*> levelforWeapon;

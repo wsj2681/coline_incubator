@@ -1,4 +1,5 @@
 #pragma once
+#include "SoundSystem.h"
 
 class Scene;
 
@@ -13,7 +14,7 @@ public:
 private:
 
 	RenderWindow* window = nullptr;
-	
+	SoundSystem* soundSystem = nullptr;
 	stack<Scene*> scenes;
 
 	Event* event = nullptr;

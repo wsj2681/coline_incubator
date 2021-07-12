@@ -7,7 +7,7 @@ class MapToolScene : public Scene
 public:
 
 	MapToolScene() = delete;
-	MapToolScene(stack<Scene*>* scenes, RenderWindow* window);
+	MapToolScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem);
 	MapToolScene(const MapToolScene&) = delete;
 	MapToolScene& operator=(const MapToolScene&) = delete;
 	virtual ~MapToolScene() = default;

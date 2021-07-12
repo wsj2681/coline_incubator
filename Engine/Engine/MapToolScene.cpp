@@ -2,20 +2,24 @@
 #include "MapToolScene.h"
 #include <fstream>
 
-MapToolScene::MapToolScene(stack<Scene*>* scenes, RenderWindow* window)
-	:Scene(scenes, window)
+MapToolScene::MapToolScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
+	:Scene(scenes, window, soundSystem)
 {
 	Init();
 }
 
 void MapToolScene::Init()
 {
-	levels.resize(200 * 200);
+	cout << "Input MapSize [x y]: ";
+	Vector2u mapSize;
+	cin >> mapSize.x >> mapSize.y;
+
+	levels.resize(mapSize.x * mapSize.y);
 	for (auto& i : levels)
 	{
 		i = 113;
 	}
-	map = new TileMap("Textures/Map/tileSet.png", { 32, 32 }, levels, { 200, 200 });
+	map = new TileMap("Textures/Map/tileSet.png", { 32, 32 }, levels, mapSize);
 
 	gameView = new View(viewRect);
 	gameView->setCenter(map->getPosition());
@@ -48,12 +52,18 @@ void MapToolScene::Input(Event* event)
 		}
 		case Keyboard::F1:
 		{
-			map->SaveMap("TileMap.bin");
+			string mapName{};
+			cout << "Input MapName : ";
+			cin >> mapName;
+			map->SaveMap("MapData/" + mapName + ".bin");
 			break;
 		}
 		case Keyboard::F2:
 		{
-			map->LoadMap("TileMap.bin");
+			string mapName{};
+			cout << "Input MapName : ";
+			cin >> mapName;
+			map->LoadMap("MapData/" + mapName + ".bin");
 			break;
 		}
 		case Keyboard::LBracket:

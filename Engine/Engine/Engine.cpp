@@ -1,8 +1,6 @@
 #include "framework.h"
 #include "Engine.h"
 #include "TitleScene.h"
-#include "MapToolScene.h"
-#include "GameScene.h"
 
 Engine::Engine()
 {
@@ -21,7 +19,13 @@ void Engine::Init()
 	this->event = new Event;
 	this->clock = new Clock;
 
-	scenes.push(new TitleScene(&scenes, window));
+	soundSystem = new SoundSystem("Sound/henesys.wav");
+	soundSystem->AddEffectSound("Sound/MouseClick.wav", "Click");
+	soundSystem->AddEffectSound("Sound/CoinGet.wav", "CoinGet");
+
+	scenes.push(new TitleScene(&scenes, window, soundSystem));// 10ºÐ±îÁö
+
+	soundSystem->Play();
 }
 
 void Engine::Destroy()
@@ -37,6 +41,7 @@ void Engine::Destroy()
 		delete scenes.top();
 		scenes.pop();
 	}
+	soundSystem->Destroy();
 }
 
 void Engine::Input()
@@ -93,7 +98,7 @@ void Engine::Update()
 	{
 		window->close();
 	}
-};;
+}
 
 bool Engine::Render()
 {

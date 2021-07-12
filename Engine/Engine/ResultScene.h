@@ -4,7 +4,7 @@ class ResultScene : public Scene
 {
 public:
 	ResultScene() = delete;
-	ResultScene(stack<Scene*>* scenes, RenderWindow* window);
+	ResultScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem);
 	virtual ~ResultScene() = default;
 
 private:

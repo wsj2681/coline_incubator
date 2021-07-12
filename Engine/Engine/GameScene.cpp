@@ -5,15 +5,14 @@
 #include "Character.h"
 #include "TileMap.h"
 
-GameScene::GameScene(stack<Scene*>* scenes, RenderWindow* window)
-	:Scene(scenes, window)
+GameScene::GameScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
+	:Scene(scenes, window, soundSystem)
 {
 	Init();
 }
 
 void GameScene::Init()
 {
-	//texts["TEXT"] = new TextObject("GAME SCENE !", "Font/CookieRunFont_TTF/CookieRun_Bold.ttf", { 250.f, 250.f });
 	character = new Character(WARRIOR_FEMALE);
 	character->setScale(0.5f, 0.5f);
 	
@@ -24,7 +23,7 @@ void GameScene::Init()
 	}
 	world = new TileMap("Textures/Map/tileSet.png", { 32, 32 }, levels, { 200, 200 });
 
-	world->LoadMap("TileMap.bin");
+	world->LoadMap("MapData/MapTest.bin");
 
 	gameView = new View(viewRect);
 	gameView->setCenter(character->getPosition());
@@ -53,6 +52,16 @@ void GameScene::Input(Event* event)
 			EndScene();
 			break;
 		}
+		case Keyboard::F1:
+		{
+			soundSystem->VolumeDown();
+			break;
+		}
+		case Keyboard::F2:
+		{
+			soundSystem->VolumeUp();
+			break;
+		}
 		default:
 			break;
 		}
@@ -63,6 +72,7 @@ void GameScene::Input(Event* event)
 	case Event::MouseButtonPressed:
 	{
 		//scenes->push(new ResultScene(scenes, window));
+		soundSystem->EffectPlay("CoinGet");
 		break;
 	}
 	default:

@@ -1,10 +1,6 @@
 #include "framework.h"
 #include "Weapon.h"
 
-Weapon::Weapon()
-{
-}
-
 Weapon::Weapon(int weaponLevel)
 	:level(weaponLevel)
 {

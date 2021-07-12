@@ -3,13 +3,14 @@
 #include "Object.h"
 #include "ButtonObject.h"
 #include "TextObject.h"
+#include "SoundSystem.h"
 
 class Scene
 {
 public:
 
 	Scene() = delete;
-	Scene(stack<Scene*>* scenes, RenderWindow* window);
+	Scene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem);
 	Scene(const Scene&) = delete;
 	Scene& operator=(const Scene&) = delete;
 	virtual ~Scene() = default;
@@ -18,6 +19,7 @@ protected:
 
 	stack<Scene*>* scenes = nullptr;
 	RenderWindow* window = nullptr;
+	SoundSystem* soundSystem = nullptr;
 
 	Object* backGround = nullptr;
 	vector<Object*> objects;

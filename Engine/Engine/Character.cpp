@@ -146,6 +146,15 @@ void Character::Attack()
 void Character::Render(RenderTarget* target)
 {
 	AnimationObject::Render(target);
-	weapon->Render(target);
-	target->draw(*this);
+
+	if (characterState == MOVE_UP)
+	{
+		weapon->Render(target);
+		target->draw(*this);
+	}
+	else
+	{
+		target->draw(*this);
+		weapon->Render(target);
+	}
 }

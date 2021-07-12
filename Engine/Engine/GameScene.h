@@ -8,7 +8,7 @@ class GameScene : public Scene
 {
 public:
 	GameScene() = delete;
-	GameScene(stack<Scene*>* scenes, RenderWindow* window);
+	GameScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem);
 	virtual ~GameScene() = default;
 
 private:

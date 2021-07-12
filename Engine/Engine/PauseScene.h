@@ -4,7 +4,7 @@ class PauseScene : public Scene
 {
 public:
 	PauseScene() = delete;
-	PauseScene(stack<Scene*>* scenes, RenderWindow* window);
+	PauseScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem);
 	virtual ~PauseScene() = default;
 
 private:

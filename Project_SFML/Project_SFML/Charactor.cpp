@@ -138,7 +138,7 @@ void Charactor::Update(const float& deltaTime)
 	{
 		jumpCount = 2;
 	}
-	cout << "JumpCount = " << jumpCount << endl;
+	//cout << "JumpCount = " << jumpCount << endl;
 
 	if (state == JUMP && jumpCount != 2)
 	{
