@@ -14,7 +14,8 @@ public:
 private:
 
 	Texture* texture = nullptr;
-	VertexArray vertices{};
+	VertexArray vertices;
+	VertexArray baseVertices;
 
 	Vector2u mapSize{ 0, 0 };
 	Vector2u tileSize{ 0, 0 };
@@ -36,7 +37,7 @@ public:
 	void SaveMap(const string& mapName);
 	void LoadMap(const string& mapName);
 
-	void Update(const Vector2f& mousePosition, int tileNumber);
+	void Update(const Vector2f& mousePosition, int tileNumber, bool BaseTile = false);
 
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 

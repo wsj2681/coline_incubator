@@ -108,6 +108,7 @@ void Character::Update(const float& deltaTime)
 	{
 		characterState = IDLE;
 	}
+
 	if (elapsedTime >= frameTime)
 	{
 		for (auto& animation : stateAnimation)

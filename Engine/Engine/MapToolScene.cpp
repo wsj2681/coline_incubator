@@ -125,9 +125,13 @@ void MapToolScene::Update(const float& deltaTime)
 {
 	Scene::Update(deltaTime);
 	window->setView(*gameView);
-	if (Mouse::isButtonPressed(Mouse::Left))
+	if (Keyboard::isKeyPressed(Keyboard::Q))
 	{
 		map->Update(mousePosition, tileType);
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::W))
+	{
+		map->Update(mousePosition, tileType, true);
 	}
 	mouseCursor->Update(deltaTime);
 }

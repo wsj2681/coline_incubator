@@ -11,6 +11,9 @@ TileMap::TileMap(const string& tileMapFilePath, const Vector2u& tileSize, const 
 	vertices.setPrimitiveType(Quads);
 	vertices.resize(mapSize.x * mapSize.y * 4);
 
+    baseVertices.setPrimitiveType(Quads);
+    baseVertices.resize(mapSize.x * mapSize.y * 4);
+
     CollideBox = new Vertex[5];
     CollideBox[0] = Vertex(Vector2f(0, 0));
     CollideBox[1] = Vertex(Vector2f((float)(mapSize.x * tileSize.x), 0));
@@ -38,20 +41,21 @@ void TileMap::SetVertices()
 
             // get a pointer to the current tile's quad
             Vertex* quad = &vertices[(i + j * mapSize.x) * 4];
+            Vertex* baseQuad = &baseVertices[(i + j * mapSize.x) * 4];
 
             float tileX = (float)tileSize.x;
             float tileY = (float)tileSize.y;
             // define its 4 corners
-            quad[0].position = Vector2f(i * tileX, j * tileY);
-            quad[1].position = Vector2f((i + 1) * tileX, j * tileY);
-            quad[2].position = Vector2f((i + 1) * tileX, (j + 1) * tileY);
-            quad[3].position = Vector2f(i * tileX, (j + 1) * tileY);
+            quad[0].position = baseQuad[0].position = Vector2f(i * tileX, j * tileY);
+            quad[1].position = baseQuad[1].position = Vector2f((i + 1) * tileX, j * tileY);
+            quad[2].position = baseQuad[2].position = Vector2f((i + 1) * tileX, (j + 1) * tileY);
+            quad[3].position = baseQuad[3].position = Vector2f(i * tileX, (j + 1) * tileY);
 
             // define its 4 texture coordinates
-            quad[0].texCoords = Vector2f(tu * tileX, tv * tileY);
-            quad[1].texCoords = Vector2f((tu + 1) * tileX, tv * tileY);
-            quad[2].texCoords = Vector2f((tu + 1) * tileX, (tv + 1) * tileY);
-            quad[3].texCoords = Vector2f(tu * tileX, (tv + 1) * tileY);
+            quad[0].texCoords = baseQuad[0].texCoords = Vector2f(tu * tileX, tv * tileY);
+            quad[1].texCoords = baseQuad[1].texCoords = Vector2f((tu + 1) * tileX, tv * tileY);
+            quad[2].texCoords = baseQuad[2].texCoords = Vector2f((tu + 1) * tileX, (tv + 1) * tileY);
+            quad[3].texCoords = baseQuad[3].texCoords = Vector2f(tu * tileX, (tv + 1) * tileY);
         }
     }
 }
@@ -109,14 +113,24 @@ FloatRect& TileMap::GetMapBounds()
     return this->MapBounds;
 }
 
-void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
+void TileMap::Update(const Vector2f& mousePosition, int tileNumber, bool BaseTile)
 {
     int tileIndex = 0;
     for (unsigned int j = 0; j < mapSize.y; ++j)
     {
         for (unsigned int i = 0; i < mapSize.x; ++i)
         {
-            sf::Vertex* quad = &vertices[(i + j * mapSize.x) * 4];
+            sf::Vertex* quad = nullptr;
+
+            if (!BaseTile)
+            {
+                quad = &vertices[(i + j * mapSize.x) * 4];
+            }
+            else
+            {
+                quad = &baseVertices[(i + j * mapSize.x) * 4];
+            }
+
             if ((mousePosition.x > quad[0].position.x && mousePosition.y > quad[0].position.y) &&
                 (mousePosition.x < quad[1].position.x && mousePosition.y > quad[1].position.y) &&
                 (mousePosition.x < quad[2].position.x && mousePosition.y < quad[2].position.y) &&
@@ -147,6 +161,9 @@ void TileMap::draw(RenderTarget& target, RenderStates states) const
 {
     states.transform *= getTransform();
     states.texture = texture;
+
+    target.draw(baseVertices, states);
     target.draw(vertices, states);
+    
     target.draw(CollideBox, 5, LineStrip);
 }
