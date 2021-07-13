@@ -10,7 +10,8 @@ Weapon::Weapon(int weaponLevel)
 
 	for (int i = 0; i < 24; ++i)
 	{
-			levelforWeapon[i + 1] = new Texture;
+		levelforWeapon[i + 1] = new Texture;
+
 		if (i < 10)
 		{
 			levelforWeapon[i + 1]->loadFromFile(filePath + "tile00" + to_string(i) + fileType);
@@ -38,9 +39,12 @@ void Weapon::Update(const float& deltaTime)
 
 void Weapon::Update(const Vector2f& mousePosition)
 {
-	Object::Update(mousePosition);
-	float rotation = Math::RotateAxis(getPosition(), mousePosition, 45.f + 180.f);
-	setRotation(rotation);
+	if (isActive)
+	{
+		Object::Update(mousePosition);
+		float rotation = Math::RotateAxis(getPosition(), mousePosition, 45.f + 180.f);
+		setRotation(rotation);
+	}
 }
 
 void Weapon::Attack()
@@ -49,5 +53,8 @@ void Weapon::Attack()
 
 void Weapon::Render(RenderTarget* target)
 {
-	Object::Render(target);
+	if (isActive)
+	{
+		Object::Render(target);
+	}
 }

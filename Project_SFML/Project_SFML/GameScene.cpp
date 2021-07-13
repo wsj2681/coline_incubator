@@ -162,17 +162,9 @@ void GameScene::Update(const float& deltaTime)
 			if (animationObjects.data()[0]->getGlobalBounds().intersects(jelly->getGlobalBounds()))
 			{
 				jelly->SetActive(false);
-				player->hp -= 10;
 			}
 		}
 	}
-
-	if (player->hp <= 0)
-	{
-
-	}
-
-
 	Scene::Update(deltaTime);
 }
 

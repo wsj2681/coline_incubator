@@ -23,6 +23,8 @@ private:
 	// MouseCursor image
 	IntRect imageRect;
 
+	Vertex* CollideBox = nullptr;
+	FloatRect MapBounds{};
 private:
 
 	void SetVertices();
@@ -30,7 +32,7 @@ private:
 public:
 
 	const IntRect& GetTile(int tileType);
-
+	FloatRect& GetMapBounds();
 	void SaveMap(const string& mapName);
 	void LoadMap(const string& mapName);
 

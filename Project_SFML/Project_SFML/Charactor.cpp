@@ -138,7 +138,7 @@ void Charactor::Update(const float& deltaTime)
 	{
 		jumpCount = 2;
 	}
-	//cout << "JumpCount = " << jumpCount << endl;
+	cout << "JumpCount = " << jumpCount << endl;
 
 	if (state == JUMP && jumpCount != 2)
 	{
@@ -154,6 +154,15 @@ void Charactor::Update(const float& deltaTime)
 	else
 	{
 		frameTime = 0.02f;
+	}
+
+	if (Keyboard::isKeyPressed(Keyboard::Right))
+	{
+		position.x += 1.f;
+	}
+	else if(Keyboard::isKeyPressed(Keyboard::Left))
+	{
+		position.x -= 1.f;
 	}
 
 	if (elapsedTime > frameTime)

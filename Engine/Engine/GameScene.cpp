@@ -92,6 +92,12 @@ void GameScene::Update(const float& deltaTime)
 	character->Update(deltaTime);
 	gameView->setCenter(character->getPosition());
 	window->setView(*gameView);
+
+	if (!world->GetMapBounds().intersects(character->getGlobalBounds()))
+	{
+		character->setPosition(character->getPosition());
+	}
+
 }
 
 void GameScene::Render()

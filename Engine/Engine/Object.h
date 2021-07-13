@@ -7,11 +7,13 @@ public:
 	Object(const string& textureFilePath, const Vector2f& positioin);
 	virtual ~Object() = default;
 
+protected:
+
+	bool isActive = true;
+
 private:
 
 	Texture* texture = nullptr;
-	bool isActive = true;
-	
 	
 	// debugBox Vertices
 	Vertex* vertices = nullptr;

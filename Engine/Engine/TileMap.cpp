@@ -11,6 +11,15 @@ TileMap::TileMap(const string& tileMapFilePath, const Vector2u& tileSize, const 
 	vertices.setPrimitiveType(Quads);
 	vertices.resize(mapSize.x * mapSize.y * 4);
 
+    CollideBox = new Vertex[5];
+    CollideBox[0] = Vertex(Vector2f(0, 0));
+    CollideBox[1] = Vertex(Vector2f((float)(mapSize.x * tileSize.x), 0));
+    CollideBox[2] = Vertex(Vector2f((float)(mapSize.x * tileSize.x), (float)(mapSize.y * tileSize.y)));
+    CollideBox[3] = Vertex(Vector2f(0, (float)(mapSize.y * tileSize.y)));
+    CollideBox[4] = CollideBox[0];
+
+    MapBounds = { 0.f, 0.f, (float)(mapSize.x * tileSize.x), (float)(mapSize.y * tileSize.y) };
+
     SetVertices();
 }
 
@@ -95,6 +104,11 @@ void TileMap::LoadMap(const string& mapName)
     SetVertices();
 }
 
+FloatRect& TileMap::GetMapBounds()
+{
+    return this->MapBounds;
+}
+
 void TileMap::Update(const Vector2f& mousePosition, int tileNumber)
 {
     int tileIndex = 0;
@@ -134,4 +148,5 @@ void TileMap::draw(RenderTarget& target, RenderStates states) const
     states.transform *= getTransform();
     states.texture = texture;
     target.draw(vertices, states);
+    target.draw(CollideBox, 5, LineStrip);
 }
