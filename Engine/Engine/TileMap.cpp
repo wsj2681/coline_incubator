@@ -80,6 +80,11 @@ const IntRect& TileMap::GetTile(int tileType)
     return IntRect();
 }
 
+const int& TileMap::GetTileNumberInPosition(const Vector2f& position)
+{
+    return nowCharacterTile;
+}
+
 void TileMap::SaveMap(const string& mapName)
 {
     ofstream out(mapName, ios::binary);

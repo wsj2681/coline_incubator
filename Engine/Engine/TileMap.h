@@ -2,6 +2,7 @@
 
 class Object;
 
+
 class TileMap final : public Drawable, public Transformable
 {
 public:
@@ -26,6 +27,9 @@ private:
 
 	Vertex* CollideBox = nullptr;
 	FloatRect MapBounds{};
+
+	int nowCharacterTile = 0;
+
 private:
 
 	void SetVertices();
@@ -33,6 +37,8 @@ private:
 public:
 
 	const IntRect& GetTile(int tileType);
+	const int& GetTileNumberInPosition(const Vector2f& position);
+
 	FloatRect& GetMapBounds();
 	void SaveMap(const string& mapName);
 	void LoadMap(const string& mapName);

@@ -24,6 +24,12 @@ void MapToolScene::Init()
 	gameView = new View(viewRect);
 	gameView->setCenter(map->getPosition());
 
+	texts["INFO"] = 
+		new TextObject("'Q' : SetTile, 'W' : SetBaseTile, '[' : Zoom In, ']' : Zoom Out", 
+		"Font/CookieRunFont_TTF/CookieRun_Bold.ttf",
+		{ +300.f, -50.f });
+
+	texts["INFO"]->setCharacterSize(50);
 	mouseCursor = new Object("Textures/Map/tileSet.png");
 	mouseCursor->setOrigin(0, 0);
 	mouseCursor->setTextureRect(map->GetTile(tileType));
