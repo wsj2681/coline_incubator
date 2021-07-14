@@ -88,7 +88,11 @@ const int& TileMap::GetTileNumberInPosition(const Vector2f& position)
 void TileMap::SaveMap(const string& mapName)
 {
     ofstream out(mapName, ios::binary);
+
     int size = tiles.size();
+
+    out.write((const char*)&mapSize, sizeof(Vector2f));
+
     out.write((const char*)&size, sizeof(int));
 
     out.write((const char*)&tiles.data()[0], sizeof(int) * static_cast<__int64>(size));
@@ -102,6 +106,9 @@ void TileMap::LoadMap(const string& mapName)
 
     tiles.clear();
     int size;
+
+    in.read((char*)&mapSize, sizeof(Vector2f));
+
     in.read((char*)&size, sizeof(int));
 
     tiles.resize(size);

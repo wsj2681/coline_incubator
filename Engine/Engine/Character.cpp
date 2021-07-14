@@ -80,7 +80,12 @@ void Character::Update(const float& deltaTime)
 	static float elapsedTime = 0.f;
 	elapsedTime += deltaTime;
 
-	if (Keyboard::isKeyPressed(Keyboard::Up))
+	if (Keyboard::isKeyPressed(Keyboard::Up) && Keyboard::isKeyPressed(Keyboard::Right))
+	{
+		characterState = MOVE_UP;
+		move({ 1.f, -1.f });
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Up))
 	{
 		characterState = MOVE_UP;
 		move({ 0.f, -1.f });
