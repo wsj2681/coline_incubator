@@ -29,10 +29,10 @@ Object::Object(const string& textureFilePath)
 }
 
 
-Object::Object(const string& textureFilePath, const Vector2f& positioin)
+Object::Object(const string& textureFilePath, const Vector2f& position)
 	:Object(textureFilePath)
 {
-	setPosition(positioin);
+	setPosition(position);
 }
 
 void Object::Destroy()

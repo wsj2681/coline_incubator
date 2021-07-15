@@ -4,7 +4,7 @@ class Object : public Sprite
 public:
 	Object();
 	Object(const string& textureFilePath);
-	Object(const string& textureFilePath, const Vector2f& positioin);
+	Object(const string& textureFilePath, const Vector2f& position);
 	virtual ~Object() = default;
 
 protected:

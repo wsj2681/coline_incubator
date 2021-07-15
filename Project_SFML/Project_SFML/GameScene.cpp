@@ -144,7 +144,8 @@ void GameScene::Update(const float& deltaTime)
 
 	if (mButtons["SLIDE"]->IsPressed())
 	{
-		dynamic_cast<Charactor*>(animationObjects.data()[0])->SetState(SLIDE);
+		//dynamic_cast<Charactor*>(animationObjects.data()[0])->SetState(SLIDE);
+		staticObjects.data()[2]->setTextureRect(IntRect(0, 0, staticObjects.data()[2]->getTextureRect().width - 200, staticObjects.data()[2]->getTextureRect().height));
 	}
 
 	for (auto& jelly : jellys)

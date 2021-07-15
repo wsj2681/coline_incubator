@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "Engine.h"
 #include "TitleScene.h"
+#include "PracticeScene.h"
 
 Engine::Engine()
 {
@@ -19,11 +20,11 @@ void Engine::Init()
 	this->event = new Event;
 	this->clock = new Clock;
 
-	soundSystem = new SoundSystem("Sound/henesys.wav");
-	soundSystem->AddEffectSound("Sound/MouseClick.wav", "Click");
-	soundSystem->AddEffectSound("Sound/CoinGet.wav", "CoinGet");
+	soundSystem = new SoundSystem("Sound/MouseClick.wav", false);
+	//soundSystem->AddEffectSound("Sound/MouseClick.wav", "Click");
+	//soundSystem->AddEffectSound("Sound/CoinGet.wav", "CoinGet");
 
-	scenes.push(new TitleScene(&scenes, window, soundSystem));// 10분까지
+	scenes.push(new PracticeScene(&scenes, window, soundSystem));// 10분까지
 
 	soundSystem->Play();
 }
