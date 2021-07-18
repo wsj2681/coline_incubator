@@ -21,11 +21,11 @@ void Engine::Init()
 	this->clock = new Clock;
 
 	soundSystem = new SoundSystem("Sound/MouseClick.wav", false);
-	//soundSystem->AddEffectSound("Sound/MouseClick.wav", "Click");
-	//soundSystem->AddEffectSound("Sound/CoinGet.wav", "CoinGet");
+	soundSystem->AddEffectSound("Sound/MouseClick.wav", "Click");
+	soundSystem->AddEffectSound("Sound/CoinGet.wav", "CoinGet");
 
-	scenes.push(new PracticeScene(&scenes, window, soundSystem));// 10ºÐ±îÁö
-
+	//scenes.push(new PracticeScene(&scenes, window, soundSystem));
+	scenes.push(new TitleScene(&scenes, window, soundSystem));
 	soundSystem->Play();
 }
 
