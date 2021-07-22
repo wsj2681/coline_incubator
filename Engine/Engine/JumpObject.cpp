@@ -42,10 +42,48 @@ void JumpObject::Jump()
 	velocity.y = -20.f;
 }
 
+void JumpObject::TargetMove(const Vector2f& targetPosition)
+{
+	float length = Math::Length(targetPosition.x - getPosition().x, targetPosition.y - getPosition().y);
+
+	if (length < 300.f)
+	{
+		state = CHASE;
+	}
+	else
+	{
+		state = PATROL;
+	}
+
+	switch (state)
+	{
+	case IDLE:
+	{
+		break;
+	}
+	case PATROL:	// patrolPosition으로 이동한다.
+	{
+		// TODO : 시간이 지날수록 움직임 빨라지게 하기
+		// A : elapsedTime에 따라 Speed값 조정하기
+		position += Math::Normalize(patrolPosition, position);
+		break;
+	}
+	case CHASE:		// targetPosition으로 이동한다.
+	{
+		position += Math::Normalize(targetPosition, position);
+		break;
+	}
+	default:
+		break;
+	}
+
+	setPosition(position);
+}
+
 void JumpObject::Update(const float& deltaTime)
 {
 	Object::Update(deltaTime);
-	JumpUpdate(deltaTime);
+	//JumpUpdate(deltaTime);
 
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{
@@ -74,6 +112,7 @@ void JumpObject::Update(const float& deltaTime)
 
 void JumpObject::Update(const Vector2f& mousePosition)
 {
+
 }
 
 void JumpObject::Render(RenderTarget* target)

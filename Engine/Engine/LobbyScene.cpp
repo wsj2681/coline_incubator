@@ -37,7 +37,7 @@ void LobbyScene::Input(Event* event)
 	case Event::MouseButtonPressed:
 	{
 		//scenes->push(new GameScene(scenes, window));
-		soundSystem->EffectPlay("Click");
+		//soundSystem->EffectPlay("Click");
 		break;
 	}
 	default:

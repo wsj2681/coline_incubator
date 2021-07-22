@@ -16,17 +16,15 @@ Engine::~Engine()
 void Engine::Init()
 {
 	this->window = new RenderWindow(VideoMode(1080, 720), "Window");
-	this->window->setFramerateLimit(60);
+	this->window->setFramerateLimit(75);
+	//this->window->setVerticalSyncEnabled(true);
 	this->event = new Event;
 	this->clock = new Clock;
-
+	engineClock = new Clock;
 	soundSystem = new SoundSystem("Sound/MouseClick.wav", false);
-	soundSystem->AddEffectSound("Sound/MouseClick.wav", "Click");
-	soundSystem->AddEffectSound("Sound/CoinGet.wav", "CoinGet");
 
 	//scenes.push(new PracticeScene(&scenes, window, soundSystem));
 	scenes.push(new TitleScene(&scenes, window, soundSystem));
-	soundSystem->Play();
 }
 
 void Engine::Destroy()
@@ -76,8 +74,22 @@ void Engine::Input()
 void Engine::Update()
 {
 	this->deltaTime = clock->getElapsedTime().asSeconds();
-	clock->restart();
-	this->elapsedTime += deltaTime;
+
+	if (engineClock->getElapsedTime().asSeconds() >= 1.f)
+	{
+		FPS = frame;
+		frame = 0;
+		engineClock->restart();
+		this->elapsedTime += deltaTime;
+
+		ostringstream Oss;
+		Oss << "Window FPS(" << FPS << ")";
+
+		window->setTitle(Oss.str());
+
+	}
+	++frame;
+
 	this->mousePosition = window->mapPixelToCoords(Mouse::getPosition(*window));
 
 	if (!scenes.empty())

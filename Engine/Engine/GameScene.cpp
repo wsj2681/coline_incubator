@@ -21,9 +21,9 @@ void GameScene::Init()
 	{
 		i = 113;
 	}
-	world = new TileMap("Textures/Map/tileSet.png", { 32, 32 }, levels, { 200, 200 });
+	world = new TileMap("Textures/Map/tileSet.png", { 32, 32 }, levels, { 50, 50 });
 
-	world->LoadMap("MapData/MapTest.bin");
+	world->LoadMap("MapData/111.bin");
 
 	gameView = new View(viewRect);
 	gameView->setCenter(character->getPosition());

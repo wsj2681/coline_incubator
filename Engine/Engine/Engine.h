@@ -24,6 +24,10 @@ private:
 	float deltaTime = 0.f;
 	float elapsedTime = 0.f;
 
+	Clock* engineClock = nullptr;
+	unsigned int frame = 0;
+	unsigned int FPS = 0;
+
 private:
 
 	void Init();

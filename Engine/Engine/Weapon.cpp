@@ -42,8 +42,8 @@ void Weapon::Update(const Vector2f& mousePosition)
 	if (isActive)
 	{
 		Object::Update(mousePosition);
-		float rotation = Math::RotateAxis(getPosition(), mousePosition, 45.f + 180.f);
-		setRotation(rotation);
+		//float rotation = Math::RotateAxis(getPosition(), mousePosition, 45.f + 180.f);
+		//setRotation(rotation);
 	}
 }
 

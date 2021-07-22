@@ -6,6 +6,7 @@
 using namespace sf;
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <map>
 #include <vector>
@@ -19,40 +20,22 @@ constexpr float PI = 3.14159265f;
 
 namespace Math
 {
-	inline const float Length(const float& posX, const float& posY)
+	// 이 안에 있는 함수의 Math::Function();
+
+	inline const float Length(const float& postionX, const float& positionY)
 	{
-		return sqrt((posX * posX) + (posY * posY));
+		return sqrt((postionX * postionX) + (positionY * positionY));
 	}
 
 	inline const Vector2f Normalize(const Vector2f& vec1, const Vector2f& vec2)
 	{
-		float dirX = vec1.x - vec2.x;
-		float dirY = vec1.y - vec2.y;
+		Vector2f direction;
+		direction.x = vec1.x - vec2.x;
+		direction.y = vec1.y - vec2.y;
 
-		float length = Length(dirX, dirY);
-
-		return { dirX / length, dirY / length };
+		float length = Length(direction.x, direction.y);
+			
+		return { direction.x / length, direction.y / length };
 	}
 
-	inline const float RotateAxis(const Vector2f& vec1, const Vector2f& vec2, const float& angle)
-	{
-		Vector2f normal = Normalize(vec1, vec2);
-		return ((atan2(normal.y, normal.x) * 180.f / PI)) + angle;
-	}
-
-	inline const float RandomFloat(const float& maximum)
-	{
-		static std::uniform_real_distribution<float> urd(0.f, maximum);
-		static std::default_random_engine dre;
-
-		return urd(dre);
-	}
-
-	inline const int RandomIntiger(const int& maximum)
-	{
-		static std::uniform_int_distribution<int> urd(0, maximum);
-		static std::default_random_engine dre;
-
-		return urd(dre);
-	}
 }

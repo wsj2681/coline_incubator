@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-class Button;
+class TileMap;
 
 class PracticeScene : public Scene
 {
@@ -15,11 +15,8 @@ public:
 
 private:
 
-	map<string, Button*> bts;
-	
 	Object* doll = nullptr;
 	Object* portal = nullptr;
-
 
 private:
 
