@@ -1,7 +1,8 @@
 #pragma once
 #include "Scene.h"
 
-class TileMap;
+class PracticeMap;
+class Object;
 
 class PracticeScene : public Scene
 {
@@ -15,8 +16,10 @@ public:
 
 private:
 
-	Object* doll = nullptr;
-	Object* portal = nullptr;
+	PracticeMap* map = nullptr;
+	int tileNumber = 111;
+
+	Object* mouseCursor = nullptr;
 
 private:
 

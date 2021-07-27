@@ -23,8 +23,8 @@ void Engine::Init()
 	engineClock = new Clock;
 	soundSystem = new SoundSystem("Sound/MouseClick.wav", false);
 
-	//scenes.push(new PracticeScene(&scenes, window, soundSystem));
-	scenes.push(new TitleScene(&scenes, window, soundSystem));
+	scenes.push(new PracticeScene(&scenes, window, soundSystem));
+	//scenes.push(new TitleScene(&scenes, window, soundSystem));
 }
 
 void Engine::Destroy()

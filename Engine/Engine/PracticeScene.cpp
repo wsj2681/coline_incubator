@@ -1,9 +1,8 @@
 #include "framework.h"
 #include "PracticeScene.h"
-#include "GameScene.h"
-#include "TileMap.h"
 #include "JumpObject.h"
-
+#include "PracticeMap.h"
+#include "Object.h"
 
 PracticeScene::PracticeScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
 	:Scene(scenes, window, soundSystem)
@@ -13,11 +12,19 @@ PracticeScene::PracticeScene(stack<Scene*>* scenes, RenderWindow* window, SoundS
 
 void PracticeScene::Init()
 {
-	doll = new JumpObject("Textures/Character/Warrior_Male/Down00.png",{ 500.f, 500.f });
-	portal = new Object("Textures/HUD/portal.png");
+	vector<int> levels;
 
-	doll->setScale(5.f, 5.f);
-	portal->setPosition(50.f, 500.f);
+	for (int i = 0; i < 50 * 50; ++i)
+	{
+		levels.push_back(56);
+	}
+
+	map = new PracticeMap("Textures/Map/tileSet.png", { 32, 32 }, levels, { 50, 50 });
+
+	mouseCursor = new Object("Textures/Map/tileSet.png");
+	mouseCursor->setOrigin({});
+	mouseCursor->setTextureRect(map->GetTile(tileNumber));
+
 }
 
 void PracticeScene::Destroy()
@@ -36,8 +43,16 @@ void PracticeScene::Input(Event* event)
 		{
 			case Keyboard::Space:
 			{
-				// Down Casting
-				dynamic_cast<JumpObject*>(doll)->Jump();
+
+			}
+			case Keyboard::F1:
+			{
+				map->SaveMap("Test.bin");
+				break;
+			}
+			case Keyboard::F2:
+			{
+				map->LoadMap("Test.bin");
 				break;
 			}
 		default:
@@ -51,6 +66,23 @@ void PracticeScene::Input(Event* event)
 	{
 		break;
 	}
+	case Event::MouseWheelMoved:
+	{
+		tileNumber += event->mouseWheel.delta;
+
+		if (tileNumber <= 56)
+		{
+			tileNumber = 56;
+		}
+		else if (tileNumber >= 56 * 23 - 1)
+		{
+			tileNumber = 56 * 23 - 1;
+		}
+
+		mouseCursor->setTextureRect(map->GetTile(tileNumber));
+
+		break;
+	}
 	default:
 		break;
 	}
@@ -58,50 +90,33 @@ void PracticeScene::Input(Event* event)
 
 void PracticeScene::Update(const Vector2f& mousePosition)
 {
-	if (doll)
+	mouseCursor->setPosition(mousePosition.x + 32, mousePosition.y - 32);
+	if (map)
 	{
-		dynamic_cast<JumpObject*>(doll)->TargetMove(mousePosition);
+		if (Mouse::isButtonPressed(Mouse::Left))
+		{
+			map->Update(mousePosition, tileNumber);
+		}
 	}
 }
 
 void PracticeScene::Update(const float& deltaTime)
 {
-	// TODO : 현재 씬의 몬스터 마릿수 세기
-	// TODO : 몬스터 마릿수가 0마리면, 다음 씬으로 이동
-
-
-	if (doll)
+	if (mouseCursor)
 	{
-		doll->Update(deltaTime);
-	}
-
-	if (portal)
-	{
-		portal->Update(deltaTime);
-	}
-
-	if (portal && doll)
-	{
-		if (portal->getGlobalBounds().contains(doll->getPosition()))
-		{
-			if (Keyboard::isKeyPressed(Keyboard::W))
-			{
-				scenes->push(new GameScene(scenes, window, soundSystem));
-			}
-		}
+		mouseCursor->Update(deltaTime);
 	}
 }
 
 void PracticeScene::Render()
 {
-	if (portal)
+	if (map)
 	{
-		portal->Render(window);
+		window->draw(*map);
 	}
-
-	if (doll)
+	
+	if (mouseCursor)
 	{
-		doll->Render(window);
+		mouseCursor->Render(window);
 	}
-
 }
