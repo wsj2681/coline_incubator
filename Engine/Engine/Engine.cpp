@@ -74,7 +74,7 @@ void Engine::Input()
 void Engine::Update()
 {
 	this->deltaTime = clock->getElapsedTime().asSeconds();
-
+	clock->restart();
 	if (engineClock->getElapsedTime().asSeconds() >= 1.f)
 	{
 		FPS = frame;

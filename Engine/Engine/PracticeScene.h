@@ -3,6 +3,7 @@
 
 class PracticeMap;
 class Object;
+class JumpObject;
 
 class PracticeScene : public Scene
 {
@@ -20,6 +21,8 @@ private:
 	int tileNumber = 111;
 
 	Object* mouseCursor = nullptr;
+
+	JumpObject* player = nullptr;
 
 private:
 

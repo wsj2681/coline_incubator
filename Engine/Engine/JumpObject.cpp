@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "JumpObject.h"
+#include "BulletManager.h"
 
 JumpObject::JumpObject()
 {
@@ -8,13 +9,14 @@ JumpObject::JumpObject()
 JumpObject::JumpObject(const string& textureFilePath)
 	:Object(textureFilePath)
 {
-
+	bulletMgr = new BulletManager(100);
 }
 
 JumpObject::JumpObject(const string& textureFilePath, const Vector2f& position)
 	: Object(textureFilePath, position)
 {
 	this->position = position;
+	bulletMgr = new BulletManager(100);
 }
 
 void JumpObject::Destroy()
@@ -40,6 +42,14 @@ void JumpObject::JumpUpdate(const float& deltaTime)
 void JumpObject::Jump()
 {
 	velocity.y = -20.f;
+}
+
+void JumpObject::Shoot()
+{
+	if (bulletMgr)
+	{
+		bulletMgr->Shoot({ Math::Normalize(bulletTargetPosition, position) }, position, 600.f);
+	}
 }
 
 void JumpObject::TargetMove(const Vector2f& targetPosition)
@@ -107,15 +117,52 @@ void JumpObject::Update(const float& deltaTime)
 			position.x += 3.f;
 		}
 	}
+	if (Keyboard::isKeyPressed(Keyboard::W))
+	{
+		if (Keyboard::isKeyPressed(Keyboard::LControl))
+		{
+			position.y -= 5.f;
+		}
+		else
+		{
+			position.y -= 3.f;
+		}
+	}
+	if (Keyboard::isKeyPressed(Keyboard::S))
+	{
+		if (Keyboard::isKeyPressed(Keyboard::LControl))
+		{
+			position.y += 5.f;
+		}
+		else
+		{
+			position.y += 3.f;
+		}
+	}
 	setPosition(position);
+
+	if (bulletMgr)
+	{
+		bulletMgr->Update(deltaTime);
+	}
+
 }
 
 void JumpObject::Update(const Vector2f& mousePosition)
 {
-
+	bulletTargetPosition = mousePosition;
+	if (bulletMgr)
+	{
+		bulletMgr->Update(mousePosition);
+	}
 }
 
 void JumpObject::Render(RenderTarget* target)
 {
 	Object::Render(target);
+	if (bulletMgr)
+	{
+		bulletMgr->Render(target);
+	}
+
 }

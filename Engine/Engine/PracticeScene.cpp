@@ -25,6 +25,7 @@ void PracticeScene::Init()
 	mouseCursor->setOrigin({});
 	mouseCursor->setTextureRect(map->GetTile(tileNumber));
 
+	player = new JumpObject("Textures/Character/Warrior_Male/Down00.png", {500, 500});
 }
 
 void PracticeScene::Destroy()
@@ -43,11 +44,11 @@ void PracticeScene::Input(Event* event)
 		{
 			case Keyboard::Space:
 			{
-
-			}
+				
+			} 
 			case Keyboard::F1:
 			{
-				map->SaveMap("Test.bin");
+				map->SaveMap("Test.bin"); 
 				break;
 			}
 			case Keyboard::F2:
@@ -95,8 +96,14 @@ void PracticeScene::Update(const Vector2f& mousePosition)
 	{
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			map->Update(mousePosition, tileNumber);
+			player->Shoot();
+			//map->Update(mousePosition, tileNumber);
 		}
+	}
+
+	if (player)
+	{
+		player->Update(mousePosition);
 	}
 }
 
@@ -105,6 +112,11 @@ void PracticeScene::Update(const float& deltaTime)
 	if (mouseCursor)
 	{
 		mouseCursor->Update(deltaTime);
+	}
+
+	if (player)
+	{
+		player->Update(deltaTime);
 	}
 }
 
@@ -115,6 +127,11 @@ void PracticeScene::Render()
 		window->draw(*map);
 	}
 	
+	if (player)
+	{
+		player->Render(window);
+	}
+
 	if (mouseCursor)
 	{
 		mouseCursor->Render(window);

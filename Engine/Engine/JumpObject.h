@@ -8,6 +8,8 @@ enum STATE
 	CHASE // 추적 상태
 };
 
+class BulletManager;
+
 class JumpObject : public Object
 {
 public:
@@ -29,6 +31,10 @@ private:
 	float speed = 50.f;
 	float gravity = 2.f;
 
+	BulletManager* bulletMgr = nullptr;
+
+	Vector2f bulletTargetPosition{ 0.f, 0.f };
+
 public:
 
 	virtual void Destroy();
@@ -36,6 +42,8 @@ public:
 	void JumpUpdate(const float& deltTime);
 	void Jump();
 	
+	void Shoot();
+
 	void TargetMove(const Vector2f& targetPosition);
 
 	virtual void Update(const float& deltaTime);

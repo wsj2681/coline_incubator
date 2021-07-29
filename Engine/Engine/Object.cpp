@@ -51,6 +51,11 @@ void Object::SetActive(bool isActive)
 	this->isActive = isActive;
 }
 
+bool Object::IsActive()
+{
+	return isActive;
+}
+
 void Object::SetBoxColor(const Color& color)
 {
 	this->boxColor = color;
