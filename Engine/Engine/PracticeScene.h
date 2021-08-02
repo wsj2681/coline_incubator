@@ -4,6 +4,7 @@
 class PracticeMap;
 class Object;
 class JumpObject;
+class MonsterObject;
 
 class PracticeScene : public Scene
 {
@@ -23,6 +24,9 @@ private:
 	Object* mouseCursor = nullptr;
 
 	JumpObject* player = nullptr;
+	vector<MonsterObject*> monsters;
+
+	View* gameView = nullptr;
 
 private:
 

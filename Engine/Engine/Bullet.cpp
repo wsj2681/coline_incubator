@@ -4,6 +4,7 @@
 Bullet::Bullet(const string& textureFilePath)
 	:Object(textureFilePath)
 {
+	setScale(0.5f, 0.5f);
 }
 
 void Bullet::Destroy()
@@ -21,6 +22,11 @@ void Bullet::SetSpeed(const float& speed)
 	this->speed = speed;
 }
 
+const int Bullet::GetBulletType()
+{
+	return this->bulletType;
+}
+
 
 void Bullet::Update(const float& deltaTime)
 {
@@ -30,6 +36,10 @@ void Bullet::Update(const float& deltaTime)
 	if (lifeTime <= 0.f)
 	{
 		SetActive(false);
+	}
+
+	if (!IsActive())
+	{
 		lifeTime = 2.f;
 	}
 

@@ -32,12 +32,15 @@ private:
 	float gravity = 2.f;
 
 	BulletManager* bulletMgr = nullptr;
+	float shootCoolTime = 0.1f;
 
 	Vector2f bulletTargetPosition{ 0.f, 0.f };
 
 public:
 
 	virtual void Destroy();
+
+	BulletManager* GetBulletMgr();
 
 	void JumpUpdate(const float& deltTime);
 	void Jump();

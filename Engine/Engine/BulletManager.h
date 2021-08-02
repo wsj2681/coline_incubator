@@ -20,6 +20,8 @@ public:
 
 	void Shoot(const Vector2f& dir, const Vector2f& position, const float& speed);
 
+	vector<Bullet*>* GetBullets();
+
 	void Update(const float& deltaTime);
 
 	void Update(const Vector2f& mousePosition);

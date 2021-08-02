@@ -38,4 +38,12 @@ namespace Math
 		return { direction.x / length, direction.y / length };
 	}
 
+	inline int RandomIntager(const int& minimum, const int& maximum)
+	{
+		static uniform_int_distribution<int> urd(minimum, maximum);
+		static default_random_engine dre;
+
+		return urd(dre);
+	}
+
 }

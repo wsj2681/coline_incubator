@@ -23,6 +23,11 @@ void JumpObject::Destroy()
 {
 }
 
+BulletManager* JumpObject::GetBulletMgr()
+{
+	return bulletMgr;
+}
+
 void JumpObject::JumpUpdate(const float& deltaTime)
 {
 	if (position.y < 500.f) // 점프 좌표 갱신
@@ -48,7 +53,11 @@ void JumpObject::Shoot()
 {
 	if (bulletMgr)
 	{
-		bulletMgr->Shoot({ Math::Normalize(bulletTargetPosition, position) }, position, 600.f);
+		if (shootCoolTime <= 0.f)
+		{
+			bulletMgr->Shoot({ Math::Normalize(bulletTargetPosition, position) }, position, 600.f);
+			shootCoolTime = 0.1f;
+		}
 	}
 }
 
@@ -94,6 +103,8 @@ void JumpObject::Update(const float& deltaTime)
 {
 	Object::Update(deltaTime);
 	//JumpUpdate(deltaTime);
+	
+	shootCoolTime -= deltaTime;
 
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{

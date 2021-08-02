@@ -87,6 +87,9 @@
     <Filter Include="소스 파일\03. Object\05. Bullet">
       <UniqueIdentifier>{66b4133d-1739-433a-8ec7-fc4e618894a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Object\06. MonsterObject">
+      <UniqueIdentifier>{d1491f89-abaa-4aaa-b1dc-eb5816538bac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -155,11 +158,14 @@
     <ClCompile Include="PracticeMap.cpp">
       <Filter>소스 파일\04. Map</Filter>
     </ClCompile>
-    <ClCompile Include="BulletManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>소스 파일\03. Object\05. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletManager.cpp">
+      <Filter>소스 파일\03. Object\05. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterObject.cpp">
+      <Filter>소스 파일\03. Object\06. MonsterObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,9 +235,14 @@
     <ClInclude Include="PracticeMap.h">
       <Filter>소스 파일\04. Map</Filter>
     </ClInclude>
-    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Bullet.h">
       <Filter>소스 파일\03. Object\05. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager.h">
+      <Filter>소스 파일\03. Object\05. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterObject.h">
+      <Filter>소스 파일\03. Object\06. MonsterObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
