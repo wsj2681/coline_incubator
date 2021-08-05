@@ -9,6 +9,11 @@ public:
 	AnimationObject& operator=(const AnimationObject&) = delete;
 	virtual ~AnimationObject() = default;
 
+protected:
+
+	float frameTime = 0.2f;
+	unsigned int keyFrame = 0;
+
 private:
 
 	virtual void Init();

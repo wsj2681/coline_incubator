@@ -56,7 +56,7 @@ void PracticeScene::Input(Event* event)
 		{
 			case Keyboard::Space:
 			{
-				
+				player->SetBomb();
 			} 
 			case Keyboard::F1:
 			{
@@ -116,7 +116,7 @@ void PracticeScene::Update(const Vector2f& mousePosition)
 	if (player)
 	{
 		player->Update(mousePosition);
-		cout << player->getPosition().x << "/ " << player->getPosition().y << endl;
+		//cout << player->getPosition().x << "/ " << player->getPosition().y << endl;
 	}
 	player->GetBulletMgr()->GetBullets();
 

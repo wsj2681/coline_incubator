@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "JumpObject.h"
 #include "BulletManager.h"
+#include "BombManager.h"
 
 JumpObject::JumpObject()
 {
@@ -10,6 +11,7 @@ JumpObject::JumpObject(const string& textureFilePath)
 	:Object(textureFilePath)
 {
 	bulletMgr = new BulletManager(100);
+	bombMgr = new BombManager(10);
 }
 
 JumpObject::JumpObject(const string& textureFilePath, const Vector2f& position)
@@ -17,6 +19,7 @@ JumpObject::JumpObject(const string& textureFilePath, const Vector2f& position)
 {
 	this->position = position;
 	bulletMgr = new BulletManager(100);
+	bombMgr = new BombManager(7);
 }
 
 void JumpObject::Destroy()
@@ -57,6 +60,18 @@ void JumpObject::Shoot()
 		{
 			bulletMgr->Shoot({ Math::Normalize(bulletTargetPosition, position) }, position, 600.f);
 			shootCoolTime = 0.1f;
+		}
+	}
+}
+
+void JumpObject::SetBomb()
+{
+	if (bombMgr)
+	{
+		if (bombSetCoolTime <= 0.f)
+		{
+			bombMgr->SetBomb(this->getPosition());
+			bombSetCoolTime = 0.5f;
 		}
 	}
 }
@@ -104,7 +119,27 @@ void JumpObject::Update(const float& deltaTime)
 	Object::Update(deltaTime);
 	//JumpUpdate(deltaTime);
 	
+	//(1080, 720)
+	if (this->getGlobalBounds().top + this->getGlobalBounds().height > 720.f)
+	{
+		position.y = 720.f - this->getGlobalBounds().height / 2.f;
+	}
+	else if (this->getGlobalBounds().top < 0.f)
+	{
+		position.y = 0.f + this->getGlobalBounds().height / 2.f;
+	}
+
+	if (this->getGlobalBounds().left + this->getGlobalBounds().width > 1080.f)
+	{
+		position.x = 1080 - this->getGlobalBounds().width / 2.f;
+	}
+	else if (this->getGlobalBounds().left < 0.f)
+	{
+		position.x = 0.f + this->getGlobalBounds().width / 2.f;
+	}
+
 	shootCoolTime -= deltaTime;
+	bombSetCoolTime -= deltaTime;
 
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{
@@ -157,6 +192,11 @@ void JumpObject::Update(const float& deltaTime)
 		bulletMgr->Update(deltaTime);
 	}
 
+	if (bombMgr)
+	{
+		bombMgr->Update(deltaTime);
+	}
+
 }
 
 void JumpObject::Update(const Vector2f& mousePosition)
@@ -165,6 +205,11 @@ void JumpObject::Update(const Vector2f& mousePosition)
 	if (bulletMgr)
 	{
 		bulletMgr->Update(mousePosition);
+	}
+
+	if (bombMgr)
+	{
+		bombMgr->Update(mousePosition);
 	}
 }
 
@@ -175,5 +220,8 @@ void JumpObject::Render(RenderTarget* target)
 	{
 		bulletMgr->Render(target);
 	}
-
+	if (bombMgr)
+	{
+		bombMgr->Render(target);
+	}
 }
