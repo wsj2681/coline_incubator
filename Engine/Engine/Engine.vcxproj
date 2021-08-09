@@ -169,8 +169,6 @@
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TitleScene.cpp" />
-    <ClCompile Include="WallManager.cpp" />
-    <ClCompile Include="WallObject.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,8 +199,6 @@
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TitleScene.h" />
-    <ClInclude Include="WallManager.h" />
-    <ClInclude Include="WallObject.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

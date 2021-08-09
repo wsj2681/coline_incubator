@@ -38,17 +38,6 @@ namespace Math
 		return { direction.x / length, direction.y / length };
 	}
 
-	inline const float RotateAxis(const Vector2f& vec1, const Vector2f& vec2, const float& angle)
-	{
-		Vector2f normal = Normalize(vec1, vec2);
-		return ((atan2(normal.y, normal.x) * 180.f / PI)) + angle;
-	}
-
-	inline const float RotateAxis(const Vector2f& vec, const float& angle)
-	{
-		return ((atan2(vec.y, vec.x) * 180.f / PI)) + angle;
-	}
-
 	inline int RandomIntager(const int& minimum, const int& maximum)
 	{
 		static uniform_int_distribution<int> urd(minimum, maximum);

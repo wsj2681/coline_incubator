@@ -5,7 +5,6 @@
 #include "Object.h"
 #include "MonsterObject.h"
 #include "BulletManager.h"
-#include "BombManager.h"
 
 PracticeScene::PracticeScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
 	:Scene(scenes, window, soundSystem)
@@ -32,7 +31,7 @@ void PracticeScene::Init()
 	// 32 x 32
 	player = new JumpObject("Textures/Character/Warrior_Male/Down00.png", {500, 500});
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 1; ++i)
 	{
 		monsters.push_back(new MonsterObject("Textures/Character/Warrior_Male/Down00.png", Vector2f(rand() % 1080, rand() % 720)));
 	}
@@ -110,13 +109,16 @@ void PracticeScene::Update(const Vector2f& mousePosition)
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			player->Shoot();
+			//map->Update(mousePosition, tileNumber);
 		}
 	}
 
 	if (player)
 	{
 		player->Update(mousePosition);
+		//cout << player->getPosition().x << "/ " << player->getPosition().y << endl;
 	}
+	player->GetBulletMgr()->GetBullets();
 
 	for (auto& bullet : *player->GetBulletMgr()->GetBullets())
 	{
@@ -134,12 +136,9 @@ void PracticeScene::Update(const Vector2f& mousePosition)
 		}
 	}
 
-
-
 	for (auto& monster : monsters)
 	{
 		monster->Update(mousePosition);
-		player->GetBombMgr()->DamageBoom(monster);
 	}
 
 }

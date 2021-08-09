@@ -11,7 +11,7 @@ public:
 
 protected:
 
-	float frameTime = 0.1f;
+	float frameTime = 0.2f;
 	unsigned int keyFrame = 0;
 
 private:

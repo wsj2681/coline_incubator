@@ -4,7 +4,7 @@
 Bullet::Bullet(const string& textureFilePath)
 	:Object(textureFilePath)
 {
-	setScale(0.2f, 0.2f);
+	setScale(0.5f, 0.5f);
 }
 
 void Bullet::Destroy()
@@ -15,7 +15,6 @@ void Bullet::Destroy()
 void Bullet::SetDirection(const Vector2f& dir)
 {
 	this->dir = dir;
-	this->setRotation(Math::RotateAxis(dir, 90.f));
 }
 
 void Bullet::SetSpeed(const float& speed)

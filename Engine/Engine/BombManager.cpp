@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "BombManager.h"
-#include "MonsterObject.h"
 
 BombManager::BombManager(const size_t& bombCount)
 {
@@ -39,29 +38,9 @@ void BombManager::SetBomb(const Vector2f& position)
 	}
 }
 
-vector<BombObject*>* BombManager::GetBombs()
+vector<BombObject*>* BombManager::GetBullets()
 {
 	return &bombs;
-}
-
-void BombManager::DamageBoom(Object* object)
-{
-	static int count = 0;
-
-	for (auto& bombs : bombs)
-	{
-		if(object && bombs->GetBoomArea().intersects(object->getGlobalBounds()) && bombs->IsDamaging())
-		{
-			if (dynamic_cast<MonsterObject*>(object))
-			{
-				dynamic_cast<MonsterObject*>(object)->SetHp(dynamic_cast<MonsterObject*>(object)->GetHp() - 1);
-			}
-			else
-			{
-				cout << "Charactor damaged\n";
-			}
-		}
-	}
 }
 
 void BombManager::Update(const float& deltaTime)
