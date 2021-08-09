@@ -31,6 +31,14 @@ public:
 	void SetBoxColor(const Color& color);
 	void SetBoxColor(const Uint8& r, const Uint8& g, const Uint8& b, const Uint8& a);
 
+	bool IsRightCollide(Object* target);
+	bool IsLeftCollide(Object* target);
+	bool IsTopCollide(Object* target);
+	bool IsBottomCollide(Object* target);
+
+	bool IsCollideAABB(Object* target, const float& push);
+
+	const Vector2f GetHalfSize();
 
 	virtual void Update(const float& deltaTime);
 	virtual void Update(const Vector2f& mousePosition);

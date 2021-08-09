@@ -2,6 +2,7 @@
 #include "JumpObject.h"
 #include "BulletManager.h"
 #include "BombManager.h"
+#include "WallManager.h"
 
 JumpObject::JumpObject()
 {
@@ -29,6 +30,11 @@ void JumpObject::Destroy()
 BulletManager* JumpObject::GetBulletMgr()
 {
 	return bulletMgr;
+}
+
+BombManager* JumpObject::GetBombMgr()
+{
+	return this->bombMgr;
 }
 
 void JumpObject::JumpUpdate(const float& deltaTime)
@@ -195,8 +201,14 @@ void JumpObject::Update(const float& deltaTime)
 	if (bombMgr)
 	{
 		bombMgr->Update(deltaTime);
+		bombMgr->DamageBoom(this);
 	}
 
+	if (wallMgr)
+	{
+		wallMgr->Update(deltaTime);
+		
+	}
 }
 
 void JumpObject::Update(const Vector2f& mousePosition)

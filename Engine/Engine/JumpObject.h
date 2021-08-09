@@ -10,6 +10,7 @@ enum STATE
 
 class BulletManager;
 class BombManager;
+class WallManager;
 
 class JumpObject : public Object
 {
@@ -40,12 +41,14 @@ private:
 	BombManager* bombMgr = nullptr;
 	float bombSetCoolTime = 0.5f;
 
+	WallManager* wallMgr = nullptr;
 
 public:
 
 	virtual void Destroy();
 
 	BulletManager* GetBulletMgr();
+	BombManager* GetBombMgr();
 
 	void JumpUpdate(const float& deltTime);
 	void Jump();

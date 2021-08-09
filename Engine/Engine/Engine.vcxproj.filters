@@ -96,6 +96,9 @@
     <Filter Include="소스 파일\03. Object\01. AnimationObject\02. EffectObject">
       <UniqueIdentifier>{3955a6ed-83c0-4c6d-ab7d-4b184434126a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Object\08. WallObject">
+      <UniqueIdentifier>{d23ae0d4-ad42-4607-b41d-19dce4f590ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -182,6 +185,12 @@
     <ClCompile Include="BombManager.cpp">
       <Filter>소스 파일\03. Object\07. BombObject</Filter>
     </ClCompile>
+    <ClCompile Include="WallObject.cpp">
+      <Filter>소스 파일\03. Object\08. WallObject</Filter>
+    </ClCompile>
+    <ClCompile Include="WallManager.cpp">
+      <Filter>소스 파일\03. Object\08. WallObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -267,6 +276,12 @@
     </ClInclude>
     <ClInclude Include="BombManager.h">
       <Filter>소스 파일\03. Object\07. BombObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WallObject.h">
+      <Filter>소스 파일\03. Object\08. WallObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WallManager.h">
+      <Filter>소스 파일\03. Object\08. WallObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
