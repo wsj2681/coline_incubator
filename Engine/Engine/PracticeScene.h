@@ -5,6 +5,7 @@ class PracticeMap;
 class Object;
 class JumpObject;
 class MonsterObject;
+class WallManager;
 
 class PracticeScene : public Scene
 {
@@ -27,6 +28,8 @@ private:
 	vector<MonsterObject*> monsters;
 
 	View* gameView = nullptr;
+
+	WallManager* wallMgr = nullptr;
 
 private:
 

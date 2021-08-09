@@ -24,6 +24,7 @@ private:
 	Vector2f position{ 0.f, 0.f };
 	Vector2f velocity{ 0.f, 0.f };
 	Vector2f acceleration{ 0.f, 0.f };
+	Vector2f direction{ 0.f, 0.f };
 
 	Vector2f patrolPosition{ 0.f, 0.f };
 
@@ -46,6 +47,10 @@ public:
 	virtual void Destroy();
 
 	BulletManager* GetBulletMgr();
+	BombManager* GetBombMgr();
+
+	const Vector2f& GetDirection();
+	void SetDirection(const Vector2f& direction);
 
 	void JumpUpdate(const float& deltTime);
 	void Jump();

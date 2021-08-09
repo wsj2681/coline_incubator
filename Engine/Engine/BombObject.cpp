@@ -8,7 +8,7 @@ BombObject::BombObject(const string& textureFilePath)
 
 	setScale(0.1f, 0.1f);
 	bombEffect = new EffectObject();
-	bombEffect->setScale(0.3f, 0.3f);
+	bombEffect->setScale(0.6f, 0.6f);
 }
 
 void BombObject::Destroy()
@@ -21,6 +21,16 @@ void BombObject::SetBomb(const Vector2f& mousePosition)
 	setPosition(mousePosition);
 	this->isActive = true;
 	lifeTime = 3.f;
+}
+
+const FloatRect& BombObject::GetBoomArea()
+{
+	return boomArea;
+}
+
+bool BombObject::IsDamaging()
+{
+	return this->bombEffect->IsActive();
 }
 
 void BombObject::Update(const float& deltaTime)
@@ -41,6 +51,7 @@ void BombObject::Update(const float& deltaTime)
 		this->isActive = false;
 		bombEffect->Start();
 		lifeTime = 3.f;
+		boomArea = bombEffect->getGlobalBounds();
 	}
 
 }

@@ -11,7 +11,7 @@ JumpObject::JumpObject(const string& textureFilePath)
 	:Object(textureFilePath)
 {
 	bulletMgr = new BulletManager(100);
-	bombMgr = new BombManager(10);
+	bombMgr = new BombManager(7);
 }
 
 JumpObject::JumpObject(const string& textureFilePath, const Vector2f& position)
@@ -29,6 +29,23 @@ void JumpObject::Destroy()
 BulletManager* JumpObject::GetBulletMgr()
 {
 	return bulletMgr;
+}
+
+BombManager* JumpObject::GetBombMgr()
+{
+	return this->bombMgr;
+}
+
+const Vector2f& JumpObject::GetDirection()
+{
+	return this->direction;
+}
+
+void JumpObject::SetDirection(const Vector2f& direction)
+{
+	this->direction = direction;
+	position += direction;
+	setPosition(position);
 }
 
 void JumpObject::JumpUpdate(const float& deltaTime)
@@ -141,50 +158,59 @@ void JumpObject::Update(const float& deltaTime)
 	shootCoolTime -= deltaTime;
 	bombSetCoolTime -= deltaTime;
 
+	direction = { 0.f, 0.f };
+
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{
+		direction = { 1.f, 0.f };
 		if (Keyboard::isKeyPressed(Keyboard::LControl))
 		{
-			position.x -= 5.f;
+			direction *= -5.f;
 		}
 		else
 		{
-			position.x -= 3.f;
+			direction *= -3.f;
 		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::D))
 	{
+		direction = { 1.f, 0.f };
 		if (Keyboard::isKeyPressed(Keyboard::LControl))
 		{
-			position.x += 5.f;
+			direction *= 5.f;
 		}
 		else
 		{
-			position.x += 3.f;
+			direction *= 3.f;
 		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::W))
 	{
+		direction = { 0.f, 1.f };
 		if (Keyboard::isKeyPressed(Keyboard::LControl))
 		{
-			position.y -= 5.f;
+			direction *= -5.f;
 		}
 		else
 		{
-			position.y -= 3.f;
+			direction *= -3.f;
 		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::S))
 	{
+		direction = { 0.f, 1.f };
 		if (Keyboard::isKeyPressed(Keyboard::LControl))
 		{
-			position.y += 5.f;
+			direction *= 5.f;
 		}
 		else
 		{
-			position.y += 3.f;
+			direction *= 3.f;
 		}
 	}
+	
+	position += direction;
+
 	setPosition(position);
 
 	if (bulletMgr)
@@ -195,6 +221,7 @@ void JumpObject::Update(const float& deltaTime)
 	if (bombMgr)
 	{
 		bombMgr->Update(deltaTime);
+		bombMgr->DamageBoom(this);
 	}
 
 }

@@ -20,7 +20,9 @@ public:
 
 	void SetBomb(const Vector2f& position);
 
-	vector<BombObject*>* GetBullets();
+	vector<BombObject*>* GetBombs();
+
+	void DamageBoom(Object* object);
 
 	void Update(const float& deltaTime);
 

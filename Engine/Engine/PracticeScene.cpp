@@ -1,10 +1,12 @@
 #include "framework.h"
 #include "PracticeScene.h"
-#include "JumpObject.h"
 #include "PracticeMap.h"
-#include "Object.h"
+#include "JumpObject.h"
 #include "MonsterObject.h"
+#include "WallObject.h"
 #include "BulletManager.h"
+#include "BombManager.h"
+#include "WallManager.h"
 
 PracticeScene::PracticeScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
 	:Scene(scenes, window, soundSystem)
@@ -29,12 +31,20 @@ void PracticeScene::Init()
 
 	// 48 x 8 HP bar
 	// 32 x 32
-	player = new JumpObject("Textures/Character/Warrior_Male/Down00.png", {500, 500});
+	player = new JumpObject("Textures/Character/Warrior_Male/Down00.png", {100.f, 100.f});
 
-	for (int i = 0; i < 1; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		monsters.push_back(new MonsterObject("Textures/Character/Warrior_Male/Down00.png", Vector2f(rand() % 1080, rand() % 720)));
 	}
+
+	wallMgr = new WallManager();
+	
+	WallObject* object = new WallObject("Textures/Object/wall1.png", { 300.f, 300.f });
+	wallMgr->SetWall(object);
+
+	object = new WallObject("Textures/Object/wall3.png", { 500.f, 500.f });
+	wallMgr->SetWall(object);
 
 	gameView = new View(player->getPosition(), { 800, 600 });
 	//window->setView(*gameView);
@@ -134,11 +144,23 @@ void PracticeScene::Update(const Vector2f& mousePosition)
 				}
 			}
 		}
+
+		if (wallMgr)
+		{
+			wallMgr->CollisionUpdate(bullet);
+		}
+
 	}
 
 	for (auto& monster : monsters)
 	{
 		monster->Update(mousePosition);
+	}
+
+	if (wallMgr)
+	{
+		wallMgr->Update(mousePosition);
+		wallMgr->CollisionUpdate(player);
 	}
 
 }
@@ -157,7 +179,17 @@ void PracticeScene::Update(const float& deltaTime)
 	for (auto& monster : monsters)
 	{
 		monster->Update(deltaTime);
+		if (player)
+		{
+			player->GetBombMgr()->DamageBoom(monster);
+		}
 	}
+
+	if (wallMgr)
+	{
+		wallMgr->Update(deltaTime);
+	}
+
 }
 
 void PracticeScene::Render()
@@ -175,6 +207,11 @@ void PracticeScene::Render()
 	for (auto& monster : monsters)
 	{
 		monster->Render(window);
+	}
+
+	if (wallMgr)
+	{
+		wallMgr->Render(window);
 	}
 
 	if (mouseCursor)
