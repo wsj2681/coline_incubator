@@ -45,7 +45,7 @@ public:
 	void LoadMap(const string& mapName);
 
 	void Update(const Vector2f& mousePosition, int tileNumber, bool BaseTile = false);
-
+	void Update(Object* object);
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 
 };

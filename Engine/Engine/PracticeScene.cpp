@@ -20,7 +20,7 @@ void PracticeScene::Init()
 
 	for (int i = 0; i < 50 * 50; ++i)
 	{
-		levels.push_back(56);
+		levels.push_back(56); // grass
 	}
 
 	map = new PracticeMap("Textures/Map/tileSet.png", { 32, 32 }, levels, { 50, 50 });
@@ -91,7 +91,7 @@ void PracticeScene::Input(Event* event)
 	}
 	case Event::MouseWheelMoved:
 	{
-		tileNumber += event->mouseWheel.delta;
+		//tileNumber += event->mouseWheel.delta;
 
 		if (tileNumber <= 56)
 		{
@@ -116,40 +116,44 @@ void PracticeScene::Update(const Vector2f& mousePosition)
 	mouseCursor->setPosition(mousePosition.x + 32, mousePosition.y - 32);
 	if (map)
 	{
-		if (Mouse::isButtonPressed(Mouse::Left))
+		map->Update(player);
+
+		if (Mouse::isButtonPressed(Mouse::Right))
 		{
-			player->Shoot();
-			//map->Update(mousePosition, tileNumber);
+			map->Update(mousePosition, tileNumber);
 		}
 	}
 
 	if (player)
 	{
-		player->Update(mousePosition);
-		//cout << player->getPosition().x << "/ " << player->getPosition().y << endl;
-	}
-	player->GetBulletMgr()->GetBullets();
-
-	for (auto& bullet : *player->GetBulletMgr()->GetBullets())
-	{
-		for (auto& monster : monsters)
+		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (monster->IsActive() && bullet->IsActive())
+			player->Shoot();
+		}
+		player->Update(mousePosition);
+		player->GetBulletMgr()->GetBullets();
+
+		for (auto& bullet : *player->GetBulletMgr()->GetBullets())
+		{
+			for (auto& monster : monsters)
 			{
-				if (bullet->getGlobalBounds().intersects(monster->getGlobalBounds()))
+				if (monster->IsActive() && bullet->IsActive())
 				{
-					bullet->SetActive(false);
-					bullet->setPosition({});
-					monster->SetHp(monster->GetHp() - bullet->GetBulletType());
+					if (bullet->getGlobalBounds().intersects(monster->getGlobalBounds()))
+					{
+						bullet->SetActive(false);
+						bullet->setPosition({});
+						monster->SetHp(monster->GetHp() - bullet->GetBulletType());
+					}
 				}
 			}
-		}
 
-		if (wallMgr)
-		{
-			wallMgr->CollisionUpdate(bullet);
-		}
+			if (wallMgr)
+			{
+				wallMgr->CollisionUpdate(bullet);
+			}
 
+		}
 	}
 
 	for (auto& monster : monsters)
@@ -176,6 +180,7 @@ void PracticeScene::Update(const float& deltaTime)
 	{
 		player->Update(deltaTime);
 	}
+
 	for (auto& monster : monsters)
 	{
 		monster->Update(deltaTime);

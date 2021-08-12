@@ -20,7 +20,7 @@ public:
 private:
 
 	PracticeMap* map = nullptr;
-	int tileNumber = 111;
+	int tileNumber = 111; // water
 
 	Object* mouseCursor = nullptr;
 

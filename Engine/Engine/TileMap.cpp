@@ -168,6 +168,33 @@ void TileMap::Update(const Vector2f& mousePosition, int tileNumber, bool BaseTil
         }
     }
 }
+void TileMap::Update(Object* object)
+{
+    for (unsigned int j = 0; j < mapSize.y; ++j)
+    {
+        for (unsigned int i = 0; i < mapSize.x; ++i)
+        {
+            sf::Vertex* quad = nullptr;
+            quad = &baseVertices[(i + j * mapSize.x) * 4];
+            Vector2f objectPosition = object->getPosition();
+
+            if ((objectPosition.x > quad[0].position.x && objectPosition.y > quad[0].position.y) &&
+                (objectPosition.x < quad[1].position.x && objectPosition.y > quad[1].position.y) &&
+                (objectPosition.x < quad[2].position.x && objectPosition.y < quad[2].position.y) &&
+                (objectPosition.x > quad[3].position.x && objectPosition.y < quad[3].position.y))
+            {
+                if (tiles.data()[i + j * mapSize.x] == 56) // grass
+                {
+                    cout << "Grass\n";
+                }
+                else if (tiles.data()[i + j * mapSize.x] == 111) // water
+                {
+                    cout << "Water\n";
+                }
+            }
+        }
+    }
+}
 
 void TileMap::draw(RenderTarget& target, RenderStates states) const
 {
@@ -179,3 +206,4 @@ void TileMap::draw(RenderTarget& target, RenderStates states) const
     
     target.draw(CollideBox, 5, LineStrip);
 }
+

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "PracticeMap.h"
+#include "JumpObject.h"
 
 PracticeMap::PracticeMap(const string& tileSetFilePath, const Vector2u& tileSize, const vector<int>& tiles, const Vector2u& mapSize)
 	:tiles(tiles), tileSize(tileSize), mapSize(mapSize)
@@ -80,6 +81,76 @@ void PracticeMap::Update(const Vector2f& mousePosition, int tileNumber)
 				quad[1].texCoords = Vector2f((texU + 1) * tileX, texV * tileY);
 				quad[2].texCoords = Vector2f((texU + 1) * tileX, (texV + 1) * tileY);
 				quad[3].texCoords = Vector2f(texU * tileX, (texV + 1) * tileY);
+			}
+		}
+	}
+}
+
+void PracticeMap::Update(Object* object)
+{
+	for (unsigned int j = 0; j < mapSize.y; ++j)
+	{
+		for (unsigned int i = 0; i < mapSize.x; ++i)
+		{
+			sf::Vertex* quad = nullptr;
+			quad = &vertices[(i + j * mapSize.x) * 4];
+			Vector2f objectPosition = object->getPosition();
+			Vector2f dir = dynamic_cast<JumpObject*>(object)->GetDirection();
+
+			if (dir.x != 0.f || dir.y != 0.f)
+			{
+				if (dir.x > 0.f)
+				{
+					if ((objectPosition.x > quad[0].position.x + 16 && objectPosition.y > quad[0].position.y) &&
+						(objectPosition.x < quad[1].position.x		&& objectPosition.y > quad[1].position.y) &&
+						(objectPosition.x < quad[2].position.x		&& objectPosition.y < quad[2].position.y) &&
+						(objectPosition.x > quad[3].position.x + 16 && objectPosition.y < quad[3].position.y))
+					{
+						if (tiles.data()[(i + 1) + j * mapSize.x] == 111)
+						{
+							dynamic_cast<JumpObject*>(object)->SetDirection(-dir);
+						}
+					}
+				}
+				else if (dir.x < 0.f)
+				{
+					if ((objectPosition.x > quad[0].position.x		&& objectPosition.y > quad[0].position.y) &&
+						(objectPosition.x < quad[1].position.x - 16 && objectPosition.y > quad[1].position.y) &&
+						(objectPosition.x < quad[2].position.x - 16 && objectPosition.y < quad[2].position.y) &&
+						(objectPosition.x > quad[3].position.x		&& objectPosition.y < quad[3].position.y))
+					{
+						if (tiles.data()[(i - 1) + j * mapSize.x] == 111)
+						{
+							dynamic_cast<JumpObject*>(object)->SetDirection(-dir);
+						}
+					}
+				}
+				else if (dir.y > 0.f)
+				{
+					if ((objectPosition.x > quad[0].position.x && objectPosition.y > quad[0].position.y + 16) &&
+						(objectPosition.x < quad[1].position.x && objectPosition.y > quad[1].position.y + 16) &&
+						(objectPosition.x < quad[2].position.x && objectPosition.y < quad[2].position.y) &&
+						(objectPosition.x > quad[3].position.x && objectPosition.y < quad[3].position.y))
+					{
+						if (tiles.data()[i + (j + 1) * mapSize.x] == 111)
+						{
+							dynamic_cast<JumpObject*>(object)->SetDirection(-dir);
+						}
+					}
+				}
+				else if (dir.y < 0.f)
+				{
+					if ((objectPosition.x > quad[0].position.x && objectPosition.y > quad[0].position.y) &&
+						(objectPosition.x < quad[1].position.x && objectPosition.y > quad[1].position.y) &&
+						(objectPosition.x < quad[2].position.x && objectPosition.y < quad[2].position.y - 16) &&
+						(objectPosition.x > quad[3].position.x && objectPosition.y < quad[3].position.y - 16))
+					{
+						if (tiles.data()[i + (j - 1) * mapSize.x] == 111)
+						{
+							dynamic_cast<JumpObject*>(object)->SetDirection(-dir);
+						}
+					}
+				}
 			}
 		}
 	}
