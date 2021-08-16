@@ -6,6 +6,7 @@ class Object;
 class JumpObject;
 class MonsterObject;
 class WallManager;
+class CrossBomb;
 
 class PracticeScene : public Scene
 {
@@ -30,6 +31,8 @@ private:
 	View* gameView = nullptr;
 
 	WallManager* wallMgr = nullptr;
+
+	CrossBomb* bomb = nullptr;
 
 private:
 

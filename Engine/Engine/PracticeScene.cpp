@@ -7,6 +7,7 @@
 #include "BulletManager.h"
 #include "BombManager.h"
 #include "WallManager.h"
+#include "CrossBomb.h"
 
 PracticeScene::PracticeScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
 	:Scene(scenes, window, soundSystem)
@@ -48,6 +49,9 @@ void PracticeScene::Init()
 
 	gameView = new View(player->getPosition(), { 800, 600 });
 	//window->setView(*gameView);
+
+	bomb = new CrossBomb();
+	bomb->setPosition(400.f, 200.f);
 }
 
 void PracticeScene::Destroy()
@@ -176,6 +180,11 @@ void PracticeScene::Update(const float& deltaTime)
 		mouseCursor->Update(deltaTime);
 	}
 
+	if (bomb)
+	{
+		bomb->Update(deltaTime);
+	}
+
 	if (player)
 	{
 		player->Update(deltaTime);
@@ -217,6 +226,11 @@ void PracticeScene::Render()
 	if (wallMgr)
 	{
 		wallMgr->Render(window);
+	}
+
+	if (bomb)
+	{
+		bomb->Render(window);
 	}
 
 	if (mouseCursor)

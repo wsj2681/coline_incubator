@@ -11,6 +11,7 @@ public:
 
 protected:
 
+	vector<Texture*> vAnimation;
 	float frameTime = 0.2f;
 	unsigned int keyFrame = 0;
 
@@ -21,6 +22,11 @@ private:
 public:
 
 	virtual void Destroy();
+
+	void SetAnimation(vector<Texture*>* animation, float frameTime = 0.2f);
+
+	const unsigned int& GetKeyFrame();
+	void SetKeyFrame(unsigned int& frame);
 
 	virtual void Update(const float& deltaTime);
 	virtual void Update(const Vector2f& mousePosition);

@@ -99,6 +99,9 @@
     <Filter Include="소스 파일\03. Object\08. WallObject">
       <UniqueIdentifier>{11a2a217-52db-40ca-9940-16d9e4b49e62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Object\01. AnimationObject\03. CrossBombObject">
+      <UniqueIdentifier>{926f503a-aad1-4e3e-b444-661b78f2dbb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -191,6 +194,9 @@
     <ClCompile Include="WallManager.cpp">
       <Filter>소스 파일\03. Object\08. WallObject</Filter>
     </ClCompile>
+    <ClCompile Include="CrossBomb.cpp">
+      <Filter>소스 파일\03. Object\01. AnimationObject\03. CrossBombObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -282,6 +288,9 @@
     </ClInclude>
     <ClInclude Include="WallManager.h">
       <Filter>소스 파일\03. Object\08. WallObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossBomb.h">
+      <Filter>소스 파일\03. Object\01. AnimationObject\03. CrossBombObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

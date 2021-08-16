@@ -150,6 +150,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonObject.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CrossBomb.cpp" />
     <ClCompile Include="DataBase.cpp" />
     <ClCompile Include="EffectObject.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonObject.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CrossBomb.h" />
     <ClInclude Include="DataBase.h" />
     <ClInclude Include="EffectObject.h" />
     <ClInclude Include="Engine.h" />
