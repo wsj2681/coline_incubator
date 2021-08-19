@@ -20,6 +20,13 @@ void CrossBomb::Init()
 		this->bombAnimation.push_back(texture);
 	}
 
+	for (int i = 0; i < 3; ++i)
+	{
+		texture = new Texture;
+		texture->loadFromFile(filePath + "bomb0" + to_string(i) + filetype);
+		this->boomAnimation.push_back(texture);
+	}
+
 	vector<Texture*> rightEndAnimation;
 	vector<Texture*> leftEndAnimation;
 	vector<Texture*> topEndAnimation;
@@ -122,6 +129,8 @@ void CrossBomb::Init()
 		p.second->first->setOrigin(20.f, 20.f);
 		p.second->second->setOrigin(20.f, 20.f);
 	}
+	isActive = false;
+	isLive = false;
 
 }
 
@@ -130,56 +139,95 @@ void CrossBomb::Destroy()
 	AnimationObject::Destroy();
 }
 
+void CrossBomb::SetBomb(const Vector2f& position)
+{
+	this->setPosition(position);
+	isLive = true;
+	isActive = true;
+	lifeTime = 3.f;
+	keyFrame = 0;
+}
+
 void CrossBomb::Update(const float& deltaTime)
 {
 	AnimationObject::Update(deltaTime);
 
 	static float frame = 0.f;
+	frame += 0.1f;
 
 	static float elapsedTime = 0.f;
 	elapsedTime += deltaTime;
+	lifeTime -= deltaTime;
+
+	if (lifeTime <= 0.f && isLive)
+	{
+		lifeTime = 3.f;
+		isLive = false;
+		keyFrame = 0;
+		bombLeafAnimation = true; // 3초마다 true 로 바뀌어서 물줄기가 렌더링된다.
+	}
 
 	if (elapsedTime >= frameTime)
 	{
-		setTexture(*bombAnimation.data()[keyFrame % bombAnimation.size()]);
+		if (isLive)
+		{
+			setTexture(*bombAnimation.data()[keyFrame % bombAnimation.size()]);
+			setTextureRect({ 0, 0, 46, 46 });
+		}
+		else
+		{
+			setTexture(*boomAnimation.data()[keyFrame % boomAnimation.size()]);
+			setTextureRect({ 0, 0, 40, 40 });
+		}
 		keyFrame++;
 		elapsedTime = 0.f;
 	}
 
 	auto ggb = this->getGlobalBounds();
 
-	frame += 0.1f;
 
-	for (auto& p : bombLeafObjects)
+	if ((int)frame % 8 >= 7)
 	{
-		p.second->first->Update(deltaTime);
-		p.second->second->Update(deltaTime);
-
-		auto midgb = p.second->first->getGlobalBounds();
-
-		unsigned int frameInt = frame;
-		p.second->first->SetKeyFrame(frameInt);
-		p.second->second->SetKeyFrame(frameInt);
-
-		if (p.first == "right")
+		bombLeafAnimation = false; // 물줄기 애니메이션 한 루프를 돌면 물줄기 렌더링을 끈다.
+		if (isLive == false)
 		{
-			p.second->first->setPosition({ ggb.left + ggb.width + ggb.width / 2.f, ggb.top + ggb.height / 2.f });
-			p.second->second->setPosition({ midgb.left + midgb.width + midgb.width / 2.f, midgb.top + midgb.height / 2.f });
+			isActive = false;
 		}
-		else if (p.first == "left")
+	}
+
+	if (bombLeafAnimation == true)
+	{
+		for (auto& p : bombLeafObjects)
 		{
-			p.second->first->setPosition({ ggb.left - ggb.width / 2.f, ggb.top + ggb.height / 2.f });
-			p.second->second->setPosition({ midgb.left - midgb.width / 2.f,  midgb.top + midgb.height / 2.f });
-		}
-		else if (p.first == "top")
-		{
-			p.second->first->setPosition({ ggb.left + ggb.width / 2.f, ggb.top - ggb.height / 2.f });
-			p.second->second->setPosition({ midgb.left + midgb.width / 2.f, midgb.top - midgb.height / 2.f });
-		}
-		else if (p.first == "bottom")
-		{
-			p.second->first->setPosition({ ggb.left + ggb.width / 2.f, ggb.top + ggb.height + ggb.height / 2.f });
-			p.second->second->setPosition({ midgb.left + midgb.width / 2.f, midgb.top + midgb.height + ggb.height / 2.f });
+			p.second->first->Update(deltaTime);
+			p.second->second->Update(deltaTime);
+
+			auto midgb = p.second->first->getGlobalBounds();
+
+			unsigned int frameInt = frame;
+			p.second->first->SetKeyFrame(frameInt);
+			p.second->second->SetKeyFrame(frameInt);
+
+			if (p.first == "right")
+			{
+				p.second->first->setPosition({ ggb.left + ggb.width + ggb.width / 2.f, ggb.top + ggb.height / 2.f });
+				p.second->second->setPosition({ midgb.left + midgb.width + midgb.width / 2.f, midgb.top + midgb.height / 2.f });
+			}
+			else if (p.first == "left")
+			{
+				p.second->first->setPosition({ ggb.left - ggb.width / 2.f, ggb.top + ggb.height / 2.f });
+				p.second->second->setPosition({ midgb.left - midgb.width / 2.f,  midgb.top + midgb.height / 2.f });
+			}
+			else if (p.first == "top")
+			{
+				p.second->first->setPosition({ ggb.left + ggb.width / 2.f, ggb.top - ggb.height / 2.f });
+				p.second->second->setPosition({ midgb.left + midgb.width / 2.f, midgb.top - midgb.height / 2.f });
+			}
+			else if (p.first == "bottom")
+			{
+				p.second->first->setPosition({ ggb.left + ggb.width / 2.f, ggb.top + ggb.height + ggb.height / 2.f });
+				p.second->second->setPosition({ midgb.left + midgb.width / 2.f, midgb.top + midgb.height + ggb.height / 2.f });
+			}
 		}
 	}
 }
@@ -193,9 +241,12 @@ void CrossBomb::Render(RenderTarget* target)
 {
 	AnimationObject::Render(target);
 
-	for (auto& p : bombLeafObjects)
+	if (bombLeafAnimation == true)
 	{
-		p.second->first->Render(target);
-		p.second->second->Render(target);
+		for (auto& p : bombLeafObjects)
+		{
+			p.second->first->Render(target);
+			p.second->second->Render(target);
+		}
 	}
 }

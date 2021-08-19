@@ -51,7 +51,7 @@ void PracticeScene::Init()
 	//window->setView(*gameView);
 
 	bomb = new CrossBomb();
-	bomb->setPosition(400.f, 200.f);
+	//bomb->setPosition(400.f, 200.f);
 }
 
 void PracticeScene::Destroy()
@@ -81,6 +81,10 @@ void PracticeScene::Input(Event* event)
 			{
 				map->LoadMap("Test.bin");
 				break;
+			}
+			case Keyboard::B:
+			{
+				bomb->SetBomb(player->getPosition());
 			}
 		default:
 			break;

@@ -15,9 +15,13 @@ public:
 private:
 
 	vector<Texture*> bombAnimation;
+	vector<Texture*> boomAnimation;
+	bool isLive = true;
+
 	float lifeTime = 3.f;
 
 	map<string, pairObject*> bombLeafObjects;
+	bool bombLeafAnimation = false;
 
 private:
 
@@ -26,6 +30,8 @@ private:
 public:
 
 	virtual void Destroy();
+
+	void SetBomb(const Vector2f& position);
 
 	virtual void Update(const float& deltaTime);
 	virtual void Update(const Vector2f& mousePosition);
