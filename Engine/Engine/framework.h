@@ -27,6 +27,15 @@ namespace Math
 		return sqrt((postionX * postionX) + (positionY * positionY));
 	}
 
+	inline const float Length(const Vector2f& vec1, const Vector2f& vec2)
+	{
+		Vector2f direction;
+		direction.x = vec1.x - vec2.x;
+		direction.y = vec1.y - vec2.y;
+
+		return sqrt((direction.x * direction.x) + (direction.y * direction.y));
+	}
+
 	inline const Vector2f Normalize(const Vector2f& vec1, const Vector2f& vec2)
 	{
 		Vector2f direction;

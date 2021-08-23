@@ -4,7 +4,7 @@
 
 enum CHARACTER_STATE
 {
-	IDLE,
+	MOVE_IDLE,
 	MOVE_UP,
 	MOVE_DOWN,
 	MOVE_RIGHT,
@@ -37,7 +37,7 @@ protected:
 	float speed = 10.f;
 
 	int characterClass = WARRIOR_MALE;
-	int characterState = IDLE;
+	int characterState = MOVE_IDLE;
 	int oldState = MOVE_DOWN;
 
 	Weapon* weapon = nullptr;

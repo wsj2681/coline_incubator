@@ -159,6 +159,7 @@
     <ClCompile Include="LobbyScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapToolScene.cpp" />
+    <ClCompile Include="MonsterManager.cpp" />
     <ClCompile Include="MonsterObject.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PauseScene.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="JumpObject.h" />
     <ClInclude Include="LobbyScene.h" />
     <ClInclude Include="MapToolScene.h" />
+    <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="MonsterObject.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PauseScene.h" />

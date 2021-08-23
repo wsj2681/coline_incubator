@@ -6,7 +6,7 @@ class Object;
 class JumpObject;
 class MonsterObject;
 class WallManager;
-class CrossBomb;
+class MonsterManager;
 
 class PracticeScene : public Scene
 {
@@ -26,13 +26,12 @@ private:
 	Object* mouseCursor = nullptr;
 
 	JumpObject* player = nullptr;
-	vector<MonsterObject*> monsters;
 
 	View* gameView = nullptr;
 
 	WallManager* wallMgr = nullptr;
-
-	CrossBomb* bomb = nullptr;
+	
+	MonsterManager* monsterMgr = nullptr;
 
 private:
 

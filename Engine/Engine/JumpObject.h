@@ -3,7 +3,7 @@
 
 enum STATE
 {
-	IDLE, // 정지 상태
+	MOVE_IDLE, // 정지 상태
 	PATROL, // 순찰 상태
 	CHASE // 추적 상태
 };
@@ -28,7 +28,7 @@ private:
 
 	Vector2f patrolPosition{ 0.f, 0.f };
 
-	int state = IDLE;
+	int state = MOVE_IDLE;
 
 	float speed = 50.f;
 	float gravity = 2.f;

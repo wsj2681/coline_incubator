@@ -1,5 +1,13 @@
 #pragma once
 #include "Object.h"
+
+
+enum MONSTERSTATE
+{
+	IDLE,
+	CHASING
+};
+
 class MonsterObject : public Object
 {
 public:
@@ -14,8 +22,10 @@ private:
 
 	int HP = 0;
 	Object* hpBar = nullptr;
-	float speed = 100.f;
-	Vector2f dir{ 0.f, 0.f };
+	int state = IDLE;
+	int oldState = IDLE;
+
+	Vector2f targetPosition{};
 
 private:
 
@@ -30,6 +40,8 @@ public:
 
 	virtual void Update(const float& deltaTime);
 	virtual void Update(const Vector2f& mousePosition);
+
+	void ChasingUpdate(Object* object);
 
 	virtual void Render(RenderTarget* target);
 };

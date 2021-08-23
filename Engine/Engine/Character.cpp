@@ -111,7 +111,7 @@ void Character::Update(const float& deltaTime)
 	}
 	else
 	{
-		characterState = IDLE;
+		characterState = MOVE_IDLE;
 	}
 
 	if (elapsedTime >= frameTime)
@@ -123,7 +123,7 @@ void Character::Update(const float& deltaTime)
 				setTexture(*animation.second->data()[keyFrame % animation.second->size()]);
 				oldState = animation.first;
 			}
-			else if (characterState == IDLE)
+			else if (characterState == MOVE_IDLE)
 			{
 				setTexture(*stateAnimation[oldState]->data()[1]);
 			}

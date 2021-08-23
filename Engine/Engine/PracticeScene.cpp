@@ -7,7 +7,7 @@
 #include "BulletManager.h"
 #include "BombManager.h"
 #include "WallManager.h"
-#include "CrossBomb.h"
+#include "MonsterManager.h"
 
 PracticeScene::PracticeScene(stack<Scene*>* scenes, RenderWindow* window, SoundSystem* soundSystem)
 	:Scene(scenes, window, soundSystem)
@@ -34,10 +34,7 @@ void PracticeScene::Init()
 	// 32 x 32
 	player = new JumpObject("Textures/Character/Warrior_Male/Down00.png", {100.f, 100.f});
 
-	for (int i = 0; i < 10; ++i)
-	{
-		monsters.push_back(new MonsterObject("Textures/Character/Warrior_Male/Down00.png", Vector2f(rand() % 1080, rand() % 720)));
-	}
+	monsterMgr = new MonsterManager();
 
 	wallMgr = new WallManager();
 	
@@ -49,8 +46,7 @@ void PracticeScene::Init()
 
 	gameView = new View(player->getPosition(), { 800, 600 });
 	//window->setView(*gameView);
-
-	bomb = new CrossBomb();
+	// 
 	//bomb->setPosition(400.f, 200.f);
 }
 
@@ -81,10 +77,6 @@ void PracticeScene::Input(Event* event)
 			{
 				map->LoadMap("Test.bin");
 				break;
-			}
-			case Keyboard::B:
-			{
-				bomb->SetBomb(player->getPosition());
 			}
 		default:
 			break;
@@ -139,40 +131,25 @@ void PracticeScene::Update(const Vector2f& mousePosition)
 			player->Shoot();
 		}
 		player->Update(mousePosition);
-		player->GetBulletMgr()->GetBullets();
-
-		for (auto& bullet : *player->GetBulletMgr()->GetBullets())
-		{
-			for (auto& monster : monsters)
-			{
-				if (monster->IsActive() && bullet->IsActive())
-				{
-					if (bullet->getGlobalBounds().intersects(monster->getGlobalBounds()))
-					{
-						bullet->SetActive(false);
-						bullet->setPosition({});
-						monster->SetHp(monster->GetHp() - bullet->GetBulletType());
-					}
-				}
-			}
-
-			if (wallMgr)
-			{
-				wallMgr->CollisionUpdate(bullet);
-			}
-
-		}
 	}
 
-	for (auto& monster : monsters)
+
+	if (monsterMgr)
 	{
-		monster->Update(mousePosition);
+		monsterMgr->Update(mousePosition);
+		monsterMgr->UpdateWithBullet(player->GetBulletMgr());
+		monsterMgr->UpdateWithObject(player);
 	}
 
 	if (wallMgr)
 	{
 		wallMgr->Update(mousePosition);
 		wallMgr->CollisionUpdate(player);
+
+		for (auto& bullet : *player->GetBulletMgr()->GetBullets())
+		{
+			wallMgr->CollisionUpdate(bullet);
+		}
 	}
 
 }
@@ -184,24 +161,24 @@ void PracticeScene::Update(const float& deltaTime)
 		mouseCursor->Update(deltaTime);
 	}
 
-	if (bomb)
-	{
-		bomb->Update(deltaTime);
-	}
-
 	if (player)
 	{
 		player->Update(deltaTime);
 	}
 
-	for (auto& monster : monsters)
+	if (monsterMgr)
 	{
-		monster->Update(deltaTime);
-		if (player)
-		{
-			player->GetBombMgr()->DamageBoom(monster);
-		}
+		monsterMgr->Update(deltaTime);
 	}
+
+	//for (auto& monster : monsters)
+	//{
+	//	monster->Update(deltaTime);
+	//	if (player)
+	//	{
+	//		player->GetBombMgr()->DamageBoom(monster);
+	//	}
+	//}
 
 	if (wallMgr)
 	{
@@ -222,19 +199,14 @@ void PracticeScene::Render()
 		player->Render(window);
 	}
 
-	for (auto& monster : monsters)
+	if (monsterMgr)
 	{
-		monster->Render(window);
+		monsterMgr->Render(window);
 	}
 
 	if (wallMgr)
 	{
 		wallMgr->Render(window);
-	}
-
-	if (bomb)
-	{
-		bomb->Render(window);
 	}
 
 	if (mouseCursor)

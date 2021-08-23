@@ -108,7 +108,7 @@ void JumpObject::TargetMove(const Vector2f& targetPosition)
 
 	switch (state)
 	{
-	case IDLE:
+	case MOVE_IDLE:
 	{
 		break;
 	}

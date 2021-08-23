@@ -197,6 +197,9 @@
     <ClCompile Include="CrossBomb.cpp">
       <Filter>소스 파일\03. Object\01. AnimationObject\03. CrossBombObject</Filter>
     </ClCompile>
+    <ClCompile Include="MonsterManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -292,5 +295,6 @@
     <ClInclude Include="CrossBomb.h">
       <Filter>소스 파일\03. Object\01. AnimationObject\03. CrossBombObject</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterManager.h" />
   </ItemGroup>
 </Project>
